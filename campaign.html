@@ -1,0 +1,1062 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Angel KFPS — Instagram Campaign Deck</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Montserrat:wght@300;400;500;600;700&display=swap');
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --black: #0d0d0d;
+            --dark: #111;
+            --card: #181818;
+            --card2: #1e1e1e;
+            --gold: #C9A96E;
+            --gold-light: #dfc08e;
+            --gold-dark: #a88450;
+            --white: #f5f0e8;
+            --muted: rgba(245,240,232,.55);
+            --border: rgba(201,169,110,.2);
+            --green: #2a7a4a;
+            --reel: #9b59b6;
+            --post: #2980b9;
+            --carousel: #e67e22;
+            --story: #e74c3c;
+        }
+
+        html { scroll-behavior: smooth; }
+        body { background: var(--black); color: var(--white); font-family: 'Montserrat', sans-serif; font-weight: 300; line-height: 1.7; overflow-x: hidden; }
+        ::-webkit-scrollbar { width: 3px; } ::-webkit-scrollbar-track { background: var(--black); } ::-webkit-scrollbar-thumb { background: var(--gold-dark); }
+
+        /* ── HEADER ── */
+        header {
+            background: linear-gradient(135deg, #0d0d0d 0%, #1a1208 100%);
+            border-bottom: 1px solid var(--border);
+            padding: 64px 56px 48px;
+            position: relative; overflow: hidden;
+        }
+        header::before {
+            content: 'ANGEL'; position: absolute; right: -20px; top: -20px;
+            font-family: 'Cormorant Garamond', serif; font-size: 220px; font-weight: 700;
+            color: rgba(201,169,110,.04); letter-spacing: 20px; pointer-events: none;
+            user-select: none; line-height: 1;
+        }
+        .header-inner { max-width: 1360px; margin: 0 auto; position: relative; z-index: 1; }
+        .header-tag { font-size: 10px; font-weight: 600; letter-spacing: 6px; text-transform: uppercase; color: var(--gold); margin-bottom: 12px; }
+        .header-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(40px, 5vw, 68px); font-weight: 400; letter-spacing: 2px; color: var(--white); line-height: 1; margin-bottom: 8px; }
+        .header-sub { font-size: 13px; color: var(--muted); margin-bottom: 40px; }
+        .header-stats { display: flex; gap: 48px; flex-wrap: wrap; }
+        .stat { text-align: left; }
+        .stat-num { font-family: 'Cormorant Garamond', serif; font-size: 36px; font-weight: 500; color: var(--gold); line-height: 1; }
+        .stat-label { font-size: 9px; font-weight: 600; letter-spacing: 4px; text-transform: uppercase; color: var(--muted); margin-top: 4px; }
+
+        /* ── NAV TABS ── */
+        .sticky-nav { position: sticky; top: 0; z-index: 100; background: rgba(13,13,13,.97); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); }
+        .nav-inner { max-width: 1360px; margin: 0 auto; padding: 0 56px; display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+        .nav-tabs { display: flex; gap: 0; overflow-x: auto; scrollbar-width: none; }
+        .nav-tabs::-webkit-scrollbar { display: none; }
+        .nav-tab { padding: 18px 24px; font-size: 10px; font-weight: 600; letter-spacing: 3px; text-transform: uppercase; color: rgba(245,240,232,.4); background: none; border: none; border-bottom: 2px solid transparent; cursor: pointer; white-space: nowrap; font-family: 'Montserrat', sans-serif; transition: all .25s ease; }
+        .nav-tab.active { color: var(--gold); border-bottom-color: var(--gold); }
+        .nav-tab:hover { color: var(--white); }
+        .nav-back { font-size: 10px; letter-spacing: 3px; text-transform: uppercase; color: var(--muted); text-decoration: none; white-space: nowrap; transition: color .25s; }
+        .nav-back:hover { color: var(--gold); }
+
+        /* ── SECTIONS ── */
+        .section { padding: 72px 56px; max-width: 1360px; margin: 0 auto; }
+        .section-label { font-size: 10px; font-weight: 600; letter-spacing: 6px; text-transform: uppercase; color: var(--gold); margin-bottom: 12px; }
+        .section-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(32px, 4vw, 52px); font-weight: 400; color: var(--white); margin-bottom: 8px; }
+        .section-desc { font-size: 13px; color: var(--muted); max-width: 640px; margin-bottom: 40px; }
+        .gold-line { width: 48px; height: 1px; background: var(--gold); margin-bottom: 32px; }
+
+        /* ── PROFILE SETUP ── */
+        .profile-card { background: var(--card); border: 1px solid var(--border); padding: 40px; display: grid; grid-template-columns: auto 1fr; gap: 40px; align-items: start; }
+        .profile-avatar { width: 96px; height: 96px; border-radius: 50%; background: linear-gradient(135deg, var(--gold-dark), var(--gold)); display: flex; align-items: center; justify-content: center; font-family: 'Cormorant Garamond', serif; font-size: 36px; color: var(--black); font-weight: 600; flex-shrink: 0; border: 3px solid rgba(201,169,110,.3); }
+        .profile-bio-wrap { position: relative; }
+        .profile-bio-label { font-size: 9px; font-weight: 600; letter-spacing: 4px; text-transform: uppercase; color: var(--gold); margin-bottom: 12px; }
+        .profile-bio-text { font-family: 'Montserrat', sans-serif; font-size: 14px; line-height: 1.8; color: var(--white); background: var(--card2); border: 1px solid var(--border); padding: 20px; white-space: pre-line; }
+        .copy-btn { display: inline-flex; align-items: center; gap: 6px; background: none; border: 1px solid var(--border); color: var(--gold); padding: 8px 18px; font-size: 9px; font-weight: 600; letter-spacing: 3px; text-transform: uppercase; cursor: pointer; font-family: 'Montserrat', sans-serif; transition: all .25s ease; margin-top: 12px; }
+        .copy-btn:hover { background: var(--gold); color: var(--black); }
+        .copy-btn.copied { background: var(--green); border-color: var(--green); color: #fff; }
+        .profile-tips { margin-top: 32px; display: grid; grid-template-columns: repeat(3,1fr); gap: 16px; }
+        .tip-card { background: var(--card2); border: 1px solid var(--border); padding: 20px; }
+        .tip-title { font-size: 11px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; color: var(--gold); margin-bottom: 8px; }
+        .tip-text { font-size: 12px; color: var(--muted); line-height: 1.7; }
+
+        /* ── FILTER BAR ── */
+        .filter-bar { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 40px; }
+        .filter-btn { padding: 8px 20px; font-size: 10px; font-weight: 600; letter-spacing: 3px; text-transform: uppercase; border: 1px solid var(--border); background: none; color: rgba(245,240,232,.5); cursor: pointer; font-family: 'Montserrat', sans-serif; transition: all .25s ease; }
+        .filter-btn.active { background: var(--gold); border-color: var(--gold); color: var(--black); }
+        .filter-btn:hover:not(.active) { border-color: var(--gold); color: var(--gold); }
+
+        /* ── POST GRID ── */
+        .post-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 20px; }
+        .post-card { background: var(--card); border: 1px solid var(--border); overflow: hidden; transition: all .3s ease; cursor: pointer; }
+        .post-card:hover { border-color: var(--gold); transform: translateY(-3px); box-shadow: 0 12px 40px rgba(201,169,110,.08); }
+        .post-card.hidden { display: none; }
+        .post-thumb { position: relative; aspect-ratio: 1; overflow: hidden; background: #000; }
+        .post-thumb img, .post-thumb video { width: 100%; height: 100%; object-fit: cover; display: block; }
+        .post-thumb-placeholder { width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; background: var(--card2); }
+        .post-thumb-placeholder svg { width: 40px; height: 40px; color: rgba(201,169,110,.3); }
+        .type-badge { position: absolute; top: 12px; left: 12px; padding: 4px 10px; font-size: 8px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: #fff; }
+        .badge-reel { background: var(--reel); }
+        .badge-post { background: var(--post); }
+        .badge-carousel { background: var(--carousel); }
+        .badge-story { background: var(--story); }
+        .week-badge { position: absolute; top: 12px; right: 12px; padding: 4px 10px; font-size: 8px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; background: rgba(13,13,13,.8); color: var(--gold); border: 1px solid var(--border); }
+        .post-body { padding: 20px; }
+        .post-title { font-family: 'Cormorant Garamond', serif; font-size: 18px; font-weight: 500; color: var(--white); margin-bottom: 6px; }
+        .post-pillar { font-size: 9px; font-weight: 600; letter-spacing: 3px; text-transform: uppercase; color: var(--gold); margin-bottom: 10px; }
+        .post-caption-preview { font-size: 12px; color: var(--muted); line-height: 1.6; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; margin-bottom: 16px; }
+        .post-actions { display: flex; gap: 8px; }
+        .post-btn { flex: 1; padding: 8px; font-size: 9px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; border: 1px solid var(--border); background: none; color: var(--gold); cursor: pointer; font-family: 'Montserrat', sans-serif; transition: all .25s ease; }
+        .post-btn:hover { background: var(--gold); color: var(--black); }
+        .post-btn.copied { background: var(--green); border-color: var(--green); color: #fff; }
+
+        /* ── MODAL ── */
+        #modal { display: none; position: fixed; inset: 0; z-index: 500; background: rgba(0,0,0,.92); overflow-y: auto; padding: 40px 24px; }
+        #modal.open { display: flex; align-items: flex-start; justify-content: center; }
+        .modal-inner { background: var(--card); border: 1px solid var(--border); width: 100%; max-width: 760px; margin: auto; }
+        .modal-media { position: relative; aspect-ratio: 1; background: #000; overflow: hidden; }
+        .modal-media img, .modal-media video { width: 100%; height: 100%; object-fit: contain; display: block; }
+        .modal-body { padding: 32px; }
+        .modal-header { display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 20px; }
+        .modal-title { font-family: 'Cormorant Garamond', serif; font-size: 28px; font-weight: 500; color: var(--white); }
+        .modal-close { background: none; border: 1px solid var(--border); color: var(--gold); width: 36px; height: 36px; font-size: 20px; cursor: pointer; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-left: 16px; font-family: 'Cormorant Garamond', serif; }
+        .modal-close:hover { background: var(--gold); color: var(--black); }
+        .modal-badges { display: flex; gap: 8px; margin-bottom: 24px; }
+        .modal-badge { padding: 4px 12px; font-size: 9px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; }
+        .modal-section-label { font-size: 9px; font-weight: 600; letter-spacing: 4px; text-transform: uppercase; color: var(--gold); margin-bottom: 10px; }
+        .modal-text { font-size: 13px; color: var(--white); line-height: 1.8; background: var(--card2); border: 1px solid var(--border); padding: 20px; white-space: pre-wrap; margin-bottom: 8px; }
+        .modal-tags { font-size: 12px; color: rgba(201,169,110,.7); line-height: 1.8; background: var(--card2); border: 1px solid var(--border); padding: 16px 20px; margin-bottom: 8px; }
+        .modal-divider { height: 1px; background: var(--border); margin: 24px 0; }
+        .modal-meta-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 16px; margin-bottom: 24px; }
+        .modal-meta-item { }
+        .modal-meta-label { font-size: 9px; font-weight: 600; letter-spacing: 3px; text-transform: uppercase; color: var(--gold); margin-bottom: 4px; }
+        .modal-meta-val { font-size: 13px; color: var(--white); }
+        .modal-actions { display: flex; gap: 12px; }
+        .modal-btn { flex: 1; padding: 14px; font-size: 10px; font-weight: 600; letter-spacing: 3px; text-transform: uppercase; border: 1px solid var(--border); background: none; color: var(--gold); cursor: pointer; font-family: 'Montserrat', sans-serif; transition: all .25s ease; }
+        .modal-btn.primary { background: var(--gold); color: var(--black); border-color: var(--gold); }
+        .modal-btn:hover { background: var(--gold); color: var(--black); }
+        .modal-btn.copied { background: var(--green); border-color: var(--green); color: #fff; }
+
+        /* ── TIMELINE ── */
+        .timeline { position: relative; padding-left: 32px; }
+        .timeline::before { content: ''; position: absolute; left: 8px; top: 0; bottom: 0; width: 1px; background: var(--border); }
+        .timeline-week { margin-bottom: 48px; }
+        .week-header { display: flex; align-items: center; gap: 16px; margin-bottom: 24px; }
+        .week-dot { width: 16px; height: 16px; background: var(--gold); border-radius: 50%; position: absolute; left: 0; margin-top: 2px; }
+        .week-title { font-family: 'Cormorant Garamond', serif; font-size: 28px; font-weight: 400; color: var(--white); }
+        .week-sub { font-size: 11px; color: var(--muted); letter-spacing: 2px; }
+        .day-list { display: flex; flex-direction: column; gap: 12px; }
+        .day-item { display: grid; grid-template-columns: 80px auto 1fr auto; gap: 16px; align-items: center; background: var(--card); border: 1px solid var(--border); padding: 16px 20px; transition: border-color .25s; }
+        .day-item:hover { border-color: var(--gold); }
+        .day-label { font-size: 10px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; color: var(--muted); }
+        .day-type-dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
+        .day-content { font-size: 13px; color: var(--white); }
+        .day-sub { font-size: 11px; color: var(--muted); }
+        .day-time { font-size: 11px; color: var(--gold); text-align: right; white-space: nowrap; }
+
+        /* ── HASHTAG BANK ── */
+        .hashtag-section { margin-bottom: 40px; }
+        .hashtag-section-title { font-size: 11px; font-weight: 600; letter-spacing: 4px; text-transform: uppercase; color: var(--gold); margin-bottom: 16px; display: flex; align-items: center; justify-content: space-between; }
+        .hashtag-grid { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 12px; }
+        .tag { padding: 6px 14px; border: 1px solid var(--border); font-size: 12px; color: rgba(201,169,110,.8); background: var(--card); transition: all .2s; cursor: default; }
+        .tag:hover { border-color: var(--gold); color: var(--gold); }
+        .hashtag-copy-all { background: none; border: 1px solid var(--border); color: var(--gold); padding: 6px 16px; font-size: 9px; font-weight: 600; letter-spacing: 3px; text-transform: uppercase; cursor: pointer; font-family: 'Montserrat', sans-serif; transition: all .25s; }
+        .hashtag-copy-all:hover { background: var(--gold); color: var(--black); }
+        .hashtag-copy-all.copied { background: var(--green); border-color: var(--green); color: #fff; }
+
+        /* ── TOAST ── */
+        #toast { position: fixed; bottom: 32px; right: 32px; background: var(--green); color: #fff; padding: 12px 24px; font-size: 11px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; z-index: 1000; opacity: 0; transform: translateY(16px); transition: all .3s ease; pointer-events: none; }
+        #toast.show { opacity: 1; transform: translateY(0); }
+
+        /* ── RESPONSIVE ── */
+        @media (max-width: 1024px) { .post-grid { grid-template-columns: repeat(2,1fr); } .profile-tips { grid-template-columns: 1fr 1fr; } .modal-meta-grid { grid-template-columns: 1fr 1fr; } }
+        @media (max-width: 768px) {
+            header, .section { padding: 48px 24px; }
+            .nav-inner { padding: 0 24px; }
+            .post-grid { grid-template-columns: 1fr; }
+            .profile-card { grid-template-columns: 1fr; }
+            .profile-tips { grid-template-columns: 1fr; }
+            .day-item { grid-template-columns: 64px 1fr; }
+            .day-type-dot, .day-time { display: none; }
+            .header-stats { gap: 24px; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+    <div class="header-inner">
+        <p class="header-tag">Instagram Campaign Deck · April 2026</p>
+        <h1 class="header-title">Angel KFPS</h1>
+        <p class="header-sub">@angel_kfps_mexico · Friesian Stallion · Ixtapan Tonatico, México</p>
+        <div class="header-stats">
+            <div class="stat"><div class="stat-num">9</div><div class="stat-label">Planned Posts</div></div>
+            <div class="stat"><div class="stat-num">2</div><div class="stat-label">Week Launch</div></div>
+            <div class="stat"><div class="stat-num">3</div><div class="stat-label">Content Pillars</div></div>
+            <div class="stat"><div class="stat-num">30+</div><div class="stat-label">Hashtags</div></div>
+        </div>
+    </div>
+</header>
+
+<!-- STICKY NAV -->
+<div class="sticky-nav">
+    <div class="nav-inner">
+        <div class="nav-tabs">
+            <button class="nav-tab active" onclick="showSection('profile')">Profile Setup</button>
+            <button class="nav-tab" onclick="showSection('posts')">Post Library</button>
+            <button class="nav-tab" onclick="showSection('timeline')">Launch Timeline</button>
+            <button class="nav-tab" onclick="showSection('hashtags')">Hashtag Bank</button>
+        </div>
+        <a href="index.html" class="nav-back">← Back to Site</a>
+    </div>
+</div>
+
+<!-- ══ SECTION: PROFILE SETUP ══ -->
+<div id="section-profile" class="section">
+    <p class="section-label">Step 01</p>
+    <h2 class="section-title">Profile Setup</h2>
+    <div class="gold-line"></div>
+    <p class="section-desc">Before any posts go live, set up the profile correctly. This is the first thing a potential client sees.</p>
+
+    <div class="profile-card">
+        <div class="profile-avatar">A</div>
+        <div>
+            <div class="profile-bio-label">Recommended Instagram Bio</div>
+            <div class="profile-bio-text" id="bio-text">Angel 🖤 | KFPS Registered Friesian Stallion
+Vb H · Premium Classification
+📍 Ixtapan Tonatico, Estado de México
+🐴 Stud Services · Breeding Programs
+🔗 Link in bio</div>
+            <button class="copy-btn" onclick="copyText('bio-text', this)">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
+                Copy Bio
+            </button>
+        </div>
+    </div>
+
+    <div class="profile-tips" style="margin-top:32px;">
+        <div class="tip-card">
+            <div class="tip-title">Profile Photo</div>
+            <div class="tip-text">Use the jump shot (MAIN PIC.jpeg) cropped to square. The dramatic mid-air pose stops the scroll instantly. Crop to center on the horse's body.</div>
+        </div>
+        <div class="tip-card">
+            <div class="tip-title">Username</div>
+            <div class="tip-text">Keep <strong style="color:var(--white);">@angel_kfps_mexico</strong> — it's clean, searchable, and already branded. Add the website URL once it's live.</div>
+        </div>
+        <div class="tip-card">
+            <div class="tip-title">Highlights</div>
+            <div class="tip-text">Create 4 highlight covers: <strong style="color:var(--white);">Angel · Bloodlines · Services · Gallery</strong>. Use black + gold for covers to match the brand.</div>
+        </div>
+        <div class="tip-card">
+            <div class="tip-title">Link in Bio</div>
+            <div class="tip-text">Point to <strong style="color:var(--white);">adityagudlavalleti-stack.github.io/angel-kfps</strong> for now. Update to a custom domain when ready.</div>
+        </div>
+        <div class="tip-card">
+            <div class="tip-title">Posting Times (MX)</div>
+            <div class="tip-text">Best engagement: <strong style="color:var(--white);">Tue–Thu · 7–9 AM</strong> and <strong style="color:var(--white);">7–9 PM CST</strong>. Saturdays 10 AM work well for breeders browsing on weekends.</div>
+        </div>
+        <div class="tip-card">
+            <div class="tip-title">Language</div>
+            <div class="tip-text">Post bilingually — <strong style="color:var(--white);">Spanish first, English below</strong>. Reaches Mexican breeders AND international buyers searching KFPS bloodlines.</div>
+        </div>
+    </div>
+</div>
+
+<!-- ══ SECTION: POST LIBRARY ══ -->
+<div id="section-posts" class="section" style="display:none;">
+    <p class="section-label">Step 02</p>
+    <h2 class="section-title">Post Library</h2>
+    <div class="gold-line"></div>
+    <p class="section-desc">9 ready-to-post pieces of content. Click any card to expand the full caption, hashtags, and posting notes. Copy with one click.</p>
+
+    <div class="filter-bar">
+        <button class="filter-btn active" onclick="filterPosts('all', this)">All (9)</button>
+        <button class="filter-btn" onclick="filterPosts('reel', this)">Reels (4)</button>
+        <button class="filter-btn" onclick="filterPosts('post', this)">Posts (3)</button>
+        <button class="filter-btn" onclick="filterPosts('carousel', this)">Carousels (1)</button>
+        <button class="filter-btn" onclick="filterPosts('story', this)">Stories (1)</button>
+    </div>
+
+    <div class="post-grid" id="postGrid">
+
+        <!-- POST 1 -->
+        <div class="post-card" data-type="reel" data-index="0" onclick="openModal(0)">
+            <div class="post-thumb">
+                <img src="MAIN PIC.jpeg" alt="Post 1">
+                <span class="type-badge badge-reel">Reel</span>
+                <span class="week-badge">Week 1 · Day 2</span>
+            </div>
+            <div class="post-body">
+                <div class="post-pillar">Launch · Angel</div>
+                <div class="post-title">The Launch Reel</div>
+                <div class="post-caption-preview">He doesn't just move. He flies. 🖤 Introducing Angel — KFPS registered Friesian stallion, Vb H Premium classification, born January 2024...</div>
+                <div class="post-actions">
+                    <button class="post-btn" onclick="event.stopPropagation(); copyPostCaption(0, this)">Copy Caption</button>
+                    <button class="post-btn" onclick="event.stopPropagation(); copyPostTags(0, this)">Copy Tags</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- POST 2 -->
+        <div class="post-card" data-type="post" data-index="1" onclick="openModal(1)">
+            <div class="post-thumb">
+                <img src="main pic2.jpeg" alt="Post 2">
+                <span class="type-badge badge-post">Post</span>
+                <span class="week-badge">Week 1 · Day 4</span>
+            </div>
+            <div class="post-body">
+                <div class="post-pillar">Angel · Conformation</div>
+                <div class="post-title">Conformation Post</div>
+                <div class="post-caption-preview">Conformation speaks before the stallion does. Black. No markings. Vb H Premium. Angel is built to produce...</div>
+                <div class="post-actions">
+                    <button class="post-btn" onclick="event.stopPropagation(); copyPostCaption(1, this)">Copy Caption</button>
+                    <button class="post-btn" onclick="event.stopPropagation(); copyPostTags(1, this)">Copy Tags</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- POST 3 -->
+        <div class="post-card" data-type="carousel" data-index="2" onclick="openModal(2)">
+            <div class="post-thumb">
+                <img src="pic2.jpeg" alt="Post 3">
+                <span class="type-badge badge-carousel">Carousel</span>
+                <span class="week-badge">Week 1 · Day 6</span>
+            </div>
+            <div class="post-body">
+                <div class="post-pillar">Bloodlines · Pedigree</div>
+                <div class="post-title">The Pedigree Reveal</div>
+                <div class="post-caption-preview">Swipe to meet the bloodline behind Angel 🖤 Sire: Leftert 306 (Stb Ster Pref) · Dam: Bartele 472 (Stb Sport AAA) · Grandsire: Teun 505...</div>
+                <div class="post-actions">
+                    <button class="post-btn" onclick="event.stopPropagation(); copyPostCaption(2, this)">Copy Caption</button>
+                    <button class="post-btn" onclick="event.stopPropagation(); copyPostTags(2, this)">Copy Tags</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- POST 4 -->
+        <div class="post-card" data-type="reel" data-index="3" onclick="openModal(3)">
+            <div class="post-thumb">
+                <video src="WhatsApp%20Video%202026-04-11%20at%206.44.31%20PM.mp4" muted preload="metadata"></video>
+                <span class="type-badge badge-reel">Reel</span>
+                <span class="week-badge">Week 1 · Day 7</span>
+            </div>
+            <div class="post-body">
+                <div class="post-pillar">Angel · Movement</div>
+                <div class="post-title">Movement Reel #1</div>
+                <div class="post-caption-preview">Power. Grace. Purity. Watch Angel move — the way only a Premium KFPS Friesian can. 🖤 Stud services available. DM or link in bio...</div>
+                <div class="post-actions">
+                    <button class="post-btn" onclick="event.stopPropagation(); copyPostCaption(3, this)">Copy Caption</button>
+                    <button class="post-btn" onclick="event.stopPropagation(); copyPostTags(3, this)">Copy Tags</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- POST 5 -->
+        <div class="post-card" data-type="post" data-index="4" onclick="openModal(4)">
+            <div class="post-thumb">
+                <img src="pic3.jpeg" alt="Post 5">
+                <span class="type-badge badge-post">Post</span>
+                <span class="week-badge">Week 2 · Day 9</span>
+            </div>
+            <div class="post-body">
+                <div class="post-pillar">Services · Stud</div>
+                <div class="post-title">Stud Services Announcement</div>
+                <div class="post-caption-preview">Exceptional offspring start with exceptional bloodlines. Angel is now open for stud services. Live cover & shipped semen available. 📍 Ixtapan Tonatico, México...</div>
+                <div class="post-actions">
+                    <button class="post-btn" onclick="event.stopPropagation(); copyPostCaption(4, this)">Copy Caption</button>
+                    <button class="post-btn" onclick="event.stopPropagation(); copyPostTags(4, this)">Copy Tags</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- POST 6 -->
+        <div class="post-card" data-type="reel" data-index="5" onclick="openModal(5)">
+            <div class="post-thumb">
+                <video src="WhatsApp%20Video%202026-04-11%20at%206.44.33%20PM.mp4" muted preload="metadata"></video>
+                <span class="type-badge badge-reel">Reel</span>
+                <span class="week-badge">Week 2 · Day 10</span>
+            </div>
+            <div class="post-body">
+                <div class="post-pillar">Angel · Movement</div>
+                <div class="post-title">Movement Reel #2</div>
+                <div class="post-caption-preview">El que corre no vuela — el que vuela es Angel. 🖤 KFPS Friesian Stallion · Premium Classification · México. Servicios de monta disponibles...</div>
+                <div class="post-actions">
+                    <button class="post-btn" onclick="event.stopPropagation(); copyPostCaption(5, this)">Copy Caption</button>
+                    <button class="post-btn" onclick="event.stopPropagation(); copyPostTags(5, this)">Copy Tags</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- POST 7 -->
+        <div class="post-card" data-type="post" data-index="6" onclick="openModal(6)">
+            <div class="post-thumb">
+                <img src="pic5.jpeg" alt="Post 7">
+                <span class="type-badge badge-post">Post</span>
+                <span class="week-badge">Week 2 · Day 11</span>
+            </div>
+            <div class="post-body">
+                <div class="post-pillar">Services · B2B</div>
+                <div class="post-title">Breeding Programs (B2B)</div>
+                <div class="post-caption-preview">Building a Friesian program? Angel offers elite KFPS genetics for breeding operations of all sizes. Volume pricing and multi-season agreements available...</div>
+                <div class="post-actions">
+                    <button class="post-btn" onclick="event.stopPropagation(); copyPostCaption(6, this)">Copy Caption</button>
+                    <button class="post-btn" onclick="event.stopPropagation(); copyPostTags(6, this)">Copy Tags</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- POST 8 -->
+        <div class="post-card" data-type="reel" data-index="7" onclick="openModal(7)">
+            <div class="post-thumb">
+                <video src="WhatsApp%20Video%202026-04-11%20at%206.44.40%20PM.mp4" muted preload="metadata"></video>
+                <span class="type-badge badge-reel">Reel</span>
+                <span class="week-badge">Week 2 · Day 12</span>
+            </div>
+            <div class="post-body">
+                <div class="post-pillar">Bloodlines · Heritage</div>
+                <div class="post-title">Bloodlines Reel</div>
+                <div class="post-caption-preview">His sire: Leftert 306. His dam: Bartele 472 (Stb Sport AAA). His classification: Vb H Premium. Angel carries the best of the KFPS studbook...</div>
+                <div class="post-actions">
+                    <button class="post-btn" onclick="event.stopPropagation(); copyPostCaption(7, this)">Copy Caption</button>
+                    <button class="post-btn" onclick="event.stopPropagation(); copyPostTags(7, this)">Copy Tags</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- POST 9 -->
+        <div class="post-card" data-type="story" data-index="8" onclick="openModal(8)">
+            <div class="post-thumb">
+                <img src="pic6.jpeg" alt="Post 9" style="object-fit:cover;">
+                <span class="type-badge badge-story">Story</span>
+                <span class="week-badge">Week 1 · Day 3</span>
+            </div>
+            <div class="post-body">
+                <div class="post-pillar">Engagement · Poll</div>
+                <div class="post-title">Story: Meet Angel Poll</div>
+                <div class="post-caption-preview">Interactive story to introduce Angel. Use Instagram's Poll sticker: "¿Conoces la raza Frisona?" Yes / No. Follow with swipe-up to website...</div>
+                <div class="post-actions">
+                    <button class="post-btn" onclick="event.stopPropagation(); copyPostCaption(8, this)">Copy Script</button>
+                    <button class="post-btn" onclick="event.stopPropagation(); copyPostTags(8, this)">Copy Tags</button>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<!-- ══ SECTION: TIMELINE ══ -->
+<div id="section-timeline" class="section" style="display:none;">
+    <p class="section-label">Step 03</p>
+    <h2 class="section-title">Launch Timeline</h2>
+    <div class="gold-line"></div>
+    <p class="section-desc">Two-week rollout. Best times are Tuesday–Thursday 7–9 AM or 7–9 PM CST. Follow this sequence for maximum momentum.</p>
+
+    <div class="timeline">
+
+        <div class="timeline-week">
+            <div style="position:relative; display:flex; align-items:center; gap:16px; margin-bottom:24px;">
+                <div class="week-dot"></div>
+                <div>
+                    <div class="week-title">Week 1 — Launch</div>
+                    <div class="week-sub" style="font-size:11px; color:var(--muted); letter-spacing:2px;">Profile setup · First impression · Introduce Angel</div>
+                </div>
+            </div>
+            <div class="day-list">
+                <div class="day-item">
+                    <div class="day-label">Day 1<br><span style="font-size:9px;color:var(--gold)">Mon</span></div>
+                    <div class="day-type-dot" style="background:var(--post);"></div>
+                    <div><div class="day-content">Update profile bio, photo & link</div><div class="day-sub">No post — just profile setup</div></div>
+                    <div class="day-time">Before 9 AM</div>
+                </div>
+                <div class="day-item">
+                    <div class="day-label">Day 2<br><span style="font-size:9px;color:var(--gold)">Tue</span></div>
+                    <div class="day-type-dot" style="background:var(--reel);"></div>
+                    <div><div class="day-content">🎬 The Launch Reel — jump shot video</div><div class="day-sub">Most impactful post. Use best video clip + MAIN PIC.jpeg as cover.</div></div>
+                    <div class="day-time">7 PM CST</div>
+                </div>
+                <div class="day-item">
+                    <div class="day-label">Day 3<br><span style="font-size:9px;color:var(--gold)">Wed</span></div>
+                    <div class="day-type-dot" style="background:var(--story);"></div>
+                    <div><div class="day-content">📖 Story: Meet Angel Poll</div><div class="day-sub">"¿Conoces la raza Frisona?" poll + swipe to site</div></div>
+                    <div class="day-time">9 AM CST</div>
+                </div>
+                <div class="day-item">
+                    <div class="day-label">Day 4<br><span style="font-size:9px;color:var(--gold)">Thu</span></div>
+                    <div class="day-type-dot" style="background:var(--post);"></div>
+                    <div><div class="day-content">📸 Conformation Post — main pic2.jpeg</div><div class="day-sub">Full side-profile shot. Let the horse speak.</div></div>
+                    <div class="day-time">7 PM CST</div>
+                </div>
+                <div class="day-item">
+                    <div class="day-label">Day 5<br><span style="font-size:9px;color:var(--gold)">Fri</span></div>
+                    <div class="day-type-dot" style="background:var(--story);"></div>
+                    <div><div class="day-content">📖 Story: Q&A sticker — "Ask me anything about Angel"</div><div class="day-sub">Engagement booster. Respond to questions in next day's story.</div></div>
+                    <div class="day-time">9 AM CST</div>
+                </div>
+                <div class="day-item">
+                    <div class="day-label">Day 6<br><span style="font-size:9px;color:var(--gold)">Sat</span></div>
+                    <div class="day-type-dot" style="background:var(--carousel);"></div>
+                    <div><div class="day-content">🎠 Pedigree Carousel — Leftert 306, Bartele 472, Teun 505</div><div class="day-sub">Swipeable family tree. High save rate from breeders.</div></div>
+                    <div class="day-time">10 AM CST</div>
+                </div>
+                <div class="day-item">
+                    <div class="day-label">Day 7<br><span style="font-size:9px;color:var(--gold)">Sun</span></div>
+                    <div class="day-type-dot" style="background:var(--reel);"></div>
+                    <div><div class="day-content">🎬 Movement Reel #1</div><div class="day-sub">Pure movement clip. Minimal caption. Let the video do the work.</div></div>
+                    <div class="day-time">7 PM CST</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="timeline-week">
+            <div style="position:relative; display:flex; align-items:center; gap:16px; margin-bottom:24px;">
+                <div class="week-dot"></div>
+                <div>
+                    <div class="week-title">Week 2 — Convert</div>
+                    <div class="week-sub" style="font-size:11px; color:var(--muted); letter-spacing:2px;">Services · B2B · Drive inquiries</div>
+                </div>
+            </div>
+            <div class="day-list">
+                <div class="day-item">
+                    <div class="day-label">Day 9<br><span style="font-size:9px;color:var(--gold)">Tue</span></div>
+                    <div class="day-type-dot" style="background:var(--post);"></div>
+                    <div><div class="day-content">📸 Stud Services Announcement</div><div class="day-sub">Clear CTA: DM or link in bio. Include live cover + AI availability.</div></div>
+                    <div class="day-time">7 PM CST</div>
+                </div>
+                <div class="day-item">
+                    <div class="day-label">Day 10<br><span style="font-size:9px;color:var(--gold)">Wed</span></div>
+                    <div class="day-type-dot" style="background:var(--reel);"></div>
+                    <div><div class="day-content">🎬 Movement Reel #2 — Spanish caption</div><div class="day-sub">Bilingual reel to capture local Mexican audience.</div></div>
+                    <div class="day-time">7 AM CST</div>
+                </div>
+                <div class="day-item">
+                    <div class="day-label">Day 11<br><span style="font-size:9px;color:var(--gold)">Thu</span></div>
+                    <div class="day-type-dot" style="background:var(--post);"></div>
+                    <div><div class="day-content">📸 Breeding Programs (B2B)</div><div class="day-sub">Target commercial breeders. Volume pricing, farm partnerships.</div></div>
+                    <div class="day-time">7 PM CST</div>
+                </div>
+                <div class="day-item">
+                    <div class="day-label">Day 12<br><span style="font-size:9px;color:var(--gold)">Fri</span></div>
+                    <div class="day-type-dot" style="background:var(--reel);"></div>
+                    <div><div class="day-content">🎬 Bloodlines Reel</div><div class="day-sub">Heritage angle — sire + dam + classification. Prestige positioning.</div></div>
+                    <div class="day-time">7 PM CST</div>
+                </div>
+                <div class="day-item">
+                    <div class="day-label">Day 13<br><span style="font-size:9px;color:var(--gold)">Sat</span></div>
+                    <div class="day-type-dot" style="background:var(--story);"></div>
+                    <div><div class="day-content">📖 Story: Certificate reveal + website CTA</div><div class="day-sub">Show the KFPS certificate. Swipe up / link to full site.</div></div>
+                    <div class="day-time">10 AM CST</div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<!-- ══ SECTION: HASHTAG BANK ══ -->
+<div id="section-hashtags" class="section" style="display:none;">
+    <p class="section-label">Step 04</p>
+    <h2 class="section-title">Hashtag Bank</h2>
+    <div class="gold-line"></div>
+    <p class="section-desc">Organized by tier. Use 20–30 per post. Mix all three tiers for best reach. Always include the branded tag on every post.</p>
+
+    <div class="hashtag-section">
+        <div class="hashtag-section-title">
+            Tier 1 — Brand (Always Use)
+            <button class="hashtag-copy-all" onclick="copyHashtagTier('tier1', this)">Copy All</button>
+        </div>
+        <div class="hashtag-grid" id="tier1">
+            <span class="tag">#AngelKFPS</span>
+            <span class="tag">#AngelFriesian</span>
+            <span class="tag">#FriesianMexico</span>
+            <span class="tag">#CaballoFrisonMexico</span>
+            <span class="tag">#Semental Angel</span>
+        </div>
+    </div>
+
+    <div class="hashtag-section">
+        <div class="hashtag-section-title">
+            Tier 2 — Breed & Registry (High Relevance)
+            <button class="hashtag-copy-all" onclick="copyHashtagTier('tier2', this)">Copy All</button>
+        </div>
+        <div class="hashtag-grid" id="tier2">
+            <span class="tag">#FriesianHorse</span>
+            <span class="tag">#FriesianStallion</span>
+            <span class="tag">#Friesian</span>
+            <span class="tag">#KFPS</span>
+            <span class="tag">#KFPSregistered</span>
+            <span class="tag">#FriesianBreeder</span>
+            <span class="tag">#FriesianStudBook</span>
+            <span class="tag">#VbHPremium</span>
+            <span class="tag">#FriesianBloodlines</span>
+            <span class="tag">#Leftert306</span>
+            <span class="tag">#CaballoFrison</span>
+            <span class="tag">#CaballoFrisón</span>
+        </div>
+    </div>
+
+    <div class="hashtag-section">
+        <div class="hashtag-section-title">
+            Tier 3 — Breeding & Services
+            <button class="hashtag-copy-all" onclick="copyHashtagTier('tier3', this)">Copy All</button>
+        </div>
+        <div class="hashtag-grid" id="tier3">
+            <span class="tag">#HorseBreeding</span>
+            <span class="tag">#StudService</span>
+            <span class="tag">#HorseStud</span>
+            <span class="tag">#FriesianBreeding</span>
+            <span class="tag">#WarmbloodBreeder</span>
+            <span class="tag">#CaballosDeRaza</span>
+            <span class="tag">#CriaderoEquino</span>
+            <span class="tag">#SementalDeRaza</span>
+            <span class="tag">#MontaCaballos</span>
+        </div>
+    </div>
+
+    <div class="hashtag-section">
+        <div class="hashtag-section-title">
+            Tier 4 — Broad Equestrian (Discovery)
+            <button class="hashtag-copy-all" onclick="copyHashtagTier('tier4', this)">Copy All</button>
+        </div>
+        <div class="hashtag-grid" id="tier4">
+            <span class="tag">#HorseOfInstagram</span>
+            <span class="tag">#EquestrianLife</span>
+            <span class="tag">#DressageHorse</span>
+            <span class="tag">#HorseLover</span>
+            <span class="tag">#BlackHorse</span>
+            <span class="tag">#HorsesOfInstagram</span>
+            <span class="tag">#CaballosDeInstagram</span>
+            <span class="tag">#MundoEquestre</span>
+            <span class="tag">#AficionadosEcuestres</span>
+        </div>
+    </div>
+
+    <div class="hashtag-section">
+        <div class="hashtag-section-title">
+            Tier 5 — Location
+            <button class="hashtag-copy-all" onclick="copyHashtagTier('tier5', this)">Copy All</button>
+        </div>
+        <div class="hashtag-grid" id="tier5">
+            <span class="tag">#MexicoHorses</span>
+            <span class="tag">#EstadoDeMexico</span>
+            <span class="tag">#IxtapanTonatico</span>
+            <span class="tag">#CaballosMexico</span>
+            <span class="tag">#HipismomMexico</span>
+        </div>
+    </div>
+
+    <div style="background:var(--card); border:1px solid var(--border); padding:32px; margin-top:40px;">
+        <div style="font-size:10px; font-weight:600; letter-spacing:4px; text-transform:uppercase; color:var(--gold); margin-bottom:16px;">Full Recommended Set (28 tags)</div>
+        <div id="full-tag-set" style="font-size:13px; color:var(--muted); line-height:2;">
+            #AngelKFPS #FriesianMexico #CaballoFrisonMexico #FriesianHorse #FriesianStallion #KFPS #KFPSregistered #FriesianBreeder #VbHPremium #FriesianBloodlines #Leftert306 #CaballoFrisón #HorseBreeding #StudService #FriesianBreeding #CaballosDeRaza #CriaderoEquino #SementalDeRaza #HorseOfInstagram #EquestrianLife #DressageHorse #HorseLover #BlackHorse #HorsesOfInstagram #CaballosDeInstagram #MexicoHorses #EstadoDeMexico #IxtapanTonatico
+        </div>
+        <button class="copy-btn" style="margin-top:20px;" onclick="copyText('full-tag-set', this)">Copy Full Set</button>
+    </div>
+</div>
+
+<!-- MODAL -->
+<div id="modal" onclick="closeModalOutside(event)">
+    <div class="modal-inner" id="modalInner">
+        <div class="modal-media" id="modalMedia"></div>
+        <div class="modal-body">
+            <div class="modal-header">
+                <div class="modal-title" id="modalTitle"></div>
+                <button class="modal-close" onclick="closeModal()">×</button>
+            </div>
+            <div class="modal-badges" id="modalBadges"></div>
+            <div class="modal-meta-grid" id="modalMeta"></div>
+            <div class="modal-divider"></div>
+            <div class="modal-section-label">Caption</div>
+            <div class="modal-text" id="modalCaption"></div>
+            <button class="copy-btn" id="modalCopyCaption" onclick="copyModalCaption(this)">Copy Caption</button>
+            <div style="height:20px;"></div>
+            <div class="modal-section-label">Hashtags</div>
+            <div class="modal-tags" id="modalTags"></div>
+            <button class="copy-btn" id="modalCopyTags" onclick="copyModalTags(this)">Copy Hashtags</button>
+            <div class="modal-divider"></div>
+            <div class="modal-section-label" style="margin-bottom:8px;">Notes</div>
+            <div style="font-size:13px; color:var(--muted);" id="modalNotes"></div>
+        </div>
+    </div>
+</div>
+
+<div id="toast">Copied!</div>
+
+<script>
+    // ── POST DATA ──
+    const posts = [
+        {
+            title: 'The Launch Reel',
+            type: 'reel',
+            week: 'Week 1 · Day 2',
+            pillar: 'Launch · Angel',
+            day: 'Tuesday',
+            time: '7 PM CST',
+            media: { type: 'img', src: 'MAIN PIC.jpeg' },
+            caption: `He doesn't just move. He flies. 🖤
+
+Introducing Angel — KFPS Registered Friesian Stallion
+✨ Classification: Vb H · Premium
+📅 Born: January 16, 2024
+📍 Ixtapan Tonatico, Estado de México, México
+🏆 Registration No. 528004203901
+
+Angel is the son of Leftert 306 (Stb Ster Pref) and Bartele 472 (Stb Sport AAA) — elite bloodlines on both sides of the KFPS studbook.
+
+Stud services now available. Live cover and shipped semen. Inquire via DM or link in bio.
+
+—
+
+No solo se mueve. Vuela. 🖤 Angel — semental Frisón registrado KFPS, clasificación Vb H Premium. Servicios de monta disponibles. Escríbenos o visita el enlace en bio.`,
+            tags: `#AngelKFPS #FriesianMexico #FriesianHorse #FriesianStallion #KFPS #KFPSregistered #VbHPremium #FriesianBreeder #Leftert306 #CaballoFrisón #HorseBreeding #StudService #HorsesOfInstagram #EquestrianLife #BlackHorse #DressageHorse #CaballosDeRaza #MexicoHorses #EstadoDeMexico #IxtapanTonatico #CriaderoEquino #SementalDeRaza #FriesianBloodlines`,
+            notes: 'Use the jump shot (MAIN PIC.jpeg) as the cover frame. Edit the best video clip (the most dramatic movement) to 15–30 seconds. Add trending audio or a dramatic instrumental. This is the most important post — it sets the tone for everything.'
+        },
+        {
+            title: 'Conformation Post',
+            type: 'post',
+            week: 'Week 1 · Day 4',
+            pillar: 'Angel · Conformation',
+            day: 'Thursday',
+            time: '7 PM CST',
+            media: { type: 'img', src: 'main pic2.jpeg' },
+            caption: `Conformation speaks before the stallion does. 🖤
+
+Angel. Black. No markings. Vb H · Premium.
+
+Built to produce — with the substance, bone, and movement that Friesian breeders demand. His jet-black coat, powerful hindquarters, and elevated carriage reflect everything the KFPS studbook stands for.
+
+📍 Ixtapan Tonatico, México
+🔗 Full profile & stud info: link in bio
+
+—
+
+La conformación habla antes que el semental. Angel. Negro. Sin marcas. Clasificación Vb H Premium. Servicios de monta disponibles — visita el enlace en bio.`,
+            tags: `#AngelKFPS #FriesianHorse #FriesianStallion #KFPS #FriesianConformation #BlackHorse #FriesianMexico #CaballoFrisón #HorseBreeding #StudService #EquestrianLife #HorsesOfInstagram #FriesianBreeder #CaballosDeRaza #VbHPremium #MexicoHorses #CriaderoEquino`,
+            notes: 'Use main pic2.jpeg — the full side-profile conformation shot. This is a clean, professional image that breeders will study. Add a gold border or subtle vignette in editing to match the luxury aesthetic.'
+        },
+        {
+            title: 'The Pedigree Reveal',
+            type: 'carousel',
+            week: 'Week 1 · Day 6',
+            pillar: 'Bloodlines · Pedigree',
+            day: 'Saturday',
+            time: '10 AM CST',
+            media: { type: 'img', src: 'pic2.jpeg' },
+            caption: `Swipe to meet the bloodline behind Angel 🖤
+
+Every great stallion starts with great genetics. Swipe through Angel's pedigree — from his Premium-classified sire to his AAA dam.
+
+Slide 1: Angel — Vb H Premium, KFPS Reg. 528004203901
+Slide 2: Sire — Leftert 306 (Stb Ster Pref)
+Slide 3: Dam — Bartele 472 (Stb Sport AAA)
+Slide 4: Maternal Grandsire — Teun 505 (Stb Sport AAA)
+Slide 5: Inbreeding coefficient: 2.93% · Dam Class: AAA
+
+Purity. Performance. Heritage. 🖤
+Stud services available → link in bio
+
+—
+
+Desliza para conocer el linaje detrás de Angel 🖤 Sire: Leftert 306 · Dam: Bartele 472 (Stb Sport AAA) · Clasificación Vb H Premium`,
+            tags: `#AngelKFPS #FriesianBloodlines #KFPS #FriesianPedigree #Leftert306 #Bartele472 #Teun505 #FriesianHorse #FriesianBreeder #KFPSregistered #VbHPremium #HorseBreeding #CaballoFrisón #FriesianMexico #EquestrianLife #CaballosDeRaza #StbSport #FriesianHeritage`,
+            notes: 'Create 5 carousel slides in Canva or similar. Use dark background + gold text for each. Slide 1: Angel\'s photo. Slides 2–4: Photo of each ancestor if available (use YouTube thumbnails from sire/dam videos). Slide 5: Stats card. High save rate from serious breeders.'
+        },
+        {
+            title: 'Movement Reel #1',
+            type: 'reel',
+            week: 'Week 1 · Day 7',
+            pillar: 'Angel · Movement',
+            day: 'Sunday',
+            time: '7 PM CST',
+            media: { type: 'video', src: 'WhatsApp%20Video%202026-04-11%20at%206.44.31%20PM.mp4' },
+            caption: `Power. Grace. Purity. 🖤
+
+Watch Angel move — the way only a Premium KFPS Friesian can.
+
+Classification: Vb H · Premium
+Sire: Leftert 306 (Stb Ster Pref)
+Dam: Bartele 472 (Stb Sport AAA)
+
+Stud services available. DM us or visit the link in bio.
+📍 Ixtapan Tonatico, México
+
+#FriesianInMotion`,
+            tags: `#AngelKFPS #FriesianHorse #FriesianMovement #FriesianReel #KFPS #VbHPremium #HorsesOfInstagram #EquestrianLife #DressageHorse #BlackHorse #FriesianMexico #CaballoFrisón #FriesianStallion #StudService #HorseBreeding #MexicoHorses #CriaderoEquino`,
+            notes: 'Use one of the cleaner WhatsApp video clips. Trim to 15–30 seconds — the most impressive movement. Use slow motion in editing if available. Keep the caption short and punchy. Let the video carry the post.'
+        },
+        {
+            title: 'Stud Services Announcement',
+            type: 'post',
+            week: 'Week 2 · Day 9',
+            pillar: 'Services · Stud',
+            day: 'Tuesday',
+            time: '7 PM CST',
+            media: { type: 'img', src: 'pic3.jpeg' },
+            caption: `Exceptional offspring start with exceptional bloodlines. 🖤
+
+Angel is now open for stud services.
+
+✅ Live cover available
+✅ Shipped semen (domestic & international)
+✅ KFPS Registered — Vb H · Premium
+✅ Proven bloodlines: Leftert 306 × Bartele 472 AAA
+
+📍 Ixtapan Tonatico, Estado de México, México
+📩 DM for availability and pricing
+🔗 Full profile: link in bio
+
+—
+
+Angel ya está disponible para servicios de monta. Cobertura en vivo y semen refrigerado disponible. Escríbenos para disponibilidad y precios.`,
+            tags: `#AngelKFPS #FriesianStud #StudService #FriesianHorse #KFPS #FriesianBreeding #HorseBreeding #CriaderoEquino #SementalDeRaza #MontaCaballos #FriesianMexico #CaballoFrisón #VbHPremium #KFPSregistered #FriesianStallion #CaballosDeRaza #MexicoHorses #HorsesOfInstagram`,
+            notes: 'Clear and direct. This is the conversion post — make sure the CTA is front and center. Consider boosting this post as a paid ad to reach breeders in Mexico and Latin America.'
+        },
+        {
+            title: 'Movement Reel #2 (Spanish)',
+            type: 'reel',
+            week: 'Week 2 · Day 10',
+            pillar: 'Angel · Movement',
+            day: 'Wednesday',
+            time: '7 AM CST',
+            media: { type: 'video', src: 'WhatsApp%20Video%202026-04-11%20at%206.44.33%20PM.mp4' },
+            caption: `El que vuela es Angel. 🖤
+
+Semental Frisón · KFPS Registrado · Clasificación Vb H Premium
+📍 Ixtapan Tonatico, México
+
+Servicios de monta disponibles — cobertura en vivo y semen. DM o link en bio.
+
+—
+
+Not just power. Heritage. Angel — KFPS Premium Friesian Stallion, México. Stud services available internationally.`,
+            tags: `#AngelKFPS #CaballoFrisonMexico #FriesianMexico #SementalFrison #CaballoFrisón #KFPS #VbHPremium #CriaderoEquino #SementalDeRaza #MontaCaballos #CaballosDeRaza #FriesianHorse #FriesianStallion #HorseBreeding #MexicoHorses #EstadoDeMexico #HorsesOfInstagram #EquestrianLife`,
+            notes: 'Lead with Spanish caption — this reel targets the domestic Mexican market. Use a different video clip from Reel #1. Consider adding Spanish text overlays in editing for accessibility.'
+        },
+        {
+            title: 'Breeding Programs (B2B)',
+            type: 'post',
+            week: 'Week 2 · Day 11',
+            pillar: 'Services · B2B',
+            day: 'Thursday',
+            time: '7 PM CST',
+            media: { type: 'img', src: 'pic5.jpeg' },
+            caption: `Building a Friesian breeding program? 🖤
+
+Angel offers elite KFPS genetics for operations of all sizes.
+
+→ Multi-season breeding agreements
+→ Volume pricing for established farms
+→ Farm partnership & licensing arrangements
+→ International semen export programs
+
+His classification — Vb H · Premium — is the highest distinction in the KFPS studbook. His dam class — AAA — confirms sport performance across generations.
+
+DM us for commercial inquiries or visit the link in bio.
+📍 Ixtapan Tonatico, México
+
+—
+
+¿Construyendo un programa de cría Frisona? Angel ofrece genética KFPS de élite para criaderos de todos los tamaños. Contacto vía DM.`,
+            tags: `#AngelKFPS #FriesianBreeder #FriesianBreeding #KFPS #HorseBreeding #FriesianFarm #CriaderoEquino #SementalDeRaza #CaballosDeRaza #FriesianStallion #VbHPremium #KFPSregistered #FriesianBloodlines #HorseFarm #EquineBreeding #MexicoHorses #FriesianMexico`,
+            notes: 'This targets B2B breeders and farm owners. Use a strong conformation or action photo. Consider a more formal, business-tone graphic in Canva as a second slide showing the service tiers.'
+        },
+        {
+            title: 'Bloodlines Reel',
+            type: 'reel',
+            week: 'Week 2 · Day 12',
+            pillar: 'Bloodlines · Heritage',
+            day: 'Friday',
+            time: '7 PM CST',
+            media: { type: 'video', src: 'WhatsApp%20Video%202026-04-11%20at%206.44.40%20PM.mp4' },
+            caption: `The bloodline doesn't lie. 🖤
+
+Sire: Leftert 306 · Stb Ster Pref
+Dam: Bartele 472 · Stb Sport AAA
+Maternal Grandsire: Teun 505 · Stb Sport AAA
+
+Classification: Vb H · Premium
+Inbreeding Coefficient: 2.93%
+Dam Class: AAA
+
+Angel carries the gold standard of KFPS genetics.
+Stud services available → link in bio
+
+—
+
+El linaje no miente. Angel lleva la genética más selecta del KFPS. Servicios de monta disponibles.`,
+            tags: `#AngelKFPS #FriesianBloodlines #FriesianHeritage #KFPS #Leftert306 #Bartele472 #Teun505 #FriesianPedigree #KFPSregistered #VbHPremium #FriesianBreeder #FriesianHorse #HorseBreeding #CaballoFrisón #FriesianMexico #StbSport #CriaderoEquino #EquestrianLife`,
+            notes: 'Use a strong movement clip. Consider adding text overlays with the pedigree names appearing one by one as the video plays — creates a dramatic reveal effect. High educational value = high saves from breeders.'
+        },
+        {
+            title: 'Story: Meet Angel Poll',
+            type: 'story',
+            week: 'Week 1 · Day 3',
+            pillar: 'Engagement · Poll',
+            day: 'Wednesday',
+            time: '9 AM CST',
+            media: { type: 'img', src: 'pic6.jpeg' },
+            caption: `STORY SCRIPT:
+
+Slide 1: Photo of Angel (jump shot or conformation)
+Text overlay: "¿Conoces la raza Frisona?"
+Poll sticker: YES ✅ / NO ❌
+
+Slide 2: Short video clip of Angel moving
+Text: "Este es Angel 🖤 Semental Frisón KFPS · Vb H Premium"
+Text: "El primero de su clase en México"
+
+Slide 3: Certificate or registration graphic
+Text: "Reg. KFPS #528004203901"
+Text: "Clasificación Vb H · Premium"
+Link sticker: → angelkfps.com (update when custom domain is live)
+
+Slide 4: Call to action
+Text: "¿Quieres saber más?"
+Poll: "Sí, me interesa" / "Solo mirando"
+Link to website in bio`,
+            tags: `#AngelKFPS #FriesianHorse #KFPS #FriesianMexico #CaballoFrisón #HorsesOfInstagram`,
+            notes: 'Stories don\'t use hashtags prominently, but add a location tag (Ixtapan Tonatico) and 1-2 hashtag stickers. The poll in slide 1 boosts algorithmic reach. Respond to everyone who answers the poll with a DM — this is your warm lead list.'
+        }
+    ];
+
+    // ── SECTION NAV ──
+    function showSection(id) {
+        document.querySelectorAll('[id^="section-"]').forEach(s => s.style.display = 'none');
+        document.getElementById('section-' + id).style.display = 'block';
+        document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
+        event.target.classList.add('active');
+        window.scrollTo({ top: 80, behavior: 'smooth' });
+    }
+
+    // ── POST FILTER ──
+    function filterPosts(type, btn) {
+        document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        document.querySelectorAll('.post-card').forEach(card => {
+            card.classList.toggle('hidden', type !== 'all' && card.dataset.type !== type);
+        });
+    }
+
+    // ── MODAL ──
+    function openModal(i) {
+        const p = posts[i];
+        const m = document.getElementById('modal');
+        const mediaEl = document.getElementById('modalMedia');
+
+        // media
+        mediaEl.innerHTML = p.media.type === 'video'
+            ? `<video src="${p.media.src}" controls playsinline style="width:100%;height:100%;object-fit:contain;background:#000;"></video>`
+            : `<img src="${p.media.src}" alt="${p.title}">`;
+
+        document.getElementById('modalTitle').textContent = p.title;
+
+        // badges
+        const typeColors = { reel: 'var(--reel)', post: 'var(--post)', carousel: 'var(--carousel)', story: 'var(--story)' };
+        document.getElementById('modalBadges').innerHTML =
+            `<span class="modal-badge" style="background:${typeColors[p.type]};color:#fff;">${p.type.toUpperCase()}</span>` +
+            `<span class="modal-badge" style="background:var(--card2);color:var(--gold);border:1px solid var(--border);">${p.week}</span>` +
+            `<span class="modal-badge" style="background:var(--card2);color:var(--muted);border:1px solid var(--border);">${p.pillar}</span>`;
+
+        // meta
+        document.getElementById('modalMeta').innerHTML =
+            `<div class="modal-meta-item"><div class="modal-meta-label">Post Day</div><div class="modal-meta-val">${p.day}</div></div>` +
+            `<div class="modal-meta-item"><div class="modal-meta-label">Best Time</div><div class="modal-meta-val">${p.time}</div></div>` +
+            `<div class="modal-meta-item"><div class="modal-meta-label">Pillar</div><div class="modal-meta-val">${p.pillar.split(' · ')[0]}</div></div>`;
+
+        document.getElementById('modalCaption').textContent = p.caption;
+        document.getElementById('modalTags').textContent = p.tags;
+        document.getElementById('modalNotes').textContent = p.notes;
+
+        // reset copy btns
+        document.getElementById('modalCopyCaption').textContent = 'Copy Caption';
+        document.getElementById('modalCopyCaption').className = 'copy-btn';
+        document.getElementById('modalCopyTags').textContent = 'Copy Hashtags';
+        document.getElementById('modalCopyTags').className = 'copy-btn';
+
+        m.classList.add('open');
+        document.body.style.overflow = 'hidden';
+    }
+
+    function closeModal() {
+        document.getElementById('modal').classList.remove('open');
+        document.body.style.overflow = '';
+        const v = document.querySelector('#modalMedia video');
+        if (v) v.pause();
+    }
+
+    function closeModalOutside(e) {
+        if (e.target === document.getElementById('modal')) closeModal();
+    }
+
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+
+    // ── COPY HELPERS ──
+    function showToast(msg = 'Copied!') {
+        const t = document.getElementById('toast');
+        t.textContent = msg;
+        t.classList.add('show');
+        setTimeout(() => t.classList.remove('show'), 2000);
+    }
+
+    function copyText(id, btn) {
+        const text = document.getElementById(id).innerText;
+        navigator.clipboard.writeText(text).then(() => {
+            const orig = btn.textContent;
+            btn.textContent = 'Copied!';
+            btn.classList.add('copied');
+            showToast();
+            setTimeout(() => { btn.textContent = orig; btn.classList.remove('copied'); }, 2000);
+        });
+    }
+
+    function copyPostCaption(i, btn) {
+        navigator.clipboard.writeText(posts[i].caption).then(() => {
+            btn.textContent = 'Copied!'; btn.classList.add('copied');
+            showToast('Caption copied!');
+            setTimeout(() => { btn.textContent = 'Copy Caption'; btn.classList.remove('copied'); }, 2000);
+        });
+    }
+
+    function copyPostTags(i, btn) {
+        navigator.clipboard.writeText(posts[i].tags).then(() => {
+            btn.textContent = 'Copied!'; btn.classList.add('copied');
+            showToast('Hashtags copied!');
+            setTimeout(() => { btn.textContent = 'Copy Tags'; btn.classList.remove('copied'); }, 2000);
+        });
+    }
+
+    function copyModalCaption(btn) {
+        const text = document.getElementById('modalCaption').textContent;
+        navigator.clipboard.writeText(text).then(() => {
+            btn.textContent = 'Copied!'; btn.classList.add('copied');
+            showToast('Caption copied!');
+            setTimeout(() => { btn.textContent = 'Copy Caption'; btn.classList.remove('copied'); }, 2000);
+        });
+    }
+
+    function copyModalTags(btn) {
+        const text = document.getElementById('modalTags').textContent;
+        navigator.clipboard.writeText(text).then(() => {
+            btn.textContent = 'Copied!'; btn.classList.add('copied');
+            showToast('Hashtags copied!');
+            setTimeout(() => { btn.textContent = 'Copy Hashtags'; btn.classList.remove('copied'); }, 2000);
+        });
+    }
+
+    function copyHashtagTier(id, btn) {
+        const tags = Array.from(document.querySelectorAll('#' + id + ' .tag')).map(t => t.textContent).join(' ');
+        navigator.clipboard.writeText(tags).then(() => {
+            btn.textContent = 'Copied!'; btn.classList.add('copied');
+            showToast();
+            setTimeout(() => { btn.textContent = 'Copy All'; btn.classList.remove('copied'); }, 2000);
+        });
+    }
+</script>
+
+</body>
+</html>
