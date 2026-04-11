@@ -355,6 +355,30 @@
             .form-row { grid-template-columns: 1fr; }
             .contact-details { flex-direction: column; gap: 32px; }
             #hero { background-attachment: scroll; }
+
+            /* Hero text — prevent letter-spacing overflow */
+            .hero-title { letter-spacing: 8px; }
+            .hero-subtitle { letter-spacing: 4px; font-size: 10px; }
+            .hero-eyebrow { letter-spacing: 4px; }
+
+            /* Footer */
+            .footer-logo { letter-spacing: 6px; font-size: 26px; }
+
+            /* Service tabs — stack on very small screens */
+            .audience-tabs { display: flex; flex-direction: column; width: 100%; max-width: 320px; }
+            .audience-tab { width: 100%; text-align: center; }
+
+            /* Section inner padding safety */
+            .section-inner { padding: 0; }
+        }
+
+        @media (max-width: 480px) {
+            .hero-title { letter-spacing: 4px; font-size: clamp(64px, 18vw, 88px); }
+            .hero-subtitle { letter-spacing: 3px; }
+            .hero-btn { padding: 16px 36px; }
+            .about-image-wrap::before { display: none; }
+            .service-card { padding: 36px 24px; }
+            .video-item video { height: 220px; }
         }
     </style>
 </head>
