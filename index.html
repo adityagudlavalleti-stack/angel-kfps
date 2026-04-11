@@ -96,11 +96,16 @@
         /* ── HERO ── */
         #hero {
             height: 100vh; min-height: 700px;
-            background-image: url('MAIN PIC.jpeg');
-            background-size: cover; background-position: center 30%;
-            background-attachment: fixed;
             position: relative; display: flex;
             align-items: center; justify-content: center; text-align: center;
+            overflow: hidden;
+        }
+        .hero-bg {
+            position: absolute; inset: 0;
+            width: 100%; height: 100%;
+            object-fit: cover;
+            object-position: center 25%;
+            z-index: 0;
         }
         .hero-overlay {
             position: absolute; inset: 0;
@@ -354,8 +359,6 @@
             .gallery-grid { columns: 1; }
             .form-row { grid-template-columns: 1fr; }
             .contact-details { flex-direction: column; gap: 32px; }
-            #hero { background-attachment: scroll; }
-
             /* Hero text — prevent letter-spacing overflow */
             .hero-title { letter-spacing: 8px; }
             .hero-subtitle { letter-spacing: 4px; font-size: 10px; }
@@ -412,6 +415,7 @@
 
 <!-- HERO -->
 <section id="hero">
+    <img src="MAIN PIC.jpeg" alt="Angel the Stud — in flight" class="hero-bg">
     <div class="hero-overlay"></div>
     <div class="hero-content">
         <p class="hero-eyebrow">Premium Breeding Stallion</p>
