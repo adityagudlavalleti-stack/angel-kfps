@@ -189,6 +189,36 @@
         .spec-value { font-family: 'Cormorant Garamond', serif; font-size: 18px; font-weight: 500; color: var(--white); }
         .about-bio { font-size: 14px; line-height: 1.95; color: var(--muted); margin-bottom: 36px; }
 
+        /* ── BLOODLINES ── */
+        #bloodlines { padding: 130px 56px; background: #0f0f0f; }
+        .bloodlines-grid {
+            display: grid; grid-template-columns: 1fr 1fr;
+            gap: 72px; align-items: center;
+        }
+        .bloodlines-video-wrap {
+            position: relative; width: 100%; padding-bottom: 56.25%;
+            background: #000; border: 1px solid var(--border);
+        }
+        .bloodlines-video-wrap iframe {
+            position: absolute; inset: 0; width: 100%; height: 100%; border: none;
+        }
+        .bloodlines-tree {
+            display: flex; flex-direction: column; gap: 20px; margin-top: 32px;
+        }
+        .tree-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+        .tree-card {
+            background: var(--card); border: 1px solid var(--border);
+            padding: 18px 20px; transition: border-color .3s ease;
+        }
+        .tree-card:hover { border-color: var(--gold); }
+        .tree-role { font-size: 8px; font-weight: 600; letter-spacing: 4px; text-transform: uppercase; color: var(--gold); margin-bottom: 6px; }
+        .tree-name { font-family: 'Cormorant Garamond', serif; font-size: 18px; font-weight: 500; color: var(--white); }
+        .tree-sub { font-size: 11px; color: var(--muted); margin-top: 3px; }
+
+        @media (max-width: 1024px) {
+            .bloodlines-grid { grid-template-columns: 1fr; gap: 48px; }
+        }
+
         /* ── SERVICES ── */
         #services { padding: 130px 56px; background: #101010; text-align: center; }
         .services-header { margin-bottom: 56px; }
@@ -393,6 +423,7 @@
     <a href="#hero" class="nav-logo">Angel</a>
     <ul class="nav-links">
         <li><a href="#about">About</a></li>
+        <li><a href="#bloodlines">Bloodlines</a></li>
         <li><a href="#services">Services</a></li>
         <li><a href="#gallery">Gallery</a></li>
         <li><a href="#videos">Videos</a></li>
@@ -408,6 +439,7 @@
 <div class="mobile-menu" id="mobileMenu">
     <button class="mobile-close" id="mobileClose" aria-label="Close menu">×</button>
     <a href="#about" class="mm-link">About</a>
+    <a href="#bloodlines" class="mm-link">Bloodlines</a>
     <a href="#services" class="mm-link">Services</a>
     <a href="#gallery" class="mm-link">Gallery</a>
     <a href="#videos" class="mm-link">Videos</a>
@@ -479,6 +511,60 @@
                     [Bio placeholder — describe Angel's temperament, athletic ability, and what makes him exceptional. Include bloodline highlights, show records, or performance achievements here. This should tell the story of the horse — both for individual mare owners and for commercial breeding operations considering a program partnership.]
                 </p>
                 <a href="#contact" class="hero-btn" style="font-size:10px; padding:14px 36px;">Request Breeding Info</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- BLOODLINES -->
+<section id="bloodlines">
+    <div class="section-inner">
+        <div class="bloodlines-grid">
+            <div class="fade-in">
+                <p class="section-label">Heritage</p>
+                <h2 class="section-title">The Bloodline</h2>
+                <div class="gold-divider"></div>
+                <p class="about-bio">
+                    Angel carries the genetics of some of the most distinguished Friesian bloodlines in the KFPS registry. His sire <strong style="color:var(--white);">Leftert 306</strong> is a celebrated stallion known for his powerful movement, proud carriage, and exceptional offspring. Dam <strong style="color:var(--white);">Bartele 472</strong> holds the prestigious Stb Sport AAA designation — a mark of elite sport and breeding performance.
+                </p>
+                <div class="bloodlines-tree">
+                    <div class="tree-row">
+                        <div class="tree-card fade-in">
+                            <div class="tree-role">Sire</div>
+                            <div class="tree-name">Leftert 306</div>
+                            <div class="tree-sub">KFPS Registered</div>
+                        </div>
+                        <div class="tree-card fade-in">
+                            <div class="tree-role">Dam</div>
+                            <div class="tree-name">Bartele 472</div>
+                            <div class="tree-sub">Stb Sport AAA</div>
+                        </div>
+                    </div>
+                    <div class="tree-row">
+                        <div class="tree-card fade-in">
+                            <div class="tree-role">Grandsire (Paternal)</div>
+                            <div class="tree-name">Teun 505</div>
+                            <div class="tree-sub">KFPS Registered</div>
+                        </div>
+                        <div class="tree-card fade-in">
+                            <div class="tree-role">Grandam (Paternal)</div>
+                            <div class="tree-name">[TBD]</div>
+                            <div class="tree-sub"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="fade-in">
+                <p class="section-label" style="margin-bottom:16px;">Watch — Leftert 306</p>
+                <div class="bloodlines-video-wrap">
+                    <iframe
+                        src="https://www.youtube.com/embed/SnPpmRvbo1U"
+                        title="Leftert 306 — Sire of Angel"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowfullscreen
+                        loading="lazy">
+                    </iframe>
+                </div>
             </div>
         </div>
     </div>
