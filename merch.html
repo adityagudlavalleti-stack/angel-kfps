@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Collection — Angel KFPS</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,500&family=Montserrat:wght@300;400;500;600;700&display=swap');
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --black: #0a0a08;
+            --dark:  #0f0f0d;
+            --card:  #161410;
+            --gold:  #C9A96E;
+            --gold-light: #DFC28A;
+            --gold-dark:  #9B7A4A;
+            --gold-glow:  rgba(201,169,110,0.25);
+            --white: #f5f0e8;
+            --muted: rgba(245,240,232,0.55);
+            --border: rgba(201,169,110,0.22);
+            --pattern: rgba(201,169,110,0.055);
+        }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            background: var(--black);
+            color: var(--white);
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 300;
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+
+        ::-webkit-scrollbar { width: 3px; }
+        ::-webkit-scrollbar-track { background: var(--black); }
+        ::-webkit-scrollbar-thumb { background: var(--gold-dark); }
+
+        /* NAV */
+        nav {
+            position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+            padding: 28px 56px;
+            display: flex; align-items: center; justify-content: space-between;
+            transition: background .4s ease, padding .4s ease;
+        }
+        nav.scrolled {
+            background: rgba(10,10,8,.96);
+            backdrop-filter: blur(14px);
+            padding: 16px 56px;
+            border-bottom: 1px solid var(--border);
+        }
+        .nav-logo { text-decoration: none; display: flex; align-items: center; }
+        .nav-logo-img {
+            height: 52px; width: auto; display: block; object-fit: contain;
+            filter: drop-shadow(0 2px 10px rgba(201,169,110,0.35));
+            transition: filter .3s ease;
+        }
+        .nav-logo-img:hover { filter: drop-shadow(0 2px 18px rgba(201,169,110,0.65)); }
+        .nav-links { display: flex; gap: 36px; list-style: none; }
+        .nav-links a {
+            color: rgba(245,240,232,.75); text-decoration: none;
+            font-size: 10px; font-weight: 500; letter-spacing: 3px; text-transform: uppercase;
+            transition: color .25s ease;
+        }
+        .nav-links a:hover, .nav-links a.active { color: var(--gold); }
+        .nav-cta {
+            border: 1px solid var(--gold); color: var(--gold);
+            padding: 10px 26px; font-family: 'Montserrat', sans-serif;
+            font-size: 10px; font-weight: 600; letter-spacing: 3px; text-transform: uppercase;
+            text-decoration: none; transition: all .3s ease; cursor: pointer;
+        }
+        .nav-cta:hover { background: var(--gold); color: var(--black); }
+        .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; }
+        .hamburger span { display: block; width: 24px; height: 1px; background: var(--gold); }
+        .mobile-menu {
+            display: none; position: fixed; inset: 0; z-index: 150;
+            background: rgba(10,10,8,.98); flex-direction: column;
+            align-items: center; justify-content: center; gap: 40px;
+        }
+        .mobile-menu.open { display: flex; }
+        .mobile-menu a {
+            font-family: 'Cormorant Garamond', serif; font-size: 36px;
+            color: var(--white); text-decoration: none; letter-spacing: 4px;
+            text-transform: uppercase; transition: color .3s;
+        }
+        .mobile-menu a:hover { color: var(--gold); }
+        .mobile-close {
+            position: absolute; top: 28px; right: 32px;
+            background: none; border: none; color: var(--gold);
+            font-size: 32px; cursor: pointer; font-family: 'Cormorant Garamond', serif;
+        }
+
+        /* SHARED */
+        .ara-bg { position: relative; }
+        .ara-bg::before {
+            content: ''; position: absolute; inset: 0;
+            background-image:
+                repeating-linear-gradient(45deg,  transparent, transparent 19px, var(--pattern) 19px, var(--pattern) 20px),
+                repeating-linear-gradient(-45deg, transparent, transparent 19px, var(--pattern) 19px, var(--pattern) 20px);
+            background-size: 40px 40px;
+            pointer-events: none; z-index: 0;
+        }
+        .ara-bg > * { position: relative; z-index: 1; }
+
+        .section-label {
+            font-family: 'Cinzel Decorative', serif;
+            font-size: 9px; font-weight: 400; letter-spacing: 5px;
+            text-transform: uppercase; color: var(--gold); margin-bottom: 14px;
+            display: flex; align-items: center; gap: 14px;
+        }
+        .section-label::before, .section-label::after {
+            content: ''; display: inline-block; width: 36px; height: 1px;
+            background: linear-gradient(to right, transparent, var(--gold));
+            opacity: 0.7; flex-shrink: 0;
+        }
+        .section-label::after { background: linear-gradient(to left, transparent, var(--gold)); }
+
+        .section-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(38px, 5vw, 62px); font-weight: 400;
+            letter-spacing: 3px; color: var(--white); line-height: 1.1; margin-bottom: 20px;
+            text-shadow: 0 2px 40px rgba(201,169,110,0.15);
+        }
+
+        .gold-divider { display: flex; align-items: center; gap: 0; width: fit-content; margin-bottom: 40px; }
+        .gold-divider::before, .gold-divider::after {
+            content: ''; display: block; width: 88px; height: 1px;
+            background: linear-gradient(to right, transparent, var(--gold));
+        }
+        .gold-divider::after { background: linear-gradient(to left, transparent, var(--gold)); }
+        .gold-divider-diamond { width: 7px; height: 7px; background: var(--gold); transform: rotate(45deg); flex-shrink: 0; margin: 0 5px; box-shadow: 0 0 8px var(--gold-glow); }
+        .gold-divider-diamond.sm { width: 4px; height: 4px; opacity: 0.55; }
+
+        .fade-in { opacity: 0; transform: translateY(24px); transition: opacity .8s ease, transform .8s ease; }
+        .fade-in.visible { opacity: 1; transform: translateY(0); }
+        .fade-in.stagger-1 { transition-delay: .08s; }
+        .fade-in.stagger-2 { transition-delay: .16s; }
+        .fade-in.stagger-3 { transition-delay: .24s; }
+
+        /* HERO */
+        #merch-hero {
+            min-height: 62vh;
+            display: flex; align-items: center; justify-content: center;
+            text-align: center; padding: 160px 56px 100px;
+            position: relative; overflow: hidden;
+        }
+        #merch-hero::before {
+            content: ''; position: absolute; inset: 0;
+            background: radial-gradient(ellipse at 50% 60%, rgba(201,169,110,0.07) 0%, transparent 60%);
+            pointer-events: none;
+        }
+        #merch-hero::after {
+            content: ''; position: absolute; inset: 0;
+            background-image:
+                repeating-linear-gradient(45deg,  transparent, transparent 19px, rgba(201,169,110,0.03) 19px, rgba(201,169,110,0.03) 20px),
+                repeating-linear-gradient(-45deg, transparent, transparent 19px, rgba(201,169,110,0.03) 19px, rgba(201,169,110,0.03) 20px);
+            background-size: 40px 40px;
+            pointer-events: none; z-index: 0;
+        }
+        .merch-hero-content { position: relative; z-index: 2; max-width: 680px; margin: 0 auto; }
+        .merch-hero-content .section-label { justify-content: center; }
+
+        /* LAUNCH BANNER */
+        .launch-banner {
+            background: linear-gradient(90deg, transparent 0%, rgba(201,169,110,0.08) 30%, rgba(201,169,110,0.08) 70%, transparent 100%);
+            border-top: 1px solid rgba(201,169,110,0.18);
+            border-bottom: 1px solid rgba(201,169,110,0.18);
+            padding: 16px 56px; text-align: center;
+            font-family: 'Cinzel Decorative', serif;
+            font-size: 8px; letter-spacing: 6px; color: var(--gold);
+            text-transform: uppercase;
+        }
+
+        /* COLLECTION */
+        #collection { padding: 100px 56px 140px; background: var(--black); }
+        .collection-header { text-align: center; margin-bottom: 56px; }
+        .collection-header .section-label { justify-content: center; }
+        .collection-header .gold-divider { margin: 0 auto 32px; }
+
+        /* FILTER TABS */
+        .filter-tabs { display: inline-flex; border: 1px solid var(--border); margin-bottom: 52px; }
+        .filter-tab {
+            padding: 12px 36px; font-size: 10px; font-weight: 600;
+            letter-spacing: 4px; text-transform: uppercase; cursor: pointer;
+            color: rgba(245,240,232,.45); background: transparent;
+            border: none; font-family: 'Montserrat', sans-serif; transition: all .3s ease;
+        }
+        .filter-tab.active { background: var(--gold); color: var(--black); }
+
+        /* PRODUCT GRID */
+        .product-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+
+        .product-card {
+            background: var(--card); border: 1px solid var(--border);
+            position: relative; transition: all .35s ease; cursor: pointer;
+        }
+        .product-card::before, .product-card::after {
+            content: ''; position: absolute;
+            width: 16px; height: 16px; border-color: var(--gold); border-style: solid;
+            opacity: 0.4; transition: opacity .3s, box-shadow .3s;
+        }
+        .product-card::before { top: -1px; left: -1px; border-width: 2px 0 0 2px; }
+        .product-card::after  { bottom: -1px; right: -1px; border-width: 0 2px 2px 0; }
+        .product-card:hover { border-color: rgba(201,169,110,0.45); transform: translateY(-6px); box-shadow: 0 24px 64px rgba(0,0,0,0.5), 0 0 40px rgba(201,169,110,0.04); }
+        .product-card:hover::before, .product-card:hover::after { opacity: 1; box-shadow: 0 0 12px var(--gold-glow); }
+
+        .product-img-wrap {
+            aspect-ratio: 1; background: #110f0d;
+            display: flex; align-items: center; justify-content: center;
+            overflow: hidden; position: relative;
+        }
+        .product-img-wrap > img {
+            width: 100%; height: 100%; object-fit: cover;
+            transition: transform .5s ease;
+        }
+        .product-card:hover .product-img-wrap > img { transform: scale(1.04); }
+        .product-img-wrap::before {
+            content: ''; position: absolute; inset: 0; z-index: 1;
+            background-image:
+                repeating-linear-gradient(45deg,  transparent, transparent 13px, rgba(201,169,110,0.04) 13px, rgba(201,169,110,0.04) 14px),
+                repeating-linear-gradient(-45deg, transparent, transparent 13px, rgba(201,169,110,0.04) 14px, rgba(201,169,110,0.04) 14px);
+            background-size: 28px 28px;
+        }
+        .product-img-placeholder {
+            position: relative; z-index: 2;
+            width: 88px; height: 88px;
+            border: 1px solid rgba(201,169,110,0.16);
+            display: flex; align-items: center; justify-content: center;
+        }
+        .product-img-placeholder svg { width: 34px; height: 34px; color: rgba(201,169,110,0.3); }
+
+        .product-badge {
+            position: absolute; top: 14px; right: 14px; z-index: 3;
+            font-family: 'Cinzel Decorative', serif;
+            font-size: 7px; letter-spacing: 2px;
+            padding: 5px 10px; text-transform: uppercase;
+        }
+        .product-badge.new  { background: var(--gold); color: var(--black); }
+        .product-badge.soon { background: transparent; border: 1px solid var(--gold); color: var(--gold); }
+
+        .product-info { padding: 22px 24px 26px; }
+        .product-name {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 21px; font-weight: 500; color: var(--white); margin-bottom: 4px; letter-spacing: 1px;
+        }
+        .product-variant { font-size: 10px; letter-spacing: 3px; color: var(--muted); margin-bottom: 14px; text-transform: uppercase; }
+        .product-price { font-size: 13px; letter-spacing: 2px; color: var(--gold); margin-bottom: 20px; font-weight: 500; }
+        .product-cta {
+            display: inline-block; font-size: 9px; font-weight: 600;
+            letter-spacing: 3px; text-transform: uppercase; color: var(--gold);
+            border: 1px solid var(--border); padding: 10px 22px;
+            transition: all .3s ease; cursor: pointer;
+            background: transparent; font-family: 'Montserrat', sans-serif;
+        }
+        .product-cta:hover { background: var(--gold); color: var(--black); border-color: var(--gold); }
+
+        /* FOOTER */
+        footer {
+            background: #060604; border-top: 1px solid rgba(201,169,110,0.3);
+            padding: 60px 56px 44px; text-align: center;
+            position: relative; overflow: hidden;
+        }
+        footer::before {
+            content: ''; position: absolute; inset: 0;
+            background-image:
+                repeating-linear-gradient(45deg,  transparent, transparent 13px, rgba(201,169,110,0.04) 13px, rgba(201,169,110,0.04) 14px),
+                repeating-linear-gradient(-45deg, transparent, transparent 13px, rgba(201,169,110,0.04) 13px, rgba(201,169,110,0.04) 14px);
+            background-size: 28px 28px; pointer-events: none;
+        }
+        .footer-ornament { display: flex; align-items: center; justify-content: center; gap: 16px; margin-bottom: 28px; opacity: 0.5; }
+        .footer-ornament::before, .footer-ornament::after { content: ''; display: block; width: 80px; height: 1px; background: var(--gold); }
+        .footer-ornament-diamond { width: 10px; height: 10px; background: var(--gold); transform: rotate(45deg); flex-shrink: 0; }
+        .footer-logo-img { height: 100px; width: auto; margin: 0 auto 20px; display: block; filter: drop-shadow(0 4px 20px rgba(201,169,110,0.4)); }
+        .footer-ig { display: inline-flex; align-items: center; gap: 8px; color: rgba(245,240,232,.4); text-decoration: none; font-size: 11px; letter-spacing: 2px; transition: color .3s ease; margin-bottom: 24px; }
+        .footer-ig:hover { color: var(--gold); }
+        .footer-copy { font-size: 10px; letter-spacing: 2px; color: rgba(245,240,232,.2); }
+        .footer-bottom-ornament { display: flex; align-items: center; justify-content: center; gap: 12px; margin-top: 28px; opacity: 0.25; }
+        .footer-bottom-ornament::before, .footer-bottom-ornament::after { content: ''; flex: 1; max-width: 120px; height: 1px; background: linear-gradient(to right, transparent, var(--gold)); }
+        .footer-bottom-ornament::after { background: linear-gradient(to left, transparent, var(--gold)); }
+
+        /* RESPONSIVE */
+        @media (max-width: 1024px) { .product-grid { grid-template-columns: repeat(2, 1fr); } }
+        @media (max-width: 768px) {
+            nav, nav.scrolled { padding: 18px 24px; }
+            .nav-links, .nav-cta { display: none; }
+            .hamburger { display: flex; }
+            #collection, #merch-hero { padding-left: 24px; padding-right: 24px; }
+            .product-grid { grid-template-columns: 1fr 1fr; gap: 14px; }
+            .filter-tab { padding: 10px 20px; }
+        }
+        @media (max-width: 480px) {
+            .product-grid { grid-template-columns: 1fr; }
+            .filter-tabs { flex-direction: column; width: 100%; max-width: 280px; }
+        }
+
+        @keyframes fadeUp { from { opacity: 0; transform: translateY(32px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation: none !important; transition: none !important; } }
+    </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="navbar">
+    <a href="index.html" class="nav-logo">
+        <img src="logo.png" alt="Angel the Stud" class="nav-logo-img">
+    </a>
+    <ul class="nav-links">
+        <li><a href="index.html">The Stallion</a></li>
+        <li><a href="about.html">Our Story</a></li>
+        <li><a href="index.html#services">Services</a></li>
+        <li><a href="index.html#gallery">Gallery</a></li>
+        <li><a href="merch.html" class="active">Merch</a></li>
+        <li><a href="index.html#contact">Contact</a></li>
+    </ul>
+    <a href="index.html#contact" class="nav-cta">Inquire Now</a>
+    <div class="hamburger" id="hamburger" role="button" aria-label="Open menu">
+        <span></span><span></span><span></span>
+    </div>
+</nav>
+
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobileMenu">
+    <button class="mobile-close" id="mobileClose" aria-label="Close menu">×</button>
+    <a href="index.html" class="mm-link">The Stallion</a>
+    <a href="about.html" class="mm-link">Our Story</a>
+    <a href="index.html#services" class="mm-link">Services</a>
+    <a href="index.html#gallery" class="mm-link">Gallery</a>
+    <a href="merch.html" class="mm-link">Merch</a>
+    <a href="index.html#contact" class="mm-link">Contact</a>
+</div>
+
+<!-- HERO -->
+<section id="merch-hero">
+    <div class="merch-hero-content">
+        <p class="section-label" style="opacity:0; animation: fadeIn 1s ease .3s forwards;">The Angel Collection</p>
+        <h1 class="section-title" style="font-size: clamp(48px,6.5vw,86px); opacity:0; animation: fadeUp 1s cubic-bezier(.16,1,.3,1) .5s forwards;">Wear the Legacy</h1>
+        <p style="color:var(--muted); font-size:14px; max-width:480px; margin:0 auto 44px; line-height:1.9; opacity:0; animation: fadeIn 1s ease .8s forwards;">
+            Exclusive premium merchandise inspired by the strength, elegance, and heritage of Angel — KFPS Vb H Premium Friesian Stallion of México.
+        </p>
+        <a href="#collection"
+           style="display:inline-block; border:1px solid var(--gold); color:var(--gold); padding:16px 48px; font-size:10px; font-weight:600; letter-spacing:4px; text-transform:uppercase; text-decoration:none; transition:all .3s ease; opacity:0; animation: fadeIn 1s ease 1.1s forwards; cursor:pointer;"
+           onmouseover="this.style.background='var(--gold)';this.style.color='var(--black)'"
+           onmouseout="this.style.background='transparent';this.style.color='var(--gold)'">
+            View Collection
+        </a>
+    </div>
+</section>
+
+<!-- LAUNCH BANNER -->
+<div class="launch-banner">
+    ✦ &nbsp;&nbsp; Launching Soon — Reserve Your Piece of the Legacy &nbsp;&nbsp; ✦
+</div>
+
+<!-- COLLECTION -->
+<section id="collection">
+    <div class="collection-header fade-in">
+        <p class="section-label">Exclusive Pieces</p>
+        <h2 class="section-title">The Collection</h2>
+        <div class="gold-divider">
+            <span class="gold-divider-diamond sm"></span>
+            <span class="gold-divider-diamond"></span>
+            <span class="gold-divider-diamond sm"></span>
+        </div>
+        <div class="filter-tabs">
+            <button class="filter-tab active" data-filter="all">All</button>
+            <button class="filter-tab" data-filter="apparel">Apparel</button>
+            <button class="filter-tab" data-filter="accessories">Accessories</button>
+            <button class="filter-tab" data-filter="lifestyle">Lifestyle</button>
+        </div>
+    </div>
+
+    <div class="product-grid" id="productGrid">
+
+        <!-- APPAREL 1 -->
+        <div class="product-card fade-in stagger-1" data-category="apparel">
+            <div class="product-img-wrap">
+                <span class="product-badge new">New</span>
+                <div class="product-img-placeholder">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M20.38 3.46L16 2a4 4 0 01-8 0L3.62 3.46a2 2 0 00-1.34 2.23l.58 3.57a1 1 0 00.99.84H6v10c0 1.1.9 2 2 2h8a2 2 0 002-2V10h2.15a1 1 0 00.99-.84l.58-3.57a2 2 0 00-1.34-2.23z"/></svg>
+                </div>
+            </div>
+            <div class="product-info">
+                <div class="product-name">Signature Tee</div>
+                <div class="product-variant">Black · Gold Logo · Premium Cotton</div>
+                <div class="product-price">$45.00</div>
+                <button class="product-cta">Pre-Order</button>
+            </div>
+        </div>
+
+        <!-- APPAREL 2 -->
+        <div class="product-card fade-in stagger-2" data-category="apparel">
+            <div class="product-img-wrap">
+                <span class="product-badge soon">Coming Soon</span>
+                <div class="product-img-placeholder">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M20.38 3.46L16 2a4 4 0 01-8 0L3.62 3.46a2 2 0 00-1.34 2.23l.58 3.57a1 1 0 00.99.84H6v10c0 1.1.9 2 2 2h8a2 2 0 002-2V10h2.15a1 1 0 00.99-.84l.58-3.57a2 2 0 00-1.34-2.23z"/></svg>
+                </div>
+            </div>
+            <div class="product-info">
+                <div class="product-name">Medallion Hoodie</div>
+                <div class="product-variant">Jet Black · Heavyweight Fleece</div>
+                <div class="product-price">$95.00</div>
+                <button class="product-cta">Notify Me</button>
+            </div>
+        </div>
+
+        <!-- APPAREL 3 -->
+        <div class="product-card fade-in stagger-3" data-category="apparel">
+            <div class="product-img-wrap">
+                <span class="product-badge new">New</span>
+                <div class="product-img-placeholder">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M20.38 3.46L16 2a4 4 0 01-8 0L3.62 3.46a2 2 0 00-1.34 2.23l.58 3.57a1 1 0 00.99.84H6v10c0 1.1.9 2 2 2h8a2 2 0 002-2V10h2.15a1 1 0 00.99-.84l.58-3.57a2 2 0 00-1.34-2.23z"/></svg>
+                </div>
+            </div>
+            <div class="product-info">
+                <div class="product-name">Heritage Polo</div>
+                <div class="product-variant">Black · Gold Embroidery · Piqué</div>
+                <div class="product-price">$72.00</div>
+                <button class="product-cta">Pre-Order</button>
+            </div>
+        </div>
+
+        <!-- ACCESSORIES 1 -->
+        <div class="product-card fade-in stagger-1" data-category="accessories">
+            <div class="product-img-wrap">
+                <span class="product-badge new">New</span>
+                <div class="product-img-placeholder">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><circle cx="12" cy="8" r="6"/><path d="M8 14l-4 7h16l-4-7"/></svg>
+                </div>
+            </div>
+            <div class="product-info">
+                <div class="product-name">KFPS Emblem Cap</div>
+                <div class="product-variant">Black · Gold Embroidery · Structured</div>
+                <div class="product-price">$52.00</div>
+                <button class="product-cta">Pre-Order</button>
+            </div>
+        </div>
+
+        <!-- ACCESSORIES 2 -->
+        <div class="product-card fade-in stagger-2" data-category="accessories">
+            <div class="product-img-wrap">
+                <span class="product-badge soon">Coming Soon</span>
+                <div class="product-img-placeholder">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><rect x="2" y="7" width="20" height="15" rx="2"/><polyline points="17 2 12 7 7 2"/></svg>
+                </div>
+            </div>
+            <div class="product-info">
+                <div class="product-name">Legacy Tote</div>
+                <div class="product-variant">Black Canvas · Gold Print</div>
+                <div class="product-price">$34.00</div>
+                <button class="product-cta">Notify Me</button>
+            </div>
+        </div>
+
+        <!-- ACCESSORIES 3 -->
+        <div class="product-card fade-in stagger-3" data-category="accessories">
+            <div class="product-img-wrap">
+                <span class="product-badge new">New</span>
+                <div class="product-img-placeholder">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><circle cx="12" cy="12" r="3"/><circle cx="12" cy="12" r="9" stroke-dasharray="2 3"/></svg>
+                </div>
+            </div>
+            <div class="product-info">
+                <div class="product-name">Crest Decal Set</div>
+                <div class="product-variant">Gold Foil · 6-Pack</div>
+                <div class="product-price">$18.00</div>
+                <button class="product-cta">Pre-Order</button>
+            </div>
+        </div>
+
+        <!-- LIFESTYLE 1 -->
+        <div class="product-card fade-in stagger-1" data-category="lifestyle">
+            <div class="product-img-wrap">
+                <span class="product-badge new">New</span>
+                <div class="product-img-placeholder">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M17 8h1a4 4 0 010 8h-1"/><path d="M3 8h14v9a4 4 0 01-4 4H7a4 4 0 01-4-4V8z"/><line x1="6" y1="2" x2="6" y2="4"/><line x1="10" y1="2" x2="10" y2="4"/><line x1="14" y1="2" x2="14" y2="4"/></svg>
+                </div>
+            </div>
+            <div class="product-info">
+                <div class="product-name">Stallion Mug</div>
+                <div class="product-variant">Matte Black · 16oz · Gold Crest</div>
+                <div class="product-price">$28.00</div>
+                <button class="product-cta">Pre-Order</button>
+            </div>
+        </div>
+
+        <!-- LIFESTYLE 2 -->
+        <div class="product-card fade-in stagger-2" data-category="lifestyle">
+            <div class="product-img-wrap">
+                <span class="product-badge soon">Coming Soon</span>
+                <div class="product-img-placeholder">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="21" x2="9" y2="9"/></svg>
+                </div>
+            </div>
+            <div class="product-info">
+                <div class="product-name">Angel Framed Print</div>
+                <div class="product-variant">12×16 · Fine Art Paper · Signed</div>
+                <div class="product-price">$120.00</div>
+                <button class="product-cta">Notify Me</button>
+            </div>
+        </div>
+
+        <!-- LIFESTYLE 3 -->
+        <div class="product-card fade-in stagger-3" data-category="lifestyle">
+            <div class="product-img-wrap">
+                <span class="product-badge soon">Coming Soon</span>
+                <div class="product-img-placeholder">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z"/></svg>
+                </div>
+            </div>
+            <div class="product-info">
+                <div class="product-name">Breeding Legacy Box</div>
+                <div class="product-variant">Gift Set · Limited Edition</div>
+                <div class="product-price">From $180.00</div>
+                <button class="product-cta">Notify Me</button>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+    <div class="footer-ornament">
+        <span class="footer-ornament-diamond"></span>
+        <span class="footer-ornament-diamond"></span>
+        <span class="footer-ornament-diamond"></span>
+    </div>
+    <img src="logo.png" alt="Angel the Stud" class="footer-logo-img">
+    <a href="https://www.instagram.com/angel_kfps_mexico" target="_blank" rel="noopener noreferrer" class="footer-ig">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+        @angel_kfps_mexico
+    </a>
+    <p class="footer-copy">© 2026 Angel the Stud &nbsp;·&nbsp; Ixtapan Tonatico, México &nbsp;·&nbsp; All Rights Reserved</p>
+    <div class="footer-bottom-ornament"></div>
+</footer>
+
+<script>
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => { navbar.classList.toggle('scrolled', window.scrollY > 60); }, { passive: true });
+
+    const hamburger = document.getElementById('hamburger');
+    const mobileMenu = document.getElementById('mobileMenu');
+    const mobileClose = document.getElementById('mobileClose');
+    hamburger.addEventListener('click', () => mobileMenu.classList.add('open'));
+    mobileClose.addEventListener('click', () => mobileMenu.classList.remove('open'));
+    document.querySelectorAll('.mm-link').forEach(l => l.addEventListener('click', () => mobileMenu.classList.remove('open')));
+
+    const fadeEls = document.querySelectorAll('.fade-in');
+    const obs = new IntersectionObserver(entries => {
+        entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); } });
+    }, { threshold: 0.1 });
+    fadeEls.forEach(el => obs.observe(el));
+
+    document.querySelectorAll('.filter-tab').forEach(tab => {
+        tab.addEventListener('click', () => {
+            document.querySelectorAll('.filter-tab').forEach(t => t.classList.remove('active'));
+            tab.classList.add('active');
+            const f = tab.dataset.filter;
+            document.querySelectorAll('.product-card').forEach(card => {
+                card.style.display = (f === 'all' || card.dataset.category === f) ? '' : 'none';
+            });
+        });
+    });
+</script>
+</body>
+</html>
