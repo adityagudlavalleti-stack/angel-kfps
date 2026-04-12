@@ -3,7 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Angel the Stud — Premium Breeding Stallion</title>
+    <title>Angel the Stud — KFPS Premium Friesian Stallion · México</title>
+    <meta name="description" content="Angel is a KFPS-registered Friesian stallion with Vb H · Premium classification, available for stud services in México and internationally.">
+    <meta property="og:title" content="Angel the Stud — KFPS Premium Friesian Stallion · México">
+    <meta property="og:description" content="KFPS Vb H · Premium classification. Born 2024. Available for live cover, AI, and shipped semen. Ixtapan Tonatico, México.">
+    <meta property="og:image" content="https://adityagudlavalleti-stack.github.io/angel-kfps/hero.jpeg">
+    <meta property="og:url" content="https://adityagudlavalleti-stack.github.io/angel-kfps/">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Angel the Stud">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="https://adityagudlavalleti-stack.github.io/angel-kfps/hero.jpeg">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,500&family=Montserrat:wght@300;400;500;600;700&display=swap');
 
@@ -647,6 +656,181 @@
             *, *::before, *::after { animation: none !important; transition: none !important; }
         }
 
+        /* ══ LOADING SCREEN ══ */
+        #loader {
+            position: fixed; inset: 0; z-index: 9999;
+            background: #000; display: flex; flex-direction: column;
+            align-items: center; justify-content: center;
+            transition: opacity 1s ease, visibility 1s ease;
+        }
+        #loader.hide { opacity: 0; visibility: hidden; pointer-events: none; }
+        .loader-logo-img {
+            width: clamp(130px, 16vw, 190px); height: auto;
+            filter: drop-shadow(0 0 40px rgba(201,169,110,0.55));
+            animation: loaderPulse 1.6s ease-in-out infinite;
+        }
+        .loader-bar-wrap { position: absolute; bottom: 0; left: 0; right: 0; height: 2px; background: rgba(201,169,110,0.1); }
+        .loader-bar { height: 100%; background: var(--gold); box-shadow: 0 0 14px rgba(201,169,110,0.6); width: 0; animation: loaderProgress 1.9s ease-out forwards; }
+        @keyframes loaderPulse { 0%,100% { filter: drop-shadow(0 0 20px rgba(201,169,110,0.4)); opacity:.85; } 50% { filter: drop-shadow(0 0 60px rgba(201,169,110,0.85)); opacity:1; } }
+        @keyframes loaderProgress { from { width:0; } to { width:100%; } }
+
+        /* ══ CUSTOM CURSOR ══ */
+        body { cursor: none; }
+        #cursor-dot, #cursor-ring {
+            position: fixed; pointer-events: none; z-index: 9998;
+            border-radius: 50%; top: 0; left: 0;
+            transform: translate(-50%, -50%);
+        }
+        #cursor-dot { width: 5px; height: 5px; background: var(--gold); }
+        #cursor-ring {
+            width: 26px; height: 26px;
+            border: 1px solid rgba(201,169,110,0.5);
+            transition: left .1s ease, top .1s ease, width .3s ease, height .3s ease, border-color .3s;
+        }
+        #cursor-ring.expanded { width: 42px; height: 42px; border-color: var(--gold); }
+        @media (hover:none), (pointer:coarse) { #cursor-dot, #cursor-ring { display:none; } body { cursor:auto; } }
+
+        /* ══ LANG TOGGLE ══ */
+        .lang-toggle {
+            border: 1px solid rgba(201,169,110,0.35); background: transparent;
+            color: var(--gold); padding: 7px 14px; font-size: 9px; font-weight: 600;
+            letter-spacing: 2px; text-transform: uppercase; cursor: none;
+            font-family: 'Montserrat', sans-serif; transition: all .3s ease; flex-shrink: 0;
+        }
+        .lang-toggle:hover { background: rgba(201,169,110,0.1); border-color: var(--gold); }
+
+        /* ══ STATS BAR ══ */
+        #stats {
+            background: #0d0c09;
+            border-top: 1px solid rgba(201,169,110,0.1);
+            border-bottom: 1px solid rgba(201,169,110,0.12);
+            padding: 40px 56px;
+        }
+        .stats-inner {
+            max-width: 1100px; margin: 0 auto;
+            display: flex; align-items: center; justify-content: center; flex-wrap: wrap;
+        }
+        .stat-item { text-align: center; padding: 0 44px; flex: 0 0 auto; }
+        .stat-value {
+            display: block; font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(26px,3vw,38px); font-weight: 400; color: var(--gold);
+            letter-spacing: 2px; line-height: 1.1; text-shadow: 0 0 30px rgba(201,169,110,0.3);
+        }
+        .stat-label { display: block; font-size: 9px; font-weight: 500; letter-spacing: 4px; text-transform: uppercase; color: var(--muted); margin-top: 8px; }
+        .stat-divider { width: 1px; height: 44px; background: linear-gradient(to bottom, transparent, rgba(201,169,110,0.3), transparent); flex-shrink: 0; }
+        @media (max-width:768px) {
+            #stats { padding: 28px 24px; }
+            .stat-item { padding: 14px 20px; flex: 0 0 50%; border-bottom: 1px solid rgba(201,169,110,0.07); }
+            .stat-divider { display: none; }
+        }
+
+        /* ══ WHATSAPP BUTTON ══ */
+        .wa-btn {
+            position: fixed; bottom: 32px; right: 32px; z-index: 500;
+            width: 58px; height: 58px; border-radius: 50%; background: #25D366; color: #fff;
+            display: flex; align-items: center; justify-content: center;
+            box-shadow: 0 4px 20px rgba(37,211,102,0.45), 0 2px 8px rgba(0,0,0,0.3);
+            transition: all .3s ease; text-decoration: none;
+        }
+        .wa-btn:hover { transform: scale(1.12); box-shadow: 0 8px 32px rgba(37,211,102,0.6); }
+        .wa-btn svg { width: 28px; height: 28px; }
+        .wa-tooltip {
+            position: absolute; right: 72px; top: 50%; transform: translateY(-50%);
+            background: rgba(10,10,8,0.96); border: 1px solid rgba(37,211,102,0.25);
+            color: var(--white); font-size: 11px; letter-spacing: 1px;
+            padding: 8px 14px; white-space: nowrap;
+            opacity: 0; pointer-events: none; transition: opacity .3s ease;
+        }
+        .wa-btn:hover .wa-tooltip { opacity: 1; }
+
+        /* ══ TESTIMONIALS ══ */
+        #testimonials { padding: 130px 56px; background: #0e0d0b; }
+        .testimonials-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 24px; margin-top: 16px; }
+        .testimonial-card {
+            background: var(--card); border: 1px solid var(--border);
+            padding: 40px 32px; position: relative; transition: border-color .3s;
+        }
+        .testimonial-card::before,.testimonial-card::after {
+            content:''; position:absolute; width:16px; height:16px;
+            border-color:var(--gold); border-style:solid; opacity:.35; transition:opacity .3s;
+        }
+        .testimonial-card::before { top:-1px;left:-1px;border-width:2px 0 0 2px; }
+        .testimonial-card::after  { bottom:-1px;right:-1px;border-width:0 2px 2px 0; }
+        .testimonial-card:hover { border-color:rgba(201,169,110,0.4); }
+        .testimonial-card:hover::before,.testimonial-card:hover::after { opacity:.9; }
+        .t-stars { color:var(--gold); letter-spacing:3px; font-size:14px; margin-bottom:20px; }
+        .t-quote { font-family:'Cormorant Garamond',serif; font-size:17px; font-style:italic; line-height:1.8; color:rgba(245,240,232,0.72); margin-bottom:28px; }
+        .t-author { display:flex; align-items:center; gap:14px; }
+        .t-avatar { width:44px;height:44px;border-radius:50%;border:1px solid rgba(201,169,110,0.22);flex-shrink:0;background:rgba(201,169,110,0.04);display:flex;align-items:center;justify-content:center; }
+        .t-avatar svg { width:20px;height:20px;color:rgba(201,169,110,0.28); }
+        .t-name { font-size:13px;font-weight:500;color:var(--white);letter-spacing:1px;margin-bottom:3px; }
+        .t-role { font-size:9px;letter-spacing:2px;color:var(--muted);text-transform:uppercase; }
+
+        /* ══ FAQ ══ */
+        #faq { padding: 130px 56px; background: var(--black); }
+        .faq-inner { max-width: 840px; margin: 0 auto; }
+        .faq-inner .section-label { justify-content: center; }
+        .faq-inner .section-title { text-align: center; }
+        .faq-inner .gold-divider { margin: 0 auto 8px; }
+        .faq-list { margin-top: 40px; }
+        .faq-item { border-bottom: 1px solid rgba(201,169,110,0.1); }
+        .faq-q {
+            width: 100%; background: none; border: none;
+            display: flex; align-items: center; justify-content: space-between;
+            padding: 22px 0; cursor: none; text-align: left;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 20px; font-weight: 400; color: var(--white);
+            letter-spacing: 0.5px; transition: color .3s;
+        }
+        .faq-q:hover, .faq-q.open { color: var(--gold); }
+        .faq-icon {
+            flex-shrink: 0; width: 22px; height: 22px; margin-left: 20px;
+            border: 1px solid rgba(201,169,110,0.3);
+            display: flex; align-items: center; justify-content: center;
+            font-size: 18px; color: var(--gold); font-style: normal;
+            transition: transform .4s ease, background .3s;
+        }
+        .faq-q.open .faq-icon { transform: rotate(45deg); background: rgba(201,169,110,0.08); }
+        .faq-a { max-height: 0; overflow: hidden; transition: max-height .45s ease, padding .4s ease; }
+        .faq-a.open { max-height: 360px; padding-bottom: 22px; }
+        .faq-a p { font-size: 14px; line-height: 1.9; color: var(--muted); }
+
+        /* ══ AVAILABILITY CALENDAR ══ */
+        #availability { padding: 130px 56px; background: #0d0c0a; }
+        .avail-inner { max-width: 1060px; margin: 0 auto; text-align: center; }
+        .avail-inner .section-label { justify-content: center; }
+        .avail-inner .gold-divider { margin: 0 auto 48px; }
+        .cal-grid { display: grid; grid-template-columns: repeat(6,1fr); gap: 12px; margin-bottom: 32px; }
+        .cal-month { border: 1px solid var(--border); padding: 18px 10px; text-align: center; transition: border-color .3s; }
+        .cal-month-name { font-family:'Cinzel Decorative',serif; font-size:7px; letter-spacing:2px; color:var(--muted); text-transform:uppercase; margin-bottom:10px; }
+        .cal-dot { width:8px;height:8px;border-radius:50%;margin:0 auto 10px; }
+        .cal-status { font-size:8px;letter-spacing:2px;text-transform:uppercase;font-weight:600; }
+        .cal-month.peak { border-color:rgba(201,169,110,0.4); }
+        .cal-month.peak .cal-dot { background:var(--gold); box-shadow:0 0 8px var(--gold-glow); }
+        .cal-month.peak .cal-status { color:var(--gold); }
+        .cal-month.peak .cal-month-name { color:rgba(245,240,232,0.7); }
+        .cal-month.available .cal-dot { background:rgba(201,169,110,0.35); }
+        .cal-month.available .cal-status { color:rgba(201,169,110,0.6); }
+        .cal-month.limited .cal-dot { background:rgba(201,169,110,0.18); }
+        .cal-month.limited .cal-status { color:rgba(201,169,110,0.4); }
+        .cal-month.closed .cal-dot { background:rgba(245,240,232,0.1); }
+        .cal-month.closed .cal-status { color:rgba(245,240,232,0.2); }
+        .cal-legend { display:flex;align-items:center;justify-content:center;gap:28px;flex-wrap:wrap;margin-bottom:16px; }
+        .legend-item { display:flex;align-items:center;gap:8px;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--muted); }
+        .legend-dot { width:8px;height:8px;border-radius:50%;flex-shrink:0; }
+        .legend-item.peak .legend-dot { background:var(--gold); }
+        .legend-item.available .legend-dot { background:rgba(201,169,110,0.35); }
+        .legend-item.limited .legend-dot { background:rgba(201,169,110,0.18); }
+        .legend-item.closed .legend-dot { background:rgba(245,240,232,0.1); }
+        .cal-note { font-size:10px;color:rgba(245,240,232,0.2);letter-spacing:2px;margin-top:8px; }
+        @media(max-width:1024px) { .testimonials-grid{grid-template-columns:1fr 1fr;} .cal-grid{grid-template-columns:repeat(4,1fr);} }
+        @media(max-width:768px) {
+            #testimonials,#faq,#availability{padding:80px 24px;}
+            .testimonials-grid{grid-template-columns:1fr;}
+            .cal-grid{grid-template-columns:repeat(3,1fr);}
+        }
+        @media(max-width:480px) { .cal-grid{grid-template-columns:repeat(2,1fr);} }
+
         /* ── RESPONSIVE ── */
         @media (max-width: 1024px) {
             .about-grid { grid-template-columns: 1fr; gap: 52px; }
@@ -700,6 +884,22 @@
 </head>
 <body>
 
+<!-- LOADING SCREEN -->
+<div id="loader">
+    <img src="logo.png" alt="Angel the Stud" class="loader-logo-img">
+    <div class="loader-bar-wrap"><div class="loader-bar"></div></div>
+</div>
+
+<!-- CUSTOM CURSOR -->
+<div id="cursor-dot"></div>
+<div id="cursor-ring"></div>
+
+<!-- WHATSAPP FLOAT -->
+<a href="https://wa.me/521234567890?text=Hola%2C+me+interesa+informaci%C3%B3n+sobre+los+servicios+de+Angel+KFPS.+%C2%BFPodr%C3%ADa+compartirme+m%C3%A1s+detalles%3F" class="wa-btn" target="_blank" rel="noopener" aria-label="WhatsApp">
+    <span class="wa-tooltip" data-es="Escríbenos por WhatsApp">Message on WhatsApp</span>
+    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+</a>
+
 <!-- NAV -->
 <nav id="navbar">
     <a href="#hero" class="nav-logo">
@@ -714,7 +914,9 @@
         <li><a href="merch.html">Merch</a></li>
         <li><a href="#contact">Contact</a></li>
     </ul>
-    <a href="#contact" class="nav-cta">Inquire Now</a>
+    <a href="pricing.html" class="nav-links" style="color:rgba(245,240,232,.75);text-decoration:none;font-size:10px;font-weight:500;letter-spacing:3px;text-transform:uppercase;transition:color .25s ease;" onmouseover="this.style.color='var(--gold)'" onmouseout="this.style.color='rgba(245,240,232,.75)'">Pricing</a>
+    <button class="lang-toggle" id="langToggle" aria-label="Switch language">ES</button>
+    <a href="#contact" class="nav-cta" data-es="Consultar">Inquire Now</a>
     <div class="hamburger" id="hamburger" role="button" aria-label="Open menu">
         <span></span><span></span><span></span>
     </div>
@@ -749,6 +951,36 @@
     <div class="hero-scroll" aria-hidden="true">
         <span>Scroll</span>
         <div class="scroll-line"></div>
+    </div>
+</section>
+
+<!-- STATS BAR -->
+<section id="stats">
+    <div class="stats-inner">
+        <div class="stat-item fade-in">
+            <span class="stat-value">2024</span>
+            <span class="stat-label" data-es="Año de Nacimiento">Year Born</span>
+        </div>
+        <span class="stat-divider"></span>
+        <div class="stat-item fade-in stagger-1">
+            <span class="stat-value">Vb H</span>
+            <span class="stat-label" data-es="Clasificación KFPS">KFPS Premium</span>
+        </div>
+        <span class="stat-divider"></span>
+        <div class="stat-item fade-in stagger-1">
+            <span class="stat-value">100%</span>
+            <span class="stat-label" data-es="Frisón Puro">Purebred Friesian</span>
+        </div>
+        <span class="stat-divider"></span>
+        <div class="stat-item fade-in stagger-2">
+            <span class="stat-value">KFPS</span>
+            <span class="stat-label" data-es="Registrado">Registered</span>
+        </div>
+        <span class="stat-divider"></span>
+        <div class="stat-item fade-in stagger-2">
+            <span class="stat-value">MX</span>
+            <span class="stat-label" data-es="Ixtapan Tonatico">Based in México</span>
+        </div>
     </div>
 </section>
 
@@ -975,6 +1207,97 @@
     </div>
 </section>
 
+<!-- TESTIMONIALS -->
+<section id="testimonials" class="ara-bg">
+    <div class="section-inner">
+        <p class="section-label fade-in" data-es="Lo Que Dicen">What Breeders Say</p>
+        <h2 class="section-title fade-in" data-es="Testimonios">Testimonials</h2>
+        <div class="gold-divider fade-in"><span class="gold-divider-diamond sm"></span><span class="gold-divider-diamond"></span><span class="gold-divider-diamond sm"></span></div>
+        <div class="testimonials-grid">
+            <div class="testimonial-card fade-in stagger-1">
+                <div class="t-stars">★★★★★</div>
+                <p class="t-quote">"[Placeholder — share your experience with Angel's breeding program here. What impressed you most about the stallion, the process, or the results?]"</p>
+                <div class="t-author">
+                    <div class="t-avatar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div>
+                    <div>
+                        <div class="t-name">[María González]</div>
+                        <div class="t-role" data-es="Propietaria de Yegua · CDMX">Mare Owner · CDMX</div>
+                    </div>
+                </div>
+            </div>
+            <div class="testimonial-card fade-in stagger-2">
+                <div class="t-stars">★★★★★</div>
+                <p class="t-quote">"[Placeholder — describe the foal quality, Angel's conformation, temperament, or anything that stood out about working with this program.]"</p>
+                <div class="t-author">
+                    <div class="t-avatar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div>
+                    <div>
+                        <div class="t-name">[Carlos Menéndez]</div>
+                        <div class="t-role" data-es="Criador Profesional · Jalisco">Professional Breeder · Jalisco</div>
+                    </div>
+                </div>
+            </div>
+            <div class="testimonial-card fade-in stagger-3">
+                <div class="t-stars">★★★★★</div>
+                <p class="t-quote">"[Placeholder — trainer or equestrian professional perspective on Angel's offspring quality, movement, or trainability.]"</p>
+                <div class="t-author">
+                    <div class="t-avatar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div>
+                    <div>
+                        <div class="t-name">[Fernanda Ruiz]</div>
+                        <div class="t-role" data-es="Entrenadora Ecuestre · Monterrey">Equestrian Coach · Monterrey</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div class="ara-sep"><span class="ara-sep-icon"><span class="sep-diamond"></span><span class="sep-diamond lg"></span><span class="sep-diamond"></span></span></div>
+
+<!-- FAQ -->
+<section id="faq">
+    <div class="faq-inner">
+        <p class="section-label fade-in" data-es="¿Tienes Preguntas?">Have Questions?</p>
+        <h2 class="section-title fade-in" data-es="Preguntas Frecuentes">Frequently Asked</h2>
+        <div class="gold-divider fade-in"><span class="gold-divider-diamond sm"></span><span class="gold-divider-diamond"></span><span class="gold-divider-diamond sm"></span></div>
+        <div class="faq-list fade-in">
+            <div class="faq-item">
+                <button class="faq-q" data-es="¿Cuál es el costo del servicio de monta?">What is the stud fee? <i class="faq-icon">+</i></button>
+                <div class="faq-a"><p data-es="Las tarifas varían según el tipo de servicio (monta natural, IA fresca o semen congelado). Contáctenos para tarifas actuales y descuentos por programas de múltiples yeguas.">Fees vary by service type — live cover, fresh AI, and frozen semen are priced differently. Contact us for current rates. Multi-mare program discounts are available. See our <a href="pricing.html" style="color:var(--gold);">Pricing page</a> for full details.</p></div>
+            </div>
+            <div class="faq-item">
+                <button class="faq-q" data-es="¿Qué métodos de reproducción están disponibles?">What breeding methods are available? <i class="faq-icon">+</i></button>
+                <div class="faq-a"><p data-es="Ofrecemos monta natural, inseminación artificial con semen fresco-refrigerado y semen congelado. El método ideal depende de la ubicación de su yegua y su historial reproductivo.">We offer live cover, fresh-cooled artificial insemination, and frozen semen. The right method depends on your mare's location and breeding history — we'll recommend the best option during your consultation.</p></div>
+            </div>
+            <div class="faq-item">
+                <button class="faq-q" data-es="¿Pueden enviar semen internacionalmente?">Can you ship semen internationally? <i class="faq-icon">+</i></button>
+                <div class="faq-a"><p data-es="Sí, los programas de semen enviado están disponibles a nivel nacional e internacional. Trabajamos con veterinarios reproductivos certificados. Los requisitos SENASICA/USDA aplican. Contáctenos para detalles logísticos.">Yes. Domestic and international shipped semen programs are available. We work with certified equine reproductive veterinarians to ensure proper collection, processing, and shipment. SENASICA requirements apply for international export — contact us early to plan logistics.</p></div>
+            </div>
+            <div class="faq-item">
+                <button class="faq-q" data-es="¿Qué certificaciones sanitarias tiene Angel?">What health certifications does Angel carry? <i class="faq-icon">+</i></button>
+                <div class="faq-a"><p data-es="Angel mantiene registros veterinarios actualizados del KFPS incluyendo pruebas de salud reproductiva y análisis de calidad seminal. La documentación completa se entrega a todos los clientes.">Angel maintains current KFPS veterinary health records including reproductive soundness examination and semen quality analysis. [Placeholder — add specific certifications: Coggins, EIAV, EVA, etc.] Full health documentation is provided to all breeding clients.</p></div>
+            </div>
+            <div class="faq-item">
+                <button class="faq-q" data-es="¿Cómo registro el potro en KFPS?">How do I register the foal with KFPS? <i class="faq-icon">+</i></button>
+                <div class="faq-a"><p data-es="Todas las crías son elegibles para el registro KFPS. Proporcionamos la documentación completa del semental y asistimos con el proceso de inspección. KFPS requiere prueba de ADN e inspección de conformación.">All offspring sired by Angel are eligible for KFPS registration. We provide full stallion documentation and assist with the inspection preparation process. KFPS requires a DNA verification and conformation inspection for studbook entry.</p></div>
+            </div>
+            <div class="faq-item">
+                <button class="faq-q" data-es="¿Con cuánta anticipación debo reservar?">How far in advance should I book? <i class="faq-icon">+</i></button>
+                <div class="faq-a"><p data-es="Recomendamos reservar con al menos 4–6 semanas de anticipación. Durante la temporada alta (marzo–junio), los espacios se llenan rápidamente. Contáctenos pronto para asegurar sus fechas preferidas.">We recommend booking at least 4–6 weeks in advance. During peak breeding season (March–June), availability fills quickly. Contact us early to secure your preferred breeding window.</p></div>
+            </div>
+            <div class="faq-item">
+                <button class="faq-q" data-es="¿Qué requisitos debe cumplir la yegua?">What are the requirements for the mare? <i class="faq-icon">+</i></button>
+                <div class="faq-a"><p data-es="Las yeguas deben tener un examen reproductivo reciente, vacunas al día y Coggins negativo. [Añadir cualquier requisito adicional del KFPS o del programa.] Podemos recomendar a nuestro veterinario asociado si es necesario.">Mares should have a current reproductive examination, up-to-date vaccinations, and a negative Coggins test. [Placeholder — add KFPS mare requirements if applicable.] We can refer you to our veterinary partner if needed.</p></div>
+            </div>
+            <div class="faq-item">
+                <button class="faq-q" data-es="¿Ofrecen hospedaje para yeguas?">Do you offer on-site mare care? <i class="faq-icon">+</i></button>
+                <div class="faq-a"><p data-es="[Placeholder — si el hospedaje está disponible durante el ciclo de reproducción, describa las instalaciones, la duración y el costo. Si no está disponible, indíquelo.]">[Placeholder — if boarding is available during the breeding cycle, describe the facilities, duration, and cost here. If not available, note that mares can be managed remotely with a local vet.]</p></div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div class="ara-sep"><span class="ara-sep-icon"><span class="sep-diamond"></span><span class="sep-diamond lg"></span><span class="sep-diamond"></span></span></div>
+
 <!-- GALLERY -->
 <section id="gallery" class="ara-bg">
     <div class="section-inner">
@@ -1039,6 +1362,35 @@
             <button class="carousel-arrow carousel-next" id="videoNext" aria-label="Next">›</button>
         </div>
         <div class="carousel-dots" id="videoDots"></div>
+    </div>
+</section>
+
+<!-- AVAILABILITY CALENDAR -->
+<section id="availability">
+    <div class="avail-inner">
+        <p class="section-label fade-in" data-es="Reservas 2026">2026 Booking</p>
+        <h2 class="section-title fade-in" data-es="Disponibilidad">Availability</h2>
+        <div class="gold-divider fade-in"><span class="gold-divider-diamond sm"></span><span class="gold-divider-diamond"></span><span class="gold-divider-diamond sm"></span></div>
+        <div class="cal-grid fade-in">
+            <div class="cal-month available"><div class="cal-month-name" data-es="Enero">January</div><div class="cal-dot"></div><div class="cal-status" data-es="Disponible">Available</div></div>
+            <div class="cal-month available"><div class="cal-month-name" data-es="Febrero">February</div><div class="cal-dot"></div><div class="cal-status" data-es="Disponible">Available</div></div>
+            <div class="cal-month peak"><div class="cal-month-name" data-es="Marzo">March</div><div class="cal-dot"></div><div class="cal-status" data-es="Temporada Alta">Peak Season</div></div>
+            <div class="cal-month peak"><div class="cal-month-name" data-es="Abril">April</div><div class="cal-dot"></div><div class="cal-status" data-es="Temporada Alta">Peak Season</div></div>
+            <div class="cal-month peak"><div class="cal-month-name" data-es="Mayo">May</div><div class="cal-dot"></div><div class="cal-status" data-es="Temporada Alta">Peak Season</div></div>
+            <div class="cal-month limited"><div class="cal-month-name" data-es="Junio">June</div><div class="cal-dot"></div><div class="cal-status" data-es="Limitado">Limited</div></div>
+            <div class="cal-month available"><div class="cal-month-name" data-es="Julio">July</div><div class="cal-dot"></div><div class="cal-status" data-es="Disponible">Available</div></div>
+            <div class="cal-month available"><div class="cal-month-name" data-es="Agosto">August</div><div class="cal-dot"></div><div class="cal-status" data-es="Disponible">Available</div></div>
+            <div class="cal-month available"><div class="cal-month-name" data-es="Septiembre">September</div><div class="cal-dot"></div><div class="cal-status" data-es="Disponible">Available</div></div>
+            <div class="cal-month available"><div class="cal-month-name" data-es="Octubre">October</div><div class="cal-dot"></div><div class="cal-status" data-es="Disponible">Available</div></div>
+            <div class="cal-month available"><div class="cal-month-name" data-es="Noviembre">November</div><div class="cal-dot"></div><div class="cal-status" data-es="Disponible">Available</div></div>
+            <div class="cal-month available"><div class="cal-month-name" data-es="Diciembre">December</div><div class="cal-dot"></div><div class="cal-status" data-es="Disponible">Available</div></div>
+        </div>
+        <div class="cal-legend fade-in">
+            <span class="legend-item peak"><span class="legend-dot"></span><span data-es="Temporada Alta">Peak Season</span></span>
+            <span class="legend-item available"><span class="legend-dot"></span><span data-es="Disponible">Available</span></span>
+            <span class="legend-item limited"><span class="legend-dot"></span><span data-es="Limitado">Limited</span></span>
+        </div>
+        <p class="cal-note fade-in" data-es="Book in advance · Consultar para fechas exactas · angelkfpsmx@gmail.com">Book in advance · Contact for exact dates · angelkfpsmx@gmail.com</p>
     </div>
 </section>
 
@@ -1271,6 +1623,210 @@
             e.target.reset();
         }, 3000);
     }
+
+    // ── LOADING SCREEN ────────────────────────────────────────────────────────
+    window.addEventListener('load', () => {
+        setTimeout(() => {
+            const loader = document.getElementById('loader');
+            if (loader) {
+                loader.classList.add('hide');
+                setTimeout(() => loader.remove(), 1100);
+            }
+        }, 2000);
+    });
+
+    // ── CUSTOM CURSOR ─────────────────────────────────────────────────────────
+    (function() {
+        const dot  = document.getElementById('cursor-dot');
+        const ring = document.getElementById('cursor-ring');
+        if (!dot || !ring) return;
+        let rx = 0, ry = 0;
+        document.addEventListener('mousemove', e => {
+            dot.style.left  = e.clientX + 'px';
+            dot.style.top   = e.clientY + 'px';
+            rx += (e.clientX - rx) * 0.18;
+            ry += (e.clientY - ry) * 0.18;
+            ring.style.left = e.clientX + 'px';
+            ring.style.top  = e.clientY + 'px';
+        });
+        document.querySelectorAll('a, button, [role=button], .gallery-item, .video-item, .product-card').forEach(el => {
+            el.addEventListener('mouseenter', () => ring.classList.add('expanded'));
+            el.addEventListener('mouseleave', () => ring.classList.remove('expanded'));
+        });
+    })();
+
+    // ── FAQ ACCORDION ─────────────────────────────────────────────────────────
+    document.querySelectorAll('.faq-q').forEach(btn => {
+        btn.addEventListener('click', () => {
+            const answer  = btn.nextElementSibling;
+            const isOpen  = btn.classList.contains('open');
+            // close all
+            document.querySelectorAll('.faq-q').forEach(b => {
+                b.classList.remove('open');
+                b.nextElementSibling.classList.remove('open');
+            });
+            if (!isOpen) {
+                btn.classList.add('open');
+                answer.classList.add('open');
+            }
+        });
+    });
+
+    // ── LANGUAGE TOGGLE ───────────────────────────────────────────────────────
+    (function() {
+        const btn = document.getElementById('langToggle');
+        if (!btn) return;
+        let lang = 'en';
+
+        // Translation map: selector → { en, es }
+        const T = {
+            '.hero-eyebrow':    { en: 'Premium Breeding Stallion', es: 'Semental de Cría Premium' },
+            '.hero-subtitle':   { en: 'Friesian Stallion \u00a0·\u00a0 KFPS Vb H · Premium \u00a0·\u00a0 México', es: 'Semental Frisón \u00a0·\u00a0 KFPS Vb H · Premium \u00a0·\u00a0 México' },
+            '.hero-btn':        { en: 'Inquire Now', es: 'Consultar Ahora' },
+            '.hero-scroll span':{ en: 'Scroll', es: 'Desplazar' },
+            // About
+            '#about .section-label':  { en: 'The Stallion', es: 'El Semental' },
+            '#about .section-title':  { en: 'Meet Angel', es: 'Conoce a Angel' },
+            // Bloodlines
+            '#bloodlines .section-label': { en: 'Heritage', es: 'Herencia' },
+            '#bloodlines .section-title': { en: 'The Bloodline', es: 'El Pedigree' },
+            // Services
+            '#services .section-label':   { en: 'What We Offer', es: 'Lo Que Ofrecemos' },
+            '#services .section-title':   { en: 'Breeding Services', es: 'Servicios de Reproducción' },
+            '[data-panel="b2c"]':          { en: 'For Individuals', es: 'Para Particulares' },
+            '[data-panel="b2b"]':          { en: 'For Breeders', es: 'Para Criadores' },
+            // Gallery
+            '#gallery .section-label': { en: 'The Collection', es: 'La Colección' },
+            '#gallery .section-title': { en: 'Gallery', es: 'Galería' },
+            // Videos
+            '#videos .section-label': { en: 'In Motion', es: 'En Movimiento' },
+            '#videos .section-title': { en: 'Watch Angel', es: 'Ver a Angel' },
+            // Contact
+            '#contact .section-label': { en: 'Get In Touch', es: 'Contáctanos' },
+            '#contact .section-title': { en: 'Inquire About Angel', es: 'Consulta Sobre Angel' },
+            '.submit-btn':             { en: 'Send Inquiry', es: 'Enviar Consulta' },
+        };
+
+        // Spec labels
+        const specMap = {
+            'Date of Birth': 'Fecha de Nacimiento',
+            'Breed': 'Raza',
+            'Classification': 'Clasificación',
+            'Registry': 'Registro',
+            'Sire': 'Padre',
+            'Dam': 'Madre',
+            'Color': 'Color',
+            'Location': 'Ubicación',
+        };
+        // Service names
+        const serviceMap = {
+            'Stud Services': 'Servicios de Monta',
+            'Foals Available': 'Potros Disponibles',
+            'Mare Care': 'Cuidado de Yeguas',
+            'Breeding Programs': 'Programas de Reproducción',
+            'Farm Partnerships': 'Asociaciones con Ranchos',
+            'Semen Export': 'Exportación de Semen',
+        };
+        // Nav
+        const navMap = {
+            'The Stallion': 'El Semental',
+            'Bloodlines': 'Pedigree',
+            'Services': 'Servicios',
+            'Gallery': 'Galería',
+            'Our Story': 'Nuestra Historia',
+            'Merch': 'Merch',
+            'Contact': 'Contacto',
+            'Pricing': 'Precios',
+        };
+        // Tree roles
+        const treeRoleMap = {
+            'Sire': 'Padre', 'Dam': 'Madre',
+            'Paternal Grandsire': 'Abuelo Paterno',
+            'Paternal Granddam': 'Abuela Paterna',
+            'Maternal Grandsire': 'Abuelo Materno',
+            'Maternal Granddam': 'Abuela Materna',
+        };
+
+        function setLang(l) {
+            lang = l;
+            btn.textContent = l === 'en' ? 'ES' : 'EN';
+
+            // Main translation map
+            Object.entries(T).forEach(([sel, vals]) => {
+                document.querySelectorAll(sel).forEach(el => {
+                    if (el.children.length === 0) el.textContent = vals[l];
+                });
+            });
+
+            // data-es attributes
+            document.querySelectorAll('[data-es]').forEach(el => {
+                const es = el.dataset.es;
+                if (!el.dataset.en) el.dataset.en = el.textContent.trim();
+                el.textContent = l === 'es' ? es : el.dataset.en;
+            });
+
+            // Spec labels
+            document.querySelectorAll('.spec-label').forEach(el => {
+                const en = el.dataset.en || el.textContent.trim();
+                if (!el.dataset.en) el.dataset.en = en;
+                el.textContent = l === 'es' ? (specMap[en] || en) : en;
+            });
+
+            // Service names
+            document.querySelectorAll('.service-name').forEach(el => {
+                const en = el.dataset.en || el.textContent.trim();
+                if (!el.dataset.en) el.dataset.en = en;
+                el.textContent = l === 'es' ? (serviceMap[en] || en) : en;
+            });
+
+            // Nav links
+            document.querySelectorAll('.nav-links a, .mobile-menu a').forEach(el => {
+                const en = el.dataset.en || el.textContent.trim();
+                if (!el.dataset.en) el.dataset.en = en;
+                el.textContent = l === 'es' ? (navMap[en] || en) : en;
+            });
+
+            // Tree roles
+            document.querySelectorAll('.tree-role').forEach(el => {
+                const en = el.dataset.en || el.textContent.trim();
+                if (!el.dataset.en) el.dataset.en = en;
+                el.textContent = l === 'es' ? (treeRoleMap[en] || en) : en;
+            });
+
+            // FAQ questions (text node before i.faq-icon)
+            const faqQMap = {
+                'What is the stud fee?': '¿Cuál es el costo del servicio de monta?',
+                'What breeding methods are available?': '¿Qué métodos de reproducción están disponibles?',
+                'Can you ship semen internationally?': '¿Pueden enviar semen internacionalmente?',
+                'What health certifications does Angel carry?': '¿Qué certificaciones sanitarias tiene Angel?',
+                'How do I register the foal with KFPS?': '¿Cómo registro el potro en KFPS?',
+                'How far in advance should I book?': '¿Con cuánta anticipación debo reservar?',
+                'What are the requirements for the mare?': '¿Qué requisitos debe cumplir la yegua?',
+                'Do you offer on-site mare care?': '¿Ofrecen hospedaje para yeguas?',
+            };
+            document.querySelectorAll('.faq-q').forEach(q => {
+                const icon = q.querySelector('.faq-icon');
+                const enText = q.dataset.en || q.childNodes[0].textContent.trim();
+                if (!q.dataset.en) q.dataset.en = enText;
+                const newText = l === 'es' ? (faqQMap[enText] || enText) : enText;
+                q.childNodes[0].textContent = newText + ' ';
+            });
+
+            // Contact form labels
+            const labelMap = {
+                'Full Name': 'Nombre Completo', 'Email Address': 'Correo Electrónico',
+                'Phone Number': 'Teléfono', 'Inquiry Type': 'Tipo de Consulta',
+                'Message': 'Mensaje',
+            };
+            document.querySelectorAll('.form-group label').forEach(el => {
+                const en = el.dataset.en || el.textContent.trim();
+                if (!el.dataset.en) el.dataset.en = en;
+                el.textContent = l === 'es' ? (labelMap[en] || en) : en;
+            });
+        }
+
+        btn.addEventListener('click', () => setLang(lang === 'en' ? 'es' : 'en'));
+    })();
 </script>
 </body>
 </html>
