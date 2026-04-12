@@ -171,22 +171,87 @@
             animation: pulse 2s ease infinite;
         }
 
+        /* ── ARABESQUE PATTERN BACKGROUND ── */
+        .ara-bg {
+            position: relative;
+        }
+        .ara-bg::before {
+            content: '';
+            position: absolute; inset: 0;
+            background-image:
+                radial-gradient(circle at 1px 1px, rgba(212,160,23,0.07) 1px, transparent 0);
+            background-size: 32px 32px;
+            pointer-events: none; z-index: 0;
+        }
+        .ara-bg > * { position: relative; z-index: 1; }
+
         /* ── SHARED ── */
         .section-inner { max-width: 1360px; margin: 0 auto; }
-        .section-label { font-size: 10px; font-weight: 600; letter-spacing: 6px; text-transform: uppercase; color: var(--gold); margin-bottom: 14px; }
+        .section-label {
+            font-size: 10px; font-weight: 600; letter-spacing: 6px;
+            text-transform: uppercase; color: var(--gold); margin-bottom: 14px;
+            display: flex; align-items: center; gap: 10px;
+        }
+        .section-label::before, .section-label::after {
+            content: '';
+            display: inline-block;
+            width: 28px; height: 1px;
+            background: var(--gold); opacity: 0.6;
+            flex-shrink: 0;
+        }
         .section-title {
             font-family: 'Cormorant Garamond', serif;
             font-size: clamp(38px, 5vw, 62px); font-weight: 400;
-            letter-spacing: 2px; color: var(--white); line-height: 1.1; margin-bottom: 20px;
+            letter-spacing: 3px; color: var(--white); line-height: 1.1; margin-bottom: 20px;
         }
+        /* Ornamental divider — diamond flanked by lines */
         .gold-divider {
-            width: 200px; height: 1px; margin-bottom: 40px;
-            background: linear-gradient(to right, transparent, var(--gold) 25%, var(--gold) 75%, transparent);
+            display: flex; align-items: center; gap: 0;
+            width: fit-content; margin-bottom: 40px;
         }
-        .section-label::before { content: '◆ '; font-size: 7px; vertical-align: middle; margin-right: 2px; }
+        .gold-divider::before, .gold-divider::after {
+            content: '';
+            display: block;
+            width: 72px; height: 1px;
+            background: linear-gradient(to right, transparent, var(--gold));
+        }
+        .gold-divider::after {
+            background: linear-gradient(to left, transparent, var(--gold));
+        }
+        .gold-divider-diamond {
+            width: 8px; height: 8px;
+            background: var(--gold);
+            transform: rotate(45deg);
+            flex-shrink: 0;
+            margin: 0 10px;
+        }
+
+        /* Ornamental full-width section separator */
+        .ara-sep {
+            width: 100%; display: flex; align-items: center;
+            justify-content: center; gap: 0;
+            padding: 0 56px; margin: 0;
+            opacity: 0.45;
+        }
+        .ara-sep::before, .ara-sep::after {
+            content: '';
+            flex: 1; height: 1px;
+            background: linear-gradient(to right, transparent, var(--gold) 40%, var(--gold) 60%, transparent);
+        }
+        .ara-sep-icon {
+            flex-shrink: 0;
+            padding: 0 20px;
+            color: var(--gold);
+            font-size: 18px;
+            line-height: 1;
+            letter-spacing: 8px;
+        }
 
         .fade-in { opacity: 0; transform: translateY(28px); transition: opacity .8s ease, transform .8s ease; }
         .fade-in.visible { opacity: 1; transform: translateY(0); }
+        .fade-in.stagger-1 { transition-delay: .1s; }
+        .fade-in.stagger-2 { transition-delay: .2s; }
+        .fade-in.stagger-3 { transition-delay: .3s; }
 
         /* ── ABOUT ── */
         #about { padding: 130px 56px; background: var(--black); }
@@ -195,7 +260,13 @@
         .about-image-wrap::before {
             content: ''; position: absolute;
             top: -18px; left: -18px; right: 18px; bottom: 18px;
-            border: 1px solid var(--border); z-index: 0;
+            border: 1px solid rgba(212,160,23,0.4); z-index: 0;
+        }
+        .about-image-wrap::after {
+            content: '';
+            position: absolute;
+            top: -10px; left: -10px; right: 26px; bottom: 26px;
+            border: 1px solid rgba(212,160,23,0.15); z-index: 0;
         }
         .about-image-wrap img {
             width: 100%; height: 620px; object-fit: cover; object-position: center;
@@ -421,18 +492,50 @@
 
         /* ── FOOTER ── */
         footer {
-            background: #080808; border-top: 1px solid var(--border);
-            padding: 44px 56px; text-align: center;
+            background: #060606;
+            border-top: 1px solid rgba(212,160,23,0.3);
+            padding: 60px 56px 44px; text-align: center;
+            position: relative; overflow: hidden;
         }
-        .footer-logo { font-family: 'Cormorant Garamond', serif; font-size: 30px; font-weight: 400; letter-spacing: 12px; color: var(--gold); text-transform: uppercase; margin-bottom: 14px; }
+        footer::before {
+            content: '';
+            position: absolute; inset: 0;
+            background-image: radial-gradient(circle at 1px 1px, rgba(212,160,23,0.05) 1px, transparent 0);
+            background-size: 28px 28px;
+            pointer-events: none;
+        }
+        .footer-ornament {
+            display: flex; align-items: center; justify-content: center;
+            gap: 16px; margin-bottom: 28px; opacity: 0.5;
+        }
+        .footer-ornament::before, .footer-ornament::after {
+            content: ''; display: block;
+            width: 80px; height: 1px; background: var(--gold);
+        }
+        .footer-ornament-diamond {
+            width: 10px; height: 10px;
+            background: var(--gold); transform: rotate(45deg); flex-shrink: 0;
+        }
+        .footer-logo-img { height: 80px; width: auto; margin: 0 auto 20px; display: block; filter: drop-shadow(0 4px 16px rgba(212,160,23,0.3)); }
         .footer-ig {
             display: inline-flex; align-items: center; gap: 8px;
             color: rgba(245,240,232,.4); text-decoration: none;
             font-size: 11px; letter-spacing: 2px;
-            transition: color .3s ease; margin-bottom: 18px;
+            transition: color .3s ease; margin-bottom: 24px;
         }
         .footer-ig:hover { color: var(--gold); }
-        .footer-copy { font-size: 10px; letter-spacing: 2px; color: rgba(245,240,232,.25); }
+        .footer-copy { font-size: 10px; letter-spacing: 2px; color: rgba(245,240,232,.2); }
+        .footer-bottom-ornament {
+            display: flex; align-items: center; justify-content: center;
+            gap: 12px; margin-top: 28px; opacity: 0.25;
+        }
+        .footer-bottom-ornament::before, .footer-bottom-ornament::after {
+            content: ''; flex: 1; max-width: 120px; height: 1px;
+            background: linear-gradient(to right, transparent, var(--gold));
+        }
+        .footer-bottom-ornament::after {
+            background: linear-gradient(to left, transparent, var(--gold));
+        }
 
         /* ── KEYFRAMES ── */
         @keyframes fadeUp { to { opacity: 1; transform: translateY(0); } }
@@ -588,7 +691,7 @@
             <div class="fade-in">
                 <p class="section-label">The Stallion</p>
                 <h2 class="section-title">Meet Angel</h2>
-                <div class="gold-divider"></div>
+                <div class="gold-divider"><span class="gold-divider-diamond"></span></div>
                 <div class="about-specs">
                     <div class="spec-item">
                         <div class="spec-label">Date of Birth</div>
@@ -632,14 +735,15 @@
     </div>
 </section>
 
+<div class="ara-sep"><span class="ara-sep-icon">◆ ◆ ◆</span></div>
 <!-- BLOODLINES -->
-<section id="bloodlines">
+<section id="bloodlines" class="ara-bg">
     <div class="section-inner">
         <div class="bloodlines-grid">
             <div class="fade-in">
                 <p class="section-label">Heritage</p>
                 <h2 class="section-title">The Bloodline</h2>
-                <div class="gold-divider"></div>
+                <div class="gold-divider"><span class="gold-divider-diamond"></span></div>
                 <p class="about-bio">
                     Angel carries the genetics of some of the most distinguished Friesian bloodlines in the KFPS registry. His sire <strong style="color:var(--white);">Leftert 306</strong> is a celebrated stallion known for his powerful movement, proud carriage, and exceptional offspring. Dam <strong style="color:var(--white);">Bartele 472</strong> holds the prestigious Stb Sport AAA designation — a mark of elite sport and breeding performance.
                 </p>
@@ -721,13 +825,14 @@
     </div>
 </section>
 
+<div class="ara-sep"><span class="ara-sep-icon">◆ ◆ ◆</span></div>
 <!-- SERVICES -->
-<section id="services">
+<section id="services" class="ara-bg">
     <div class="section-inner">
         <div class="services-header fade-in">
             <p class="section-label">What We Offer</p>
             <h2 class="section-title">Breeding Services</h2>
-            <div class="gold-divider" style="margin:0 auto 24px;"></div>
+            <div class="gold-divider" style="margin:0 auto 24px;"><span class="gold-divider-diamond"></span></div>
             <p style="color:var(--muted); font-size:14px; max-width:560px; margin:0 auto 40px;">
                 Whether you're an individual mare owner or a professional breeding operation, we have a program built for your goals.
             </p>
@@ -739,7 +844,7 @@
 
         <!-- B2C -->
         <div class="service-panel active" id="panel-b2c">
-            <div class="service-card fade-in">
+            <div class="service-card fade-in stagger-1">
                 <svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" aria-hidden="true">
                     <circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.5 2"/>
                 </svg>
@@ -747,7 +852,7 @@
                 <div class="service-desc">Book Angel for your mare. Competitive stud fee with flexible scheduling. Proven results and outstanding offspring quality.</div>
                 <span class="service-badge">Live Cover · AI Available</span>
             </div>
-            <div class="service-card fade-in">
+            <div class="service-card fade-in stagger-2">
                 <svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" aria-hidden="true">
                     <path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/>
                 </svg>
@@ -755,7 +860,7 @@
                 <div class="service-desc">Select Angel offspring available for private purchase. [Availability and pricing placeholder — inquire for current listings and expected foals.]</div>
                 <span class="service-badge">Inquire for Availability</span>
             </div>
-            <div class="service-card fade-in">
+            <div class="service-card fade-in stagger-3">
                 <svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" aria-hidden="true">
                     <path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/>
                 </svg>
@@ -803,7 +908,7 @@
     <div class="section-inner">
         <p class="section-label fade-in">The Collection</p>
         <h2 class="section-title fade-in">Gallery</h2>
-        <div class="gold-divider fade-in"></div>
+        <div class="gold-divider fade-in"><span class="gold-divider-diamond"></span></div>
         <div class="carousel-wrap fade-in">
             <button class="carousel-arrow carousel-prev" id="galleryPrev" aria-label="Previous">‹</button>
             <div class="carousel-track" id="galleryTrack">
@@ -845,7 +950,7 @@
     <div class="section-inner">
         <p class="section-label fade-in">In Motion</p>
         <h2 class="section-title fade-in">Watch Angel</h2>
-        <div class="gold-divider fade-in"></div>
+        <div class="gold-divider fade-in"><span class="gold-divider-diamond"></span></div>
         <div class="video-carousel-wrap fade-in">
             <button class="carousel-arrow carousel-prev" id="videoPrev" aria-label="Previous">‹</button>
             <div class="video-carousel-track" id="videoTrack">
@@ -865,12 +970,13 @@
     </div>
 </section>
 
+<div class="ara-sep"><span class="ara-sep-icon">◆ ◆ ◆</span></div>
 <!-- CONTACT -->
-<section id="contact">
+<section id="contact" class="ara-bg">
     <div class="contact-inner">
         <p class="section-label fade-in">Get In Touch</p>
         <h2 class="section-title fade-in">Inquire About Angel</h2>
-        <div class="gold-divider fade-in" style="margin:0 auto 20px;"></div>
+        <div class="gold-divider fade-in" style="margin:0 auto 20px;"><span class="gold-divider-diamond"></span></div>
         <p class="fade-in" style="color:var(--muted); font-size:14px; max-width:500px; margin:0 auto;">
             Whether you're an individual mare owner or a commercial breeding operation, we'd love to hear from you.
         </p>
@@ -930,9 +1036,14 @@
 
 <!-- FOOTER -->
 <footer>
-    <div class="footer-logo">Angel</div>
+    <div class="footer-ornament">
+        <span class="footer-ornament-diamond"></span>
+        <span class="footer-ornament-diamond"></span>
+        <span class="footer-ornament-diamond"></span>
+    </div>
+    <img src="logo.jpeg" alt="Angel the Stud" class="footer-logo-img">
     <a href="https://www.instagram.com/angel_kfps_mexico" target="_blank" rel="noopener noreferrer" class="footer-ig" aria-label="Angel on Instagram">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
             <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
             <circle cx="12" cy="12" r="4"/>
             <circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/>
@@ -940,6 +1051,7 @@
         @angel_kfps_mexico
     </a>
     <p class="footer-copy">© 2026 Angel the Stud &nbsp;·&nbsp; Ixtapan Tonatico, México &nbsp;·&nbsp; All Rights Reserved</p>
+    <div class="footer-bottom-ornament"></div>
 </footer>
 
 <script>
