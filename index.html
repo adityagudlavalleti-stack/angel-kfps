@@ -841,48 +841,77 @@
         @media (max-width: 768px) {
             nav, nav.scrolled { padding: 18px 24px; }
             .nav-links, .nav-cta { display: none; }
+            /* Hide lang-toggle from nav on mobile — it becomes a fixed pill */
+            .lang-toggle { display: none; }
             .hamburger { display: flex; }
-            #about, #services, #gallery, #videos, #contact { padding: 80px 24px; }
-            .about-image-wrap img { height: 420px; }
+            #about, #services, #gallery, #videos, #contact, #bloodlines { padding: 80px 24px; }
+            .about-image-wrap img { height: 380px; }
+            .about-image-wrap::before, .about-image-wrap::after { display: none; }
+            .frame-inner { display: none; }
             .about-specs { grid-template-columns: 1fr; }
             .service-panel.active { grid-template-columns: 1fr; }
             .video-grid { grid-template-columns: 1fr; }
             .gallery-grid { columns: 1; }
             .form-row { grid-template-columns: 1fr; }
             .contact-details { flex-direction: column; gap: 32px; }
-            .hero-side-img { width: clamp(120px, 18vw, 200px); height: clamp(200px, 30vw, 340px); }
-            .hero-logo-img { width: clamp(180px, 32vw, 300px); }
-            .hero-subtitle { letter-spacing: 4px; font-size: 10px; }
+            .hero-logo-img { width: clamp(200px, 55vw, 320px); }
+            .hero-subtitle { letter-spacing: 3px; font-size: 10px; }
             .hero-eyebrow { letter-spacing: 4px; }
-            .gallery-item { flex: 0 0 33.33%; }
-            .video-item   { flex: 0 0 33.33%; }
-
-            /* Footer */
-            .footer-logo { letter-spacing: 6px; font-size: 26px; }
-
-            /* Service tabs — stack on very small screens */
+            .gallery-item { flex: 0 0 50%; }
+            .video-item   { flex: 0 0 50%; }
+            .footer-logo-img { height: 80px; }
             .audience-tabs { display: flex; flex-direction: column; width: 100%; max-width: 320px; }
             .audience-tab { width: 100%; text-align: center; }
-
-            /* Section inner padding safety */
             .section-inner { padding: 0; }
+            .wa-btn { bottom: 24px; right: 20px; width: 52px; height: 52px; }
+        }
+
+        /* Hide hero side images on portrait phone — just logo + text */
+        @media (max-width: 640px) {
+            .hero-side-img { display: none; }
+            .hero-stage { justify-content: center; }
+            .hero-logo-img { width: clamp(180px, 65vw, 300px); }
         }
 
         @media (max-width: 480px) {
-            .hero-stage { flex-direction: column; gap: 20px; }
-            .hero-side-img { width: 60vw; height: 200px; }
             .hero-logo-img { width: clamp(160px, 72vw, 260px); }
-            .hero-subtitle { letter-spacing: 3px; }
+            .hero-subtitle { letter-spacing: 2px; font-size: 9px; }
             .hero-btn { padding: 16px 36px; }
             .gallery-item { flex: 0 0 100%; }
             .video-item   { flex: 0 0 100%; }
-            .about-image-wrap::before { display: none; }
             .service-card { padding: 36px 24px; }
             .video-item video { height: 220px; }
+        }
+
+        /* ── LANG TOGGLE FIXED PILL (mobile only) ── */
+        #lang-fixed {
+            display: none;
+        }
+        @media (max-width: 768px) {
+            #lang-fixed {
+                display: flex;
+                position: fixed;
+                top: 18px; right: 72px;
+                z-index: 300;
+                border: 1px solid rgba(201,169,110,0.45);
+                background: rgba(10,10,8,0.88);
+                backdrop-filter: blur(8px);
+                color: var(--gold);
+                padding: 7px 13px;
+                font-size: 9px; font-weight: 600;
+                letter-spacing: 2px; text-transform: uppercase;
+                cursor: pointer;
+                font-family: 'Montserrat', sans-serif;
+                align-items: center;
+                border-radius: 2px;
+            }
         }
     </style>
 </head>
 <body>
+
+<!-- LANG TOGGLE FIXED (mobile) -->
+<button id="lang-fixed" aria-label="Switch language">ES</button>
 
 <!-- LOADING SCREEN -->
 <div id="loader">
@@ -1674,8 +1703,8 @@
 
     // ── LANGUAGE TOGGLE ───────────────────────────────────────────────────────
     (function() {
-        const btn = document.getElementById('langToggle');
-        if (!btn) return;
+        const btn      = document.getElementById('langToggle');
+        const btnFixed = document.getElementById('lang-fixed');
         let lang = 'en';
 
         // Translation map: selector → { en, es }
@@ -1749,7 +1778,8 @@
 
         function setLang(l) {
             lang = l;
-            btn.textContent = l === 'en' ? 'ES' : 'EN';
+            if (btn) btn.textContent = l === 'en' ? 'ES' : 'EN';
+            if (btnFixed) btnFixed.textContent = l === 'en' ? 'ES' : 'EN';
 
             // Main translation map
             Object.entries(T).forEach(([sel, vals]) => {
@@ -1825,7 +1855,8 @@
             });
         }
 
-        btn.addEventListener('click', () => setLang(lang === 'en' ? 'es' : 'en'));
+        if (btn) btn.addEventListener('click', () => setLang(lang === 'en' ? 'es' : 'en'));
+        if (btnFixed) btnFixed.addEventListener('click', () => setLang(lang === 'en' ? 'es' : 'en'));
     })();
 </script>
 </body>
