@@ -5,31 +5,43 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Angel the Stud — Premium Breeding Stallion</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,500&family=Montserrat:wght@300;400;500;600;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,500&family=Montserrat:wght@300;400;500;600;700&display=swap');
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
         :root {
-            --black: #0d0d0d;
-            --dark:  #111111;
-            --card:  #181818;
-            --gold:  #D4A017;
-            --gold-light: #E8B82A;
-            --gold-dark:  #A67C00;
+            --black: #0a0a08;
+            --dark:  #0f0f0d;
+            --card:  #161410;
+            --gold:  #C9A96E;
+            --gold-light: #DFC28A;
+            --gold-dark:  #9B7A4A;
+            --gold-glow:  rgba(201,169,110,0.25);
             --white: #f5f0e8;
             --muted: rgba(245,240,232,0.55);
-            --border: rgba(212,160,23,0.22);
+            --border: rgba(201,169,110,0.22);
+            --pattern: rgba(201,169,110,0.055);
         }
 
         html { scroll-behavior: smooth; }
 
         body {
             background: var(--black);
+            background-image:
+                radial-gradient(ellipse at 20% 10%, rgba(201,169,110,0.03) 0%, transparent 50%),
+                radial-gradient(ellipse at 80% 90%, rgba(201,169,110,0.025) 0%, transparent 50%);
             color: var(--white);
             font-family: 'Montserrat', sans-serif;
             font-weight: 300;
             line-height: 1.7;
             overflow-x: hidden;
+        }
+        /* Subtle grain texture overlay */
+        body::after {
+            content: '';
+            position: fixed; inset: 0; pointer-events: none; z-index: 9999;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");
+            opacity: 1;
         }
 
         ::-webkit-scrollbar { width: 3px; }
@@ -53,10 +65,10 @@
         .nav-logo-img {
             height: 52px; width: auto; display: block;
             object-fit: contain;
-            filter: drop-shadow(0 2px 8px rgba(212,160,23,0.3));
+            filter: drop-shadow(0 2px 10px rgba(201,169,110,0.35));
             transition: filter .3s ease;
         }
-        .nav-logo-img:hover { filter: drop-shadow(0 2px 14px rgba(212,160,23,0.6)); }
+        .nav-logo-img:hover { filter: drop-shadow(0 2px 18px rgba(201,169,110,0.65)); }
         .nav-links { display: flex; gap: 40px; list-style: none; }
         .nav-links a {
             color: rgba(245,240,232,.75); text-decoration: none;
@@ -132,7 +144,7 @@
             flex: 0 0 auto; min-width: 0;
         }
         .hero-logo-img {
-            width: clamp(220px, 28vw, 400px); height: auto;
+            width: clamp(220px, 28vw, 420px); height: auto;
             display: block; margin: 0 auto 20px;
             animation: logoReveal 1.4s cubic-bezier(.16,1,.3,1) 0.05s both;
         }
@@ -175,12 +187,22 @@
         .ara-bg {
             position: relative;
         }
+        /* Islamic diamond lattice — classic geometric tilework */
         .ara-bg::before {
             content: '';
             position: absolute; inset: 0;
             background-image:
-                radial-gradient(circle at 1px 1px, rgba(212,160,23,0.07) 1px, transparent 0);
-            background-size: 32px 32px;
+                repeating-linear-gradient(
+                    45deg,
+                    transparent, transparent 19px,
+                    var(--pattern) 19px, var(--pattern) 20px
+                ),
+                repeating-linear-gradient(
+                    -45deg,
+                    transparent, transparent 19px,
+                    var(--pattern) 19px, var(--pattern) 20px
+                );
+            background-size: 40px 40px;
             pointer-events: none; z-index: 0;
         }
         .ara-bg > * { position: relative; z-index: 1; }
@@ -188,23 +210,28 @@
         /* ── SHARED ── */
         .section-inner { max-width: 1360px; margin: 0 auto; }
         .section-label {
-            font-size: 10px; font-weight: 600; letter-spacing: 6px;
+            font-family: 'Cinzel Decorative', serif;
+            font-size: 9px; font-weight: 400; letter-spacing: 5px;
             text-transform: uppercase; color: var(--gold); margin-bottom: 14px;
-            display: flex; align-items: center; gap: 10px;
+            display: flex; align-items: center; gap: 14px;
         }
         .section-label::before, .section-label::after {
             content: '';
             display: inline-block;
-            width: 28px; height: 1px;
-            background: var(--gold); opacity: 0.6;
-            flex-shrink: 0;
+            width: 36px; height: 1px;
+            background: linear-gradient(to right, transparent, var(--gold));
+            opacity: 0.7; flex-shrink: 0;
+        }
+        .section-label::after {
+            background: linear-gradient(to left, transparent, var(--gold));
         }
         .section-title {
             font-family: 'Cormorant Garamond', serif;
             font-size: clamp(38px, 5vw, 62px); font-weight: 400;
             letter-spacing: 3px; color: var(--white); line-height: 1.1; margin-bottom: 20px;
+            text-shadow: 0 2px 40px rgba(201,169,110,0.15);
         }
-        /* Ornamental divider — diamond flanked by lines */
+        /* Ornamental divider — triple diamond flanked by lines */
         .gold-divider {
             display: flex; align-items: center; gap: 0;
             width: fit-content; margin-bottom: 40px;
@@ -212,18 +239,23 @@
         .gold-divider::before, .gold-divider::after {
             content: '';
             display: block;
-            width: 72px; height: 1px;
+            width: 88px; height: 1px;
             background: linear-gradient(to right, transparent, var(--gold));
         }
         .gold-divider::after {
             background: linear-gradient(to left, transparent, var(--gold));
         }
         .gold-divider-diamond {
-            width: 8px; height: 8px;
+            width: 7px; height: 7px;
             background: var(--gold);
             transform: rotate(45deg);
             flex-shrink: 0;
-            margin: 0 10px;
+            margin: 0 5px;
+            box-shadow: 0 0 8px var(--gold-glow);
+        }
+        .gold-divider-diamond.sm {
+            width: 4px; height: 4px;
+            opacity: 0.55;
         }
 
         /* Ornamental full-width section separator */
@@ -231,7 +263,7 @@
             width: 100%; display: flex; align-items: center;
             justify-content: center; gap: 0;
             padding: 0 56px; margin: 0;
-            opacity: 0.45;
+            opacity: 0.5;
         }
         .ara-sep::before, .ara-sep::after {
             content: '';
@@ -240,11 +272,22 @@
         }
         .ara-sep-icon {
             flex-shrink: 0;
-            padding: 0 20px;
+            padding: 0 24px;
             color: var(--gold);
-            font-size: 18px;
-            line-height: 1;
-            letter-spacing: 8px;
+            font-size: 10px;
+            font-family: 'Cinzel Decorative', serif;
+            letter-spacing: 2px;
+            display: flex; align-items: center; gap: 8px;
+        }
+        .ara-sep-icon .sep-diamond {
+            display: inline-block;
+            width: 6px; height: 6px;
+            background: var(--gold);
+            transform: rotate(45deg);
+        }
+        .ara-sep-icon .sep-diamond.lg {
+            width: 9px; height: 9px;
+            box-shadow: 0 0 10px var(--gold-glow);
         }
 
         .fade-in { opacity: 0; transform: translateY(28px); transition: opacity .8s ease, transform .8s ease; }
@@ -257,16 +300,24 @@
         #about { padding: 130px 56px; background: var(--black); }
         .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 88px; align-items: center; }
         .about-image-wrap { position: relative; }
+        /* Triple Islamic manuscript frame */
         .about-image-wrap::before {
             content: ''; position: absolute;
-            top: -18px; left: -18px; right: 18px; bottom: 18px;
-            border: 1px solid rgba(212,160,23,0.4); z-index: 0;
+            top: -22px; left: -22px; right: 22px; bottom: 22px;
+            border: 1px solid rgba(201,169,110,0.45); z-index: 0;
         }
         .about-image-wrap::after {
             content: '';
             position: absolute;
-            top: -10px; left: -10px; right: 26px; bottom: 26px;
-            border: 1px solid rgba(212,160,23,0.15); z-index: 0;
+            top: -12px; left: -12px; right: 30px; bottom: 30px;
+            border: 1px solid rgba(201,169,110,0.18); z-index: 0;
+        }
+        /* Third inner glow frame */
+        .about-image-wrap .frame-inner {
+            position: absolute;
+            top: -4px; left: -4px; right: 38px; bottom: 38px;
+            border: 1px solid rgba(201,169,110,0.08); z-index: 2;
+            pointer-events: none;
         }
         .about-image-wrap img {
             width: 100%; height: 620px; object-fit: cover; object-position: center;
@@ -279,7 +330,7 @@
         .about-bio { font-size: 14px; line-height: 1.95; color: var(--muted); margin-bottom: 36px; }
 
         /* ── BLOODLINES ── */
-        #bloodlines { padding: 130px 56px; background: #0f0f0f; }
+        #bloodlines { padding: 130px 56px; background: #0d0c0a; }
         .bloodlines-grid {
             display: grid; grid-template-columns: 1fr 1fr;
             gap: 72px; align-items: center;
@@ -304,8 +355,8 @@
         .tree-card:hover { border-color: var(--gold); }
         .tree-card::before, .tree-card::after {
             content: ''; position: absolute;
-            width: 10px; height: 10px; border-color: var(--gold); border-style: solid;
-            opacity: 0.6; transition: opacity .3s;
+            width: 14px; height: 14px; border-color: var(--gold); border-style: solid;
+            opacity: 0.5; transition: opacity .3s;
         }
         .tree-card::before { top: -1px; left: -1px; border-width: 2px 0 0 2px; }
         .tree-card::after  { bottom: -1px; right: -1px; border-width: 0 2px 2px 0; }
@@ -319,7 +370,7 @@
         }
 
         /* ── SERVICES ── */
-        #services { padding: 130px 56px; background: #101010; text-align: center; }
+        #services { padding: 130px 56px; background: #0e0d0b; text-align: center; }
         .services-header { margin-bottom: 56px; }
         .audience-tabs { display: inline-flex; border: 1px solid var(--border); margin-bottom: 48px; }
         .audience-tab {
@@ -339,12 +390,13 @@
         }
         .service-card::before, .service-card::after {
             content: ''; position: absolute;
-            width: 12px; height: 12px; border-color: var(--gold); border-style: solid;
-            opacity: 0.5; transition: opacity .3s;
+            width: 18px; height: 18px; border-color: var(--gold); border-style: solid;
+            opacity: 0.45; transition: opacity .3s, box-shadow .3s;
         }
         .service-card::before { top: -1px; left: -1px; border-width: 2px 0 0 2px; }
         .service-card::after  { bottom: -1px; right: -1px; border-width: 0 2px 2px 0; }
-        .service-card:hover::before, .service-card:hover::after { opacity: 1; }
+        .service-card:hover::before, .service-card:hover::after { opacity: 1; box-shadow: 0 0 12px var(--gold-glow); }
+        .service-card:hover { border-color: rgba(201,169,110,0.5); box-shadow: 0 20px 56px rgba(201,169,110,.07), inset 0 0 40px rgba(201,169,110,0.02); }
         .service-card:hover {
             border-color: var(--gold); transform: translateY(-5px);
             box-shadow: 0 20px 56px rgba(212,160,23,.08);
@@ -427,7 +479,7 @@
         .lb-next { right: 32px; }
 
         /* ── VIDEOS CAROUSEL ── */
-        #videos { padding: 130px 56px; background: #0a0a0a; }
+        #videos { padding: 130px 56px; background: #0b0a08; }
         .video-carousel-wrap { position: relative; overflow: hidden; }
         .video-carousel-track {
             display: flex;
@@ -500,7 +552,17 @@
         footer::before {
             content: '';
             position: absolute; inset: 0;
-            background-image: radial-gradient(circle at 1px 1px, rgba(212,160,23,0.05) 1px, transparent 0);
+            background-image:
+                repeating-linear-gradient(
+                    45deg,
+                    transparent, transparent 13px,
+                    rgba(201,169,110,0.04) 13px, rgba(201,169,110,0.04) 14px
+                ),
+                repeating-linear-gradient(
+                    -45deg,
+                    transparent, transparent 13px,
+                    rgba(201,169,110,0.04) 14px, rgba(201,169,110,0.04) 14px
+                );
             background-size: 28px 28px;
             pointer-events: none;
         }
@@ -516,7 +578,7 @@
             width: 10px; height: 10px;
             background: var(--gold); transform: rotate(45deg); flex-shrink: 0;
         }
-        .footer-logo-img { height: 80px; width: auto; margin: 0 auto 20px; display: block; filter: drop-shadow(0 4px 16px rgba(212,160,23,0.3)); }
+        .footer-logo-img { height: 100px; width: auto; margin: 0 auto 20px; display: block; filter: drop-shadow(0 4px 20px rgba(201,169,110,0.4)); }
         .footer-ig {
             display: inline-flex; align-items: center; gap: 8px;
             color: rgba(245,240,232,.4); text-decoration: none;
@@ -555,12 +617,12 @@
             80%  { transform: translateX(-8px) scale(1.01); filter: blur(0px) brightness(0.9); }
             100% { transform: translateX(0) scale(1); opacity: 1; filter: blur(0px) brightness(0.88); }
         }
-        /* Logo: flash gold then settle */
+        /* Logo: flash gold then settle — transparent PNG version */
         @keyframes logoReveal {
-            0%   { transform: scale(0.6) rotate(-2deg); opacity: 0; filter: brightness(0.2) drop-shadow(0 0 0px rgba(212,160,23,0)); }
-            30%  { transform: scale(1.08) rotate(0.5deg); opacity: 1; filter: brightness(2.2) drop-shadow(0 0 60px rgba(212,160,23,0.9)); }
-            60%  { transform: scale(0.97) rotate(0deg); filter: brightness(1.3) drop-shadow(0 0 24px rgba(212,160,23,0.5)); }
-            100% { transform: scale(1) rotate(0deg); opacity: 1; filter: brightness(1) drop-shadow(0 6px 28px rgba(212,160,23,0.4)); }
+            0%   { transform: scale(0.6) rotate(-2deg); opacity: 0; filter: drop-shadow(0 0 0px rgba(201,169,110,0)); }
+            30%  { transform: scale(1.08) rotate(0.5deg); opacity: 1; filter: brightness(1.4) drop-shadow(0 0 60px rgba(201,169,110,0.9)); }
+            60%  { transform: scale(0.97) rotate(0deg); filter: brightness(1.15) drop-shadow(0 0 28px rgba(201,169,110,0.55)); }
+            100% { transform: scale(1) rotate(0deg); opacity: 1; filter: drop-shadow(0 8px 32px rgba(201,169,110,0.45)); }
         }
         /* Text: clip-path wipe reveal */
         @keyframes textWipe {
@@ -573,6 +635,13 @@
             from { transform: scaleX(0); transform-origin: left; opacity: 0; }
             to   { transform: scaleX(1); transform-origin: left; opacity: 1; }
         }
+
+        /* Gold shimmer for hero eyebrow */
+        @keyframes goldShimmer {
+            0%, 100% { text-shadow: 0 0 8px rgba(201,169,110,0.4); }
+            50% { text-shadow: 0 0 20px rgba(201,169,110,0.7), 0 0 40px rgba(201,169,110,0.3); }
+        }
+        .hero-eyebrow { animation: textWipe 0.9s ease 1.1s forwards, goldShimmer 3s ease 2s infinite !important; }
 
         @media (prefers-reduced-motion: reduce) {
             *, *::before, *::after { animation: none !important; transition: none !important; }
@@ -634,7 +703,7 @@
 <!-- NAV -->
 <nav id="navbar">
     <a href="#hero" class="nav-logo">
-        <img src="logo.jpeg" alt="Angel the Stud" class="nav-logo-img">
+        <img src="logo.png" alt="Angel the Stud" class="nav-logo-img">
     </a>
     <ul class="nav-links">
         <li><a href="#about">About</a></li>
@@ -668,7 +737,7 @@
             <img src="hero.jpeg" alt="Angel — front stance" class="hero-side-img hero-left-img">
             <div class="hero-center">
                 <p class="hero-eyebrow">Premium Breeding Stallion</p>
-                <img src="logo.jpeg" alt="Angel the Stud" class="hero-logo-img">
+                <img src="logo.png" alt="Angel the Stud" class="hero-logo-img">
                 <p class="hero-subtitle">Friesian Stallion &nbsp;·&nbsp; KFPS Vb H · Premium &nbsp;·&nbsp; México</p>
                 <a href="#contact" class="hero-btn">Inquire Now</a>
             </div>
@@ -682,16 +751,17 @@
 </section>
 
 <!-- ABOUT -->
-<section id="about">
+<section id="about" class="ara-bg">
     <div class="section-inner">
         <div class="about-grid">
             <div class="about-image-wrap fade-in">
+                <div class="frame-inner"></div>
                 <img src="main pic2.jpeg" alt="Angel the Stud — full conformation profile">
             </div>
             <div class="fade-in">
                 <p class="section-label">The Stallion</p>
                 <h2 class="section-title">Meet Angel</h2>
-                <div class="gold-divider"><span class="gold-divider-diamond"></span></div>
+                <div class="gold-divider"><span class="gold-divider-diamond sm"></span><span class="gold-divider-diamond"></span><span class="gold-divider-diamond sm"></span></div>
                 <div class="about-specs">
                     <div class="spec-item">
                         <div class="spec-label">Date of Birth</div>
@@ -735,7 +805,7 @@
     </div>
 </section>
 
-<div class="ara-sep"><span class="ara-sep-icon">◆ ◆ ◆</span></div>
+<div class="ara-sep"><span class="ara-sep-icon"><span class="sep-diamond"></span><span class="sep-diamond lg"></span><span class="sep-diamond"></span></span></div>
 <!-- BLOODLINES -->
 <section id="bloodlines" class="ara-bg">
     <div class="section-inner">
@@ -743,7 +813,7 @@
             <div class="fade-in">
                 <p class="section-label">Heritage</p>
                 <h2 class="section-title">The Bloodline</h2>
-                <div class="gold-divider"><span class="gold-divider-diamond"></span></div>
+                <div class="gold-divider"><span class="gold-divider-diamond sm"></span><span class="gold-divider-diamond"></span><span class="gold-divider-diamond sm"></span></div>
                 <p class="about-bio">
                     Angel carries the genetics of some of the most distinguished Friesian bloodlines in the KFPS registry. His sire <strong style="color:var(--white);">Leftert 306</strong> is a celebrated stallion known for his powerful movement, proud carriage, and exceptional offspring. Dam <strong style="color:var(--white);">Bartele 472</strong> holds the prestigious Stb Sport AAA designation — a mark of elite sport and breeding performance.
                 </p>
@@ -825,14 +895,14 @@
     </div>
 </section>
 
-<div class="ara-sep"><span class="ara-sep-icon">◆ ◆ ◆</span></div>
+<div class="ara-sep"><span class="ara-sep-icon"><span class="sep-diamond"></span><span class="sep-diamond lg"></span><span class="sep-diamond"></span></span></div>
 <!-- SERVICES -->
 <section id="services" class="ara-bg">
     <div class="section-inner">
         <div class="services-header fade-in">
             <p class="section-label">What We Offer</p>
             <h2 class="section-title">Breeding Services</h2>
-            <div class="gold-divider" style="margin:0 auto 24px;"><span class="gold-divider-diamond"></span></div>
+            <div class="gold-divider" style="margin:0 auto 24px;"><span class="gold-divider-diamond sm"></span><span class="gold-divider-diamond"></span><span class="gold-divider-diamond sm"></span></div>
             <p style="color:var(--muted); font-size:14px; max-width:560px; margin:0 auto 40px;">
                 Whether you're an individual mare owner or a professional breeding operation, we have a program built for your goals.
             </p>
@@ -904,11 +974,11 @@
 </section>
 
 <!-- GALLERY -->
-<section id="gallery">
+<section id="gallery" class="ara-bg">
     <div class="section-inner">
         <p class="section-label fade-in">The Collection</p>
         <h2 class="section-title fade-in">Gallery</h2>
-        <div class="gold-divider fade-in"><span class="gold-divider-diamond"></span></div>
+        <div class="gold-divider fade-in"><span class="gold-divider-diamond sm"></span><span class="gold-divider-diamond"></span><span class="gold-divider-diamond sm"></span></div>
         <div class="carousel-wrap fade-in">
             <button class="carousel-arrow carousel-prev" id="galleryPrev" aria-label="Previous">‹</button>
             <div class="carousel-track" id="galleryTrack">
@@ -950,7 +1020,7 @@
     <div class="section-inner">
         <p class="section-label fade-in">In Motion</p>
         <h2 class="section-title fade-in">Watch Angel</h2>
-        <div class="gold-divider fade-in"><span class="gold-divider-diamond"></span></div>
+        <div class="gold-divider fade-in"><span class="gold-divider-diamond sm"></span><span class="gold-divider-diamond"></span><span class="gold-divider-diamond sm"></span></div>
         <div class="video-carousel-wrap fade-in">
             <button class="carousel-arrow carousel-prev" id="videoPrev" aria-label="Previous">‹</button>
             <div class="video-carousel-track" id="videoTrack">
@@ -970,13 +1040,13 @@
     </div>
 </section>
 
-<div class="ara-sep"><span class="ara-sep-icon">◆ ◆ ◆</span></div>
+<div class="ara-sep"><span class="ara-sep-icon"><span class="sep-diamond"></span><span class="sep-diamond lg"></span><span class="sep-diamond"></span></span></div>
 <!-- CONTACT -->
 <section id="contact" class="ara-bg">
     <div class="contact-inner">
         <p class="section-label fade-in">Get In Touch</p>
         <h2 class="section-title fade-in">Inquire About Angel</h2>
-        <div class="gold-divider fade-in" style="margin:0 auto 20px;"><span class="gold-divider-diamond"></span></div>
+        <div class="gold-divider fade-in" style="margin:0 auto 20px;"><span class="gold-divider-diamond sm"></span><span class="gold-divider-diamond"></span><span class="gold-divider-diamond sm"></span></div>
         <p class="fade-in" style="color:var(--muted); font-size:14px; max-width:500px; margin:0 auto;">
             Whether you're an individual mare owner or a commercial breeding operation, we'd love to hear from you.
         </p>
@@ -1041,7 +1111,7 @@
         <span class="footer-ornament-diamond"></span>
         <span class="footer-ornament-diamond"></span>
     </div>
-    <img src="logo.jpeg" alt="Angel the Stud" class="footer-logo-img">
+    <img src="logo.png" alt="Angel the Stud" class="footer-logo-img">
     <a href="https://www.instagram.com/angel_kfps_mexico" target="_blank" rel="noopener noreferrer" class="footer-ig" aria-label="Angel on Instagram">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
             <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
