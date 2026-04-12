@@ -13,12 +13,12 @@
             --black: #0d0d0d;
             --dark:  #111111;
             --card:  #181818;
-            --gold:  #C9A96E;
-            --gold-light: #dfc08e;
-            --gold-dark:  #a88450;
+            --gold:  #D4A017;
+            --gold-light: #E8B82A;
+            --gold-dark:  #A67C00;
             --white: #f5f0e8;
             --muted: rgba(245,240,232,0.55);
-            --border: rgba(201,169,110,0.2);
+            --border: rgba(212,160,23,0.22);
         }
 
         html { scroll-behavior: smooth; }
@@ -49,12 +49,14 @@
             padding: 16px 56px;
             border-bottom: 1px solid var(--border);
         }
-        .nav-logo {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 26px; font-weight: 600;
-            letter-spacing: 8px; text-transform: uppercase;
-            color: var(--gold); text-decoration: none;
+        .nav-logo { text-decoration: none; display: flex; align-items: center; }
+        .nav-logo-img {
+            height: 52px; width: auto; display: block;
+            object-fit: contain;
+            filter: drop-shadow(0 2px 8px rgba(212,160,23,0.3));
+            transition: filter .3s ease;
         }
+        .nav-logo-img:hover { filter: drop-shadow(0 2px 14px rgba(212,160,23,0.6)); }
         .nav-links { display: flex; gap: 40px; list-style: none; }
         .nav-links a {
             color: rgba(245,240,232,.75); text-decoration: none;
@@ -107,18 +109,12 @@
             object-position: center center;
             z-index: 1;
         }
-        .hero-watermark {
-            position: absolute; inset: 0;
-            display: flex; align-items: center; justify-content: center;
-            z-index: 3; pointer-events: none; user-select: none;
-            font-family: 'Cormorant Garamond', serif;
-            font-size: clamp(120px, 22vw, 280px);
-            font-weight: 700;
-            letter-spacing: clamp(20px, 4vw, 60px);
-            text-transform: uppercase;
-            color: var(--gold);
-            opacity: 0.06;
-            white-space: nowrap;
+        .hero-logo-img {
+            width: clamp(220px, 32vw, 420px); height: auto;
+            display: block; margin: 0 auto 24px;
+            filter: drop-shadow(0 8px 32px rgba(212,160,23,0.4));
+            opacity: 0; transform: translateY(30px);
+            animation: fadeUp 1s ease .5s forwards;
         }
         .hero-overlay {
             position: absolute; inset: 0;
@@ -131,14 +127,6 @@
             text-transform: uppercase; color: var(--gold); margin-bottom: 20px;
             opacity: 0; transform: translateY(20px);
             animation: fadeUp 1s ease .3s forwards;
-        }
-        .hero-title {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: clamp(88px, 15vw, 172px); font-weight: 300;
-            letter-spacing: 20px; text-transform: uppercase;
-            color: var(--white); line-height: .9; margin-bottom: 20px;
-            opacity: 0; transform: translateY(30px);
-            animation: fadeUp 1s ease .5s forwards;
         }
         .hero-subtitle {
             font-size: 11px; letter-spacing: 8px;
@@ -156,7 +144,7 @@
         }
         .hero-btn:hover {
             background: var(--gold-light); transform: translateY(-3px);
-            box-shadow: 0 12px 40px rgba(201,169,110,.3);
+            box-shadow: 0 12px 40px rgba(212,160,23,.3);
         }
         .hero-scroll {
             position: absolute; bottom: 40px; left: 50%; transform: translateX(-50%); z-index: 4;
@@ -178,7 +166,11 @@
             font-size: clamp(38px, 5vw, 62px); font-weight: 400;
             letter-spacing: 2px; color: var(--white); line-height: 1.1; margin-bottom: 20px;
         }
-        .gold-divider { width: 56px; height: 1px; background: var(--gold); margin-bottom: 40px; }
+        .gold-divider {
+            width: 200px; height: 1px; margin-bottom: 40px;
+            background: linear-gradient(to right, transparent, var(--gold) 25%, var(--gold) 75%, transparent);
+        }
+        .section-label::before { content: '◆ '; font-size: 7px; vertical-align: middle; margin-right: 2px; }
 
         .fade-in { opacity: 0; transform: translateY(28px); transition: opacity .8s ease, transform .8s ease; }
         .fade-in.visible { opacity: 1; transform: translateY(0); }
@@ -223,8 +215,17 @@
         .tree-card {
             background: var(--card); border: 1px solid var(--border);
             padding: 18px 20px; transition: border-color .3s ease;
+            position: relative;
         }
         .tree-card:hover { border-color: var(--gold); }
+        .tree-card::before, .tree-card::after {
+            content: ''; position: absolute;
+            width: 10px; height: 10px; border-color: var(--gold); border-style: solid;
+            opacity: 0.6; transition: opacity .3s;
+        }
+        .tree-card::before { top: -1px; left: -1px; border-width: 2px 0 0 2px; }
+        .tree-card::after  { bottom: -1px; right: -1px; border-width: 0 2px 2px 0; }
+        .tree-card:hover::before, .tree-card:hover::after { opacity: 1; }
         .tree-role { font-size: 8px; font-weight: 600; letter-spacing: 4px; text-transform: uppercase; color: var(--gold); margin-bottom: 6px; }
         .tree-name { font-family: 'Cormorant Garamond', serif; font-size: 18px; font-weight: 500; color: var(--white); }
         .tree-sub { font-size: 11px; color: var(--muted); margin-top: 3px; }
@@ -250,10 +251,19 @@
             background: var(--card); border: 1px solid var(--border);
             padding: 48px 32px; text-align: left;
             transition: all .3s ease; cursor: default;
+            position: relative;
         }
+        .service-card::before, .service-card::after {
+            content: ''; position: absolute;
+            width: 12px; height: 12px; border-color: var(--gold); border-style: solid;
+            opacity: 0.5; transition: opacity .3s;
+        }
+        .service-card::before { top: -1px; left: -1px; border-width: 2px 0 0 2px; }
+        .service-card::after  { bottom: -1px; right: -1px; border-width: 0 2px 2px 0; }
+        .service-card:hover::before, .service-card:hover::after { opacity: 1; }
         .service-card:hover {
             border-color: var(--gold); transform: translateY(-5px);
-            box-shadow: 0 20px 56px rgba(201,169,110,.08);
+            box-shadow: 0 20px 56px rgba(212,160,23,.08);
         }
         .service-icon { width: 44px; height: 44px; margin-bottom: 24px; color: var(--gold); }
         .service-name { font-family: 'Cormorant Garamond', serif; font-size: 24px; font-weight: 500; color: var(--white); margin-bottom: 12px; letter-spacing: 1px; }
@@ -273,9 +283,9 @@
         }
         .gallery-item::after {
             content: ''; position: absolute; inset: 0;
-            background: rgba(201,169,110,0); transition: background .3s ease;
+            background: rgba(212,160,23,0); transition: background .3s ease;
         }
-        .gallery-item:hover::after { background: rgba(201,169,110,.1); }
+        .gallery-item:hover::after { background: rgba(212,160,23,.1); }
         .gallery-item img { width: 100%; display: block; transition: transform .55s ease; }
         .gallery-item:hover img { transform: scale(1.04); }
 
@@ -356,7 +366,7 @@
             letter-spacing: 4px; text-transform: uppercase;
             cursor: pointer; transition: all .3s ease; align-self: center; margin-top: 12px;
         }
-        .submit-btn:hover { background: var(--gold-light); transform: translateY(-2px); box-shadow: 0 10px 36px rgba(201,169,110,.25); }
+        .submit-btn:hover { background: var(--gold-light); transform: translateY(-2px); box-shadow: 0 10px 36px rgba(212,160,23,.25); }
         .contact-details { margin-top: 60px; display: flex; justify-content: center; gap: 72px; }
         .contact-detail { text-align: center; }
         .contact-detail .cd-label { font-size: 9px; font-weight: 600; letter-spacing: 4px; text-transform: uppercase; color: var(--gold); margin-bottom: 8px; }
@@ -405,8 +415,7 @@
             .gallery-grid { columns: 1; }
             .form-row { grid-template-columns: 1fr; }
             .contact-details { flex-direction: column; gap: 32px; }
-            /* Hero text — prevent letter-spacing overflow */
-            .hero-title { letter-spacing: 8px; }
+            .hero-logo-img { width: clamp(180px, 52vw, 320px); }
             .hero-subtitle { letter-spacing: 4px; font-size: 10px; }
             .hero-eyebrow { letter-spacing: 4px; }
 
@@ -422,7 +431,7 @@
         }
 
         @media (max-width: 480px) {
-            .hero-title { letter-spacing: 4px; font-size: clamp(64px, 18vw, 88px); }
+            .hero-logo-img { width: clamp(160px, 72vw, 260px); }
             .hero-subtitle { letter-spacing: 3px; }
             .hero-btn { padding: 16px 36px; }
             .about-image-wrap::before { display: none; }
@@ -435,7 +444,9 @@
 
 <!-- NAV -->
 <nav id="navbar">
-    <a href="#hero" class="nav-logo">Angel</a>
+    <a href="#hero" class="nav-logo">
+        <img src="logo.jpeg" alt="Angel the Stud" class="nav-logo-img">
+    </a>
     <ul class="nav-links">
         <li><a href="#about">About</a></li>
         <li><a href="#bloodlines">Bloodlines</a></li>
@@ -465,10 +476,9 @@
 <section id="hero">
     <img src="hero.jpeg" alt="Angel the Stud — proud stance" class="hero-bg">
     <div class="hero-overlay"></div>
-    <div class="hero-watermark" aria-hidden="true">ANGEL</div>
     <div class="hero-content">
         <p class="hero-eyebrow">Premium Breeding Stallion</p>
-        <h1 class="hero-title">Angel</h1>
+        <img src="logo.jpeg" alt="Angel the Stud" class="hero-logo-img">
         <p class="hero-subtitle">Friesian Stallion &nbsp;·&nbsp; KFPS Vb H · Premium &nbsp;·&nbsp; México</p>
         <a href="#contact" class="hero-btn">Inquire Now</a>
     </div>
