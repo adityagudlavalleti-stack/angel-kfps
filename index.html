@@ -121,16 +121,11 @@
         /* ── HERO ── */
         #hero {
             height: 100vh; min-height: 700px;
-            background: var(--black) url('angel-hero.jpg') center center / cover no-repeat;
+            background: var(--black);
             display: flex;
             align-items: center; justify-content: center; text-align: center;
             overflow: visible;
             position: relative;
-        }
-        #hero::before {
-            content: ''; position: absolute; inset: 0;
-            background: linear-gradient(to bottom, rgba(10,10,8,0.55) 0%, rgba(10,10,8,0.35) 50%, rgba(10,10,8,0.75) 100%);
-            z-index: 1;
         }
         /* ── HERO STAGE (3-column) ── */
         .hero-content { position: relative; z-index: 5; width: 100%; padding: 0 24px; }
@@ -1066,7 +1061,7 @@
         <div class="about-grid">
             <div class="about-image-wrap fade-in">
                 <div class="frame-inner"></div>
-                <img src="main pic2.jpeg" alt="Angel the Stud — full conformation profile">
+                <img src="angel-hero.jpg" alt="Angel the Stud — full conformation profile">
             </div>
             <div class="fade-in">
                 <p class="section-label">The Stallion</p>
