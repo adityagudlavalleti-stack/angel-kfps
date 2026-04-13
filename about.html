@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Our Story — Angel KFPS</title>
-    <meta name="description" content="The story behind Angel KFPS — owner Luis Francisco Angeles Rodriguez, the ranch, breeding process, and trainer. Premium Friesian stallion in México.">
-    <meta property="og:title" content="Our Story — Angel KFPS">
-    <meta property="og:description" content="Meet the owner, the ranch, and the breeding program behind Angel — KFPS Premium Friesian stallion in México.">
+    <title>Our Story — Angel KFPS · Rancho Faizy</title>
+    <meta name="description" content="The story behind Angel KFPS — raised at Rancho Faizy in Lerma, Estado de México, alongside rescue horse Pacho. A home, not a commercial stable.">
+    <meta property="og:title" content="Our Story — Angel KFPS · Rancho Faizy">
+    <meta property="og:description" content="Angel was raised at Rancho Faizy in Lerma, México — a relationship-first approach to KFPS Friesian breeding. Future breeding available 2027."">
     <meta property="og:image" content="https://adityagudlavalleti-stack.github.io/angel-kfps/hero.jpeg">
     <meta property="og:url" content="https://adityagudlavalleti-stack.github.io/angel-kfps/about.html">
     <meta property="og:type" content="website">
@@ -311,6 +311,91 @@
         .footer-bottom-ornament::before, .footer-bottom-ornament::after { content: ''; flex: 1; max-width: 120px; height: 1px; background: linear-gradient(to right, transparent, var(--gold)); }
         .footer-bottom-ornament::after { background: linear-gradient(to left, transparent, var(--gold)); }
 
+        /* PHILOSOPHY PILLARS */
+        #philosophy { padding: 120px 56px; background: #0d0c0a; }
+        .philosophy-inner { max-width: 1100px; margin: 0 auto; text-align: center; }
+        .pillar-grid {
+            display: grid; grid-template-columns: 1fr 1fr;
+            gap: 2px; margin-top: 56px;
+        }
+        .pillar-card {
+            background: #110f0c;
+            border: 1px solid var(--border);
+            padding: 48px 44px;
+            text-align: left;
+            position: relative;
+            overflow: hidden;
+            transition: border-color .3s ease;
+        }
+        .pillar-card::before {
+            content: ''; position: absolute; top: 0; left: 0;
+            width: 3px; height: 0;
+            background: var(--gold);
+            transition: height .4s ease;
+        }
+        .pillar-card:hover { border-color: rgba(201,169,110,0.45); }
+        .pillar-card:hover::before { height: 100%; }
+        .pillar-number {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 11px; font-weight: 400;
+            letter-spacing: 5px; color: var(--gold);
+            opacity: 0.5; margin-bottom: 18px;
+            text-transform: uppercase;
+        }
+        .pillar-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 26px; font-weight: 500;
+            color: var(--white); margin-bottom: 16px; letter-spacing: 1px;
+        }
+        .pillar-desc { font-size: 13px; line-height: 1.85; color: var(--muted); }
+
+        /* FUTURE BREEDING */
+        #future { padding: 120px 56px; }
+        .future-inner { max-width: 900px; margin: 0 auto; text-align: center; }
+        .future-card {
+            border: 1px solid rgba(201,169,110,0.35);
+            padding: 64px 72px;
+            position: relative;
+            margin-top: 52px;
+            background: #0d0c0a;
+        }
+        .future-card::before {
+            content: ''; position: absolute;
+            top: 8px; left: 8px; right: 8px; bottom: 8px;
+            border: 1px solid rgba(201,169,110,0.1);
+            pointer-events: none;
+        }
+        .future-year {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(64px, 10vw, 120px);
+            font-weight: 300; color: var(--gold);
+            opacity: 0.18; line-height: 1;
+            letter-spacing: 8px;
+            margin-bottom: -24px;
+        }
+        .future-headline {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(28px, 3.5vw, 44px);
+            font-weight: 400; color: var(--white);
+            letter-spacing: 2px; margin-bottom: 24px;
+        }
+        .future-types {
+            display: flex; justify-content: center; gap: 36px;
+            margin: 32px 0; flex-wrap: wrap;
+        }
+        .future-type-tag {
+            font-family: 'Cinzel Decorative', serif;
+            font-size: 8px; letter-spacing: 4px;
+            text-transform: uppercase; color: var(--gold);
+            border: 1px solid rgba(201,169,110,0.35);
+            padding: 10px 22px;
+        }
+        .future-contact {
+            font-size: 13px; color: var(--muted); margin-top: 32px; line-height: 1.8;
+        }
+        .future-contact a { color: var(--gold); text-decoration: none; }
+        .future-contact a:hover { text-decoration: underline; }
+
         /* RESPONSIVE */
         @media (max-width: 1024px) {
             .story-grid { grid-template-columns: 1fr; gap: 52px; }
@@ -322,9 +407,13 @@
             nav, nav.scrolled { padding: 18px 24px; }
             .nav-links, .nav-cta { display: none; }
             .hamburger { display: flex; }
-            .story-section, #breeding, #trainer, #story-cta { padding-left: 24px; padding-right: 24px; padding-top: 80px; padding-bottom: 80px; }
+            .story-section, #breeding, #trainer, #story-cta, #philosophy, #future { padding-left: 24px; padding-right: 24px; padding-top: 80px; padding-bottom: 80px; }
             .photo-wrap::before, .photo-wrap::after { display: none; }
             .process-grid { grid-template-columns: 1fr; }
+            .pillar-grid { grid-template-columns: 1fr; gap: 1px; }
+            .pillar-card { padding: 36px 28px; }
+            .future-card { padding: 40px 28px; }
+            .future-types { gap: 12px; }
         }
 
         @keyframes fadeUp { from { opacity: 0; transform: translateY(32px); } to { opacity: 1; transform: translateY(0); } }
@@ -369,74 +458,69 @@
 <!-- HERO -->
 <section id="about-hero">
     <div class="about-hero-content">
-        <p class="section-label" style="opacity:0; animation: fadeIn 1s ease .3s forwards;">Angel KFPS · México</p>
+        <p class="section-label" style="opacity:0; animation: fadeIn 1s ease .3s forwards;">Rancho Faizy · Lerma, México</p>
         <h1 class="section-title" style="font-size: clamp(50px,7vw,92px); opacity:0; animation: fadeUp 1s cubic-bezier(.16,1,.3,1) .5s forwards;">Our Story</h1>
         <p style="color:var(--muted); font-size:15px; max-width:520px; margin:0 auto; line-height:2; font-style:italic; font-family:'Cormorant Garamond',serif; opacity:0; animation: fadeIn 1s ease .9s forwards;">
-            "The pursuit of excellence in Friesian breeding — rooted in heritage, driven by passion, built in México."
+            "We are not a commercial stable. We are a home."
         </p>
     </div>
 </section>
 
-<!-- THE OWNER -->
+<!-- OUR STORY -->
 <section class="story-section ara-bg" id="owner">
     <div class="story-grid">
         <div class="fade-in">
-            <p class="section-label">The Visionary</p>
-            <h2 class="section-title">Luis Francisco<br>Angeles Rodriguez</h2>
+            <p class="section-label">Where It Began</p>
+            <h2 class="section-title">Rancho Faizy</h2>
             <div class="gold-divider">
                 <span class="gold-divider-diamond sm"></span>
                 <span class="gold-divider-diamond"></span>
                 <span class="gold-divider-diamond sm"></span>
             </div>
             <p class="body-text">
-                [Owner bio placeholder — Tell Luis's story here. How did he discover Friesian horses? What drew him to the KFPS registry and the pursuit of a Premium-classified stallion in Latin America? How long has he been in equestrian culture?]
+                Nestled in the highlands of <strong>Lerma, Estado de México</strong>, with the Sierra de las Cruces as a backdrop, Rancho Faizy was not built around a breeding program. It was built around a relationship.
             </p>
             <p class="body-text">
-                Based in <strong>Ixtapan Tonatico, Estado de México</strong>, Luis has dedicated [X] years to establishing world-class Friesian bloodlines in Latin America. His commitment to the KFPS standard — refusing to compromise on conformation, movement, or lineage — led to the acquisition and development of <strong>Angel</strong>, now one of the most distinguished Friesian stallions in the region.
+                This is not a facility. There are no production targets, no seasonal quotas, no commercial pressure. Just land, animals, and a philosophy that has guided every decision from day one: <strong>the horse's wellbeing comes before the human's timeline.</strong>
             </p>
             <p class="body-text">
-                [Add personal touch: family, background, equestrian history, what Angel means to him personally. This is the human story behind the stallion.]
+                When Angel arrived at <strong>six months old in January 2024</strong>, this place became his home — not his workplace. That distinction shapes everything that happens here.
             </p>
         </div>
         <div class="photo-wrap fade-in stagger-1">
-            <div class="photo-placeholder">
-                <div class="photo-placeholder-inner">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
-                    <span class="photo-placeholder-label">Owner Photo</span>
-                </div>
-            </div>
+            <img src="pacho-angel-2.jpg" alt="Angel and Pacho at Rancho Faizy" style="width:100%; aspect-ratio:3/4; object-fit:cover; object-position:center top; display:block; position:relative; z-index:1;">
         </div>
     </div>
 </section>
 
 <div class="ara-sep"><span class="ara-sep-icon"><span class="sep-diamond"></span><span class="sep-diamond lg"></span><span class="sep-diamond"></span></span></div>
 
-<!-- THE RANCH -->
+<!-- ANGEL -->
 <section class="story-section" id="ranch" style="background: #0d0c0a;">
     <div class="story-grid reverse">
         <div class="fade-in">
-            <p class="section-label">The Home</p>
-            <h2 class="section-title">The Ranch</h2>
+            <p class="section-label">The Stallion</p>
+            <h2 class="section-title">Angel</h2>
             <div class="gold-divider">
                 <span class="gold-divider-diamond sm"></span>
                 <span class="gold-divider-diamond"></span>
                 <span class="gold-divider-diamond sm"></span>
             </div>
             <p class="body-text">
-                [Ranch name placeholder] sits in the highlands of <strong>Ixtapan Tonatico, Estado de México</strong>, at approximately [elevation] meters above sea level. The climate is temperate year-round — a natural match for the Friesian's preference for mild, cool conditions.
+                Angel arrived at Rancho Faizy at <strong>six months old</strong> — before he had been shaped by expectations, pressure, or routine. He grew up here. He learned here. His character was formed here, alongside the land and the animals that surround him.
             </p>
             <p class="body-text">
-                [Describe the property: acreage, pastures, stable facilities, arena, vet setup. What makes this an exceptional environment for breeding and raising Friesian foals? What separates this ranch from others in the region?]
+                By age two, Angel was demonstrating <strong>liberty lunging</strong> with body-cue direction changes — a milestone that typically takes years of careful, patient groundwork. When it came time for saddle introduction, he accepted it with <strong>zero resistance</strong>. No fight, no fear. He trusted the process because the process had always respected him.
             </p>
             <p class="body-text">
-                [Add anything unique: the landscape, water sources, feed quality, proximity to major cities, accessibility for visiting mare owners.]
+                He carries the <strong>KFPS Premium classification</strong> — the highest designation awarded by the Royal Friesian Studbook — earned not through shortcuts, but through the kind of development that only happens when a horse is truly allowed to grow.
             </p>
         </div>
         <div class="photo-wrap fade-in stagger-1">
             <div class="photo-placeholder">
                 <div class="photo-placeholder-inner">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
-                    <span class="photo-placeholder-label">Ranch Photo</span>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><path d="M3 3h18v18H3z" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
+                    <span class="photo-placeholder-label">Angel Photo</span>
                 </div>
             </div>
         </div>
@@ -445,44 +529,39 @@
 
 <div class="ara-sep"><span class="ara-sep-icon"><span class="sep-diamond"></span><span class="sep-diamond lg"></span><span class="sep-diamond"></span></span></div>
 
-<!-- BREEDING PROCESS -->
-<section id="breeding" class="ara-bg">
-    <div class="process-inner">
-        <p class="section-label fade-in" style="justify-content:center;">How It Works</p>
-        <h2 class="section-title fade-in">The Breeding Process</h2>
+<!-- PHILOSOPHY -->
+<section id="philosophy" class="ara-bg">
+    <div class="philosophy-inner">
+        <p class="section-label fade-in" style="justify-content:center;">How We Work</p>
+        <h2 class="section-title fade-in">Our Philosophy</h2>
         <div class="gold-divider fade-in" style="margin: 0 auto 20px;">
             <span class="gold-divider-diamond sm"></span>
             <span class="gold-divider-diamond"></span>
             <span class="gold-divider-diamond sm"></span>
         </div>
-        <p class="fade-in" style="color:var(--muted); font-size:14px; max-width:560px; margin:0 auto 0;">
-            Every breeding with Angel follows a careful, veterinarian-supervised protocol designed to maximize success and protect both animals.
+        <p class="fade-in" style="color:var(--muted); font-size:14px; max-width:580px; margin:0 auto 0; line-height:1.9;">
+            Four principles. Non-negotiable. They are not training methods — they are a commitment to the horse as a living being with its own intelligence, dignity, and will.
         </p>
-        <div class="process-grid">
-            <div class="process-step fade-in stagger-1">
-                <div class="step-number">I</div>
-                <div class="step-title">Consultation</div>
-                <div class="step-desc">We discuss your mare's history, conformation goals, and breeding timeline. No obligation — just an honest conversation.</div>
+        <div class="pillar-grid">
+            <div class="pillar-card fade-in">
+                <div class="pillar-number">I · Freedom First</div>
+                <div class="pillar-title">Six to Eight Hours Daily</div>
+                <p class="pillar-desc">Angel is not stabled and pulled out for sessions. He lives with the land. Daily free movement — unscheduled, unstructured — is the foundation of everything else. A horse that moves freely thinks freely.</p>
             </div>
-            <div class="process-step fade-in stagger-1">
-                <div class="step-number">II</div>
-                <div class="step-title">Vet Evaluation</div>
-                <div class="step-desc">Both mare and stallion undergo reproductive assessment. [Detail the veterinary protocol and certifications here.]</div>
+            <div class="pillar-card fade-in stagger-1">
+                <div class="pillar-number">II · Relationship Over Repetition</div>
+                <div class="pillar-title">One Sunday Per Week</div>
+                <p class="pillar-desc">Formal sessions happen once a week — on Sundays. Deliberately. The goal is never to drill a behavior. It's to deepen a conversation. Quality of engagement matters far more than volume of repetition.</p>
             </div>
-            <div class="process-step fade-in stagger-2">
-                <div class="step-number">III</div>
-                <div class="step-title">Scheduling</div>
-                <div class="step-desc">We coordinate timing around your mare's cycle. Live cover and AI options available. [Add booking window details.]</div>
+            <div class="pillar-card fade-in stagger-1">
+                <div class="pillar-number">III · Natural Social Learning</div>
+                <div class="pillar-title">Led by Pacho</div>
+                <p class="pillar-desc">Angel's most important teacher has four legs. Pacho — our 12-year-old chestnut gelding and rescue horse — co-raised Angel from foal to stallion. Horses learn from horses. We follow that lead.</p>
             </div>
-            <div class="process-step fade-in stagger-2">
-                <div class="step-number">IV</div>
-                <div class="step-title">The Breeding</div>
-                <div class="step-desc">[Describe the actual process — supervised live cover, chilled semen, or frozen AI. Confirmation of success protocol.]</div>
-            </div>
-            <div class="process-step fade-in stagger-2">
-                <div class="step-number">V</div>
-                <div class="step-title">KFPS Registration</div>
-                <div class="step-desc">All eligible foals can be registered with the KFPS studbook. We assist with documentation and inspection preparation.</div>
+            <div class="pillar-card fade-in stagger-2">
+                <div class="pillar-number">IV · No Force. Ever.</div>
+                <div class="pillar-title">Trust Cannot Be Rushed</div>
+                <p class="pillar-desc">Not as an aspiration — as an absolute. Not a single session, interaction, or training decision at Rancho Faizy involves coercion. Angel's willingness is not managed. It is earned, preserved, and protected.</p>
             </div>
         </div>
     </div>
@@ -490,34 +569,63 @@
 
 <div class="ara-sep"><span class="ara-sep-icon"><span class="sep-diamond"></span><span class="sep-diamond lg"></span><span class="sep-diamond"></span></span></div>
 
-<!-- THE TRAINER -->
+<!-- PACHO -->
 <section id="trainer" class="story-section">
     <div class="story-grid">
         <div class="fade-in">
-            <p class="section-label">The Expert</p>
-            <h2 class="section-title">[Trainer Name]</h2>
+            <p class="section-label">The Foundation</p>
+            <h2 class="section-title">Pacho</h2>
             <div class="gold-divider">
                 <span class="gold-divider-diamond sm"></span>
                 <span class="gold-divider-diamond"></span>
                 <span class="gold-divider-diamond sm"></span>
             </div>
             <p class="body-text">
-                [Trainer name] has worked with Friesian stallions for [X] years, with a specialty in classical foundation training and the elevated movement standards required for KFPS evaluation. [Add credentials, institutions, mentors, or notable horses trained.]
+                Pacho came to us as a rescue. A 12-year-old chestnut gelding with a history we had to piece together slowly — through patience, consistency, and time. <strong>It took two years to restore him.</strong> Two years of quiet mornings, of never asking too much, of learning to read the signals he gave when words were impossible.
             </p>
             <p class="body-text">
-                Under [trainer]'s guidance, <strong>Angel</strong> has developed the powerful, cadenced trot and proud carriage that earned him the coveted <strong>Vb H · Premium</strong> classification. The training philosophy centers on patience, partnership, and respect for the horse's natural expression.
+                When Angel arrived as a foal, we made a decision that defined everything that followed: we let Pacho raise him. Not as a supplement to human training, but as the primary social relationship in Angel's early life. <strong>Everything Angel knows about trust, he learned from Pacho first.</strong>
             </p>
-            <p class="body-text">
-                [Add anything about Angel's training journey: challenges overcome, milestones reached, what makes Angel exceptional as a training subject.]
+            <p class="body-text" style="font-style:italic; color:rgba(245,240,232,0.7); border-left: 2px solid rgba(201,169,110,0.4); padding-left:20px;">
+                "Pacho is the soul of Rancho Faizy."
             </p>
         </div>
         <div class="photo-wrap fade-in stagger-1">
-            <div class="photo-placeholder">
-                <div class="photo-placeholder-inner">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
-                    <span class="photo-placeholder-label">Trainer Photo</span>
-                </div>
+            <img src="pacho-angel.jpg" alt="Pacho and Angel together at Rancho Faizy" style="width:100%; aspect-ratio:3/4; object-fit:cover; object-position:top center; display:block; position:relative; z-index:1;">
+        </div>
+    </div>
+</section>
+
+<div class="ara-sep"><span class="ara-sep-icon"><span class="sep-diamond"></span><span class="sep-diamond lg"></span><span class="sep-diamond"></span></span></div>
+
+<!-- FUTURE BREEDING -->
+<section id="future" class="ara-bg">
+    <div class="future-inner">
+        <p class="section-label fade-in" style="justify-content:center;">Looking Ahead</p>
+        <h2 class="section-title fade-in" style="font-size: clamp(34px, 4.5vw, 58px);">Future Breeding</h2>
+        <div class="gold-divider fade-in" style="margin: 0 auto 20px;">
+            <span class="gold-divider-diamond sm"></span>
+            <span class="gold-divider-diamond"></span>
+            <span class="gold-divider-diamond sm"></span>
+        </div>
+        <p class="fade-in" style="color:var(--muted); font-size:14px; max-width:560px; margin:0 auto; line-height:1.9;">
+            Angel's development is ongoing. We are committed to not shortcutting his training for commercial demand. When the time is right — and only then — breeding will open.
+        </p>
+        <div class="future-card fade-in">
+            <div class="future-year">2027</div>
+            <div class="future-headline">Breeding Available</div>
+            <p style="color:var(--muted); font-size:14px; max-width:500px; margin:0 auto; line-height:1.9;">
+                Angel's first breeding season is projected for 2027. Enquiries are welcome now — early conversations help us plan responsibly and ensure the right matches for both mare and stallion.
+            </p>
+            <div class="future-types">
+                <span class="future-type-tag">Fresh Chilled</span>
+                <span class="future-type-tag">Frozen AI</span>
+                <span class="future-type-tag">International Available</span>
             </div>
+            <p class="future-contact">
+                To register early interest or ask questions:<br>
+                <a href="mailto:tulaib@theyourid.com">tulaib@theyourid.com</a>
+            </p>
         </div>
     </div>
 </section>
@@ -533,9 +641,9 @@
             <span class="gold-divider-diamond sm"></span>
         </div>
         <p style="color:var(--muted); font-size:14px; max-width:480px; margin:0 auto; line-height:1.9;">
-            Whether you're a first-time breeder or a seasoned professional, we'd love to talk. Every successful pairing starts with a conversation.
+            Breeding opens in 2027. If you have a mare you believe belongs in this lineage, we'd love to hear from you. Every great pairing starts with a conversation.
         </p>
-        <a href="index.html#contact" class="cta-btn">Inquire Now</a>
+        <a href="mailto:tulaib@theyourid.com" class="cta-btn">Express Interest</a>
     </div>
 </section>
 
@@ -551,7 +659,7 @@
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
         @angel_kfps_mexico
     </a>
-    <p class="footer-copy">© 2026 Angel the Stud &nbsp;·&nbsp; Ixtapan Tonatico, México &nbsp;·&nbsp; All Rights Reserved</p>
+    <p class="footer-copy">© 2026 Angel the Stud &nbsp;·&nbsp; Lerma, Estado de México &nbsp;·&nbsp; All Rights Reserved</p>
     <div class="footer-bottom-ornament"></div>
 </footer>
 
