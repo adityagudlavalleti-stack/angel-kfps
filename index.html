@@ -47,6 +47,80 @@
         }
         /* Allow carousel scroll-snap to work on mobile */
         @media (max-width: 768px) { body { overflow-x: clip; } }
+
+        /* ── AMBIENT LIVE BACKGROUND ── */
+        #ambient-layer {
+            position: fixed; inset: 0;
+            pointer-events: none; z-index: 0; overflow: hidden;
+        }
+        .orb {
+            position: absolute; border-radius: 50%;
+            filter: blur(90px);
+        }
+        .orb-1 {
+            width: 700px; height: 700px;
+            background: radial-gradient(circle, rgba(201,169,110,0.09) 0%, transparent 68%);
+            top: -180px; left: -160px;
+            animation: orbDrift1 20s ease-in-out infinite;
+        }
+        .orb-2 {
+            width: 560px; height: 560px;
+            background: radial-gradient(circle, rgba(223,194,138,0.07) 0%, transparent 68%);
+            top: 35%; right: -140px;
+            animation: orbDrift2 26s ease-in-out infinite;
+        }
+        .orb-3 {
+            width: 480px; height: 480px;
+            background: radial-gradient(circle, rgba(201,169,110,0.06) 0%, transparent 68%);
+            bottom: 15%; left: 15%;
+            animation: orbDrift3 18s ease-in-out infinite;
+        }
+        .orb-4 {
+            width: 620px; height: 620px;
+            background: radial-gradient(circle, rgba(180,140,80,0.05) 0%, transparent 68%);
+            top: 55%; left: 45%;
+            animation: orbDrift4 30s ease-in-out infinite;
+        }
+        .orb-5 {
+            width: 350px; height: 350px;
+            background: radial-gradient(circle, rgba(223,194,138,0.08) 0%, transparent 65%);
+            top: 20%; left: 40%;
+            animation: orbDrift5 14s ease-in-out infinite;
+        }
+        @keyframes orbDrift1 {
+            0%,100% { transform: translate(0,0) scale(1); opacity:.7; }
+            30%     { transform: translate(90px,70px) scale(1.12); opacity:1; }
+            65%     { transform: translate(-40px,110px) scale(.93); opacity:.55; }
+        }
+        @keyframes orbDrift2 {
+            0%,100% { transform: translate(0,0) scale(1); opacity:.65; }
+            38%     { transform: translate(-130px,-90px) scale(1.18); opacity:1; }
+            72%     { transform: translate(-50px,70px) scale(.88); opacity:.45; }
+        }
+        @keyframes orbDrift3 {
+            0%,100% { transform: translate(0,0) scale(1); opacity:.8; }
+            28%     { transform: translate(70px,-50px) scale(1.08); opacity:.6; }
+            62%     { transform: translate(-90px,-90px) scale(1.22); opacity:1; }
+        }
+        @keyframes orbDrift4 {
+            0%,100% { transform: translate(0,0) scale(1); opacity:.45; }
+            42%     { transform: translate(-110px,-130px) scale(1.14); opacity:.85; }
+            78%     { transform: translate(90px,-50px) scale(.82); opacity:.55; }
+        }
+        @keyframes orbDrift5 {
+            0%,100% { transform: translate(0,0) scale(1); opacity:.6; }
+            50%     { transform: translate(-60px,80px) scale(1.2); opacity:1; }
+        }
+        /* Mouse glow */
+        #mouse-glow {
+            position: fixed; width: 560px; height: 560px;
+            border-radius: 50%; pointer-events: none; z-index: 1;
+            background: radial-gradient(circle, rgba(201,169,110,0.09) 0%, transparent 70%);
+            transform: translate(-50%, -50%);
+            filter: blur(40px);
+            opacity: 0;
+            transition: left .15s ease, top .15s ease, opacity .6s ease;
+        }
         /* Subtle grain texture overlay */
         body::after {
             content: '';
@@ -953,6 +1027,15 @@
     </style>
 </head>
 <body>
+<!-- AMBIENT LIVE BACKGROUND -->
+<div id="ambient-layer">
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
+    <div class="orb orb-4"></div>
+    <div class="orb orb-5"></div>
+</div>
+<div id="mouse-glow"></div>
 
 <!-- LANG TOGGLE FIXED (mobile) -->
 <button id="lang-fixed" aria-label="Switch language">ES</button>
@@ -1903,5 +1986,17 @@
         if (btnFixed) btnFixed.addEventListener('click', () => setLang(lang === 'en' ? 'es' : 'en'));
     })();
 </script>
+    <script>
+    (function(){
+        const mg = document.getElementById('mouse-glow');
+        let on = false;
+        document.addEventListener('mousemove', e => {
+            mg.style.left = e.clientX + 'px';
+            mg.style.top  = e.clientY + 'px';
+            if (!on) { mg.style.opacity = '1'; on = true; }
+        });
+        document.addEventListener('mouseleave', () => { mg.style.opacity = '0'; on = false; });
+    })();
+    </script>
 </body>
 </html>
